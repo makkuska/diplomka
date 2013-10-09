@@ -1,0 +1,24 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdfcslatex 2012.12.29)  26 AUG 2013 20:30
+entering extended mode
+ %&-line parsing enabled.
+**main.tex
+(/usr/share/texmf-texlive/tex/latex/tools/q.tex
+LaTeX2e <2009/09/24>
+Loading CZ hyphenation patterns: Pavel Sevecek, v3, 1995
+Loading SK hyphenation patterns: Jana Chlebikova, 1992 File ignored
+)
+! Emergency stop.
+<*> main.tex
+            
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 7 strings out of 494936
+ 234 string characters out of 1181020
+ 45879 words of memory out of 3000000
+ 3406 multiletter control sequences out of 15000+50000
+ 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 24 hyphenation exceptions out of 8191
+ 5i,0n,1p,88b,8s stack positions out of 5000i,500n,10000p,200000b,50000s
+!  ==> Fatal error occurred, no output PDF file produced!

@@ -1,0 +1,33 @@
+\begin{thebibliography}{4}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Celikyilmaz a Turksen(2009)Celikyilmaz, Turksen]{Celikyilmaz2009}
+CELIKYILMAZ, A., TURKSEN, I.~B.
+\newblock \emph{Modeling uncertainty with fuzzy logic : with recent theory and
+  applications}.
+\newblock Studies in fuzziness and soft computing. Berlin~: Springer, 2009.
+
+\bibitem[Fotheringham et~al.(2002)Fotheringham, Brunsdon,,
+  Charlton]{Fotheringham2002}
+FOTHERINGHAM, A.~S., BRUNSDON, C., CHARLTON, M.
+\newblock \emph{Geographically weighted regression : the analysis of spatially
+  varying relationships}.
+\newblock Chichester, England ; Hoboken, NJ, USA~: Wiley, 2002.
+
+\bibitem[Hengl(2009)]{Hengl2009}
+HENGL, T.
+\newblock \emph{A Practical Guide to Geostatistical Mapping}.
+\newblock Amsterdam~: University of Amsterdam, 2nd edition, 2009.
+\newblock Dostupné z: \url{http://spatial-analyst.net/book/}.
+\newblock ISBN 978-90-9024981-0.
+
+\bibitem[TALAŠOVÁ(2003)]{Talasova2003}
+TALAŠOVÁ, J.
+\newblock \emph{Fuzzy metody vícekriteriálního hodnocení a rozhodování}.
+\newblock Univerzita Palackého v Olomouci, 2003.
+
+\end{thebibliography}
