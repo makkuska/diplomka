@@ -1,12 +1,11 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.9.16)  9 OCT 2013 23:13
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdfcslatex 2013.9.16)  17 DEC 2013 18:48
 entering extended mode
  %&-line parsing enabled.
 **Solanska_DP.tex
 (./Solanska_DP.tex
 LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, czech, slovak, loaded.
-(./thesisKGI.cls
+Loading CZ hyphenation patterns: Pavel Sevecek, v3, 1995
+Loading SK hyphenation patterns: Jana Chlebikova, 1992 (./thesisKGI.cls
 Document Class: thesisKGI 2013/02/10 thesis class
 (/usr/share/texmf-texlive/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
@@ -30,7 +29,7 @@ Package: geometry 2008/12/21 v4.2 Page Geometry
 
 (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks14
+\KV@toks@=\toks16
 )
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2009/04/10 v2.0 Provides the ifpdf switch (HO)
@@ -47,7 +46,7 @@ Package ifvtex Info: VTeX not detected.
 \Gm@wd@mp=\dimen104
 \Gm@odd@mp=\dimen105
 \Gm@even@mp=\dimen106
-\Gm@dimlist=\toks15
+\Gm@dimlist=\toks17
 )
 (/usr/share/texmf-texlive/tex/latex/setspace/setspace.sty
 Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
@@ -55,8 +54,8 @@ Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
 Package: `setspace' 6.7 <2000/12/01>
 ) (/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
-\inpenc@prehook=\toks16
-\inpenc@posthook=\toks17
+\inpenc@prehook=\toks18
+\inpenc@posthook=\toks19
 
 (/usr/share/texmf-texlive/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
@@ -243,6 +242,8 @@ File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+201C (decimal 8220)
    defining Unicode char U+201D (decimal 8221)
 )
+Now handling font encoding IL2 ...
+... no UTF-8 mapping file for font encoding IL2
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
 
@@ -320,22 +321,22 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 )
 (/usr/share/texmf-texlive/tex/latex/amscls/amsthm.sty
 Package: amsthm 2004/08/06 v2.20
-\thm@style=\toks18
-\thm@bodyfont=\toks19
-\thm@headfont=\toks20
-\thm@notefont=\toks21
-\thm@headpunct=\toks22
+\thm@style=\toks20
+\thm@bodyfont=\toks21
+\thm@headfont=\toks22
+\thm@notefont=\toks23
+\thm@headpunct=\toks24
 \thm@preskip=\skip43
 \thm@postskip=\skip44
 \thm@headsep=\skip45
-\dth@everypar=\toks23
+\dth@everypar=\toks25
 )
 (/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 
 (/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
-\@emptytoks=\toks24
+\@emptytoks=\toks26
 \ex@=\dimen107
 )
 \pmbraise@=\dimen108
@@ -381,21 +382,21 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 \dotsspace@=\muskip10
 \c@parentequation=\count97
 \dspbrk@lvl=\count98
-\tag@help=\toks25
+\tag@help=\toks27
 \row@=\count99
 \column@=\count100
 \maxfields@=\count101
-\andhelp@=\toks26
+\andhelp@=\toks28
 \eqnshift@=\dimen110
 \alignsep@=\dimen111
 \tagshift@=\dimen112
 \tagwidth@=\dimen113
 \totwidth@=\dimen114
 \lineht@=\dimen115
-\@envbody=\toks27
+\@envbody=\toks29
 \multlinegap=\skip47
 \multlinetaggap=\skip48
-\mathdisplay@stack=\toks28
+\mathdisplay@stack=\toks30
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
 ) (./bbm.sty
@@ -519,7 +520,7 @@ Package pdftexcmds Info: \pdf@ifprimitive is available.
 \Fld@menulength=\count106
 \Field@Width=\dimen123
 \Fld@charsize=\dimen124
-\Field@toks=\toks29
+\Field@toks=\toks31
 Package hyperref Info: Hyper figures OFF on input line 4377.
 Package hyperref Info: Link nesting OFF on input line 4382.
 Package hyperref Info: Hyper index ON on input line 4385.
@@ -550,7 +551,7 @@ Package: subcaption 2008/08/31 v1.0b Adding subcaptions (AR)
 )
 (/usr/share/texmf-texlive/tex/latex/tools/enumerate.sty
 Package: enumerate 1999/03/05 v3.00 enumerate extensions (DPC)
-\@enLab=\toks30
+\@enLab=\toks32
 )
 (/usr/share/texmf-texlive/tex/latex/paralist/paralist.sty
 Package: paralist 2002/03/18 v2.3b Extended list environments (BS)
@@ -558,24 +559,33 @@ Package: paralist 2002/03/18 v2.3b Extended list environments (BS)
 \plpartopsep=\skip50
 \plitemsep=\skip51
 \plparsep=\skip52
-\pl@lab=\toks31
+\pl@lab=\toks33
 )
 (/usr/share/texmf-texlive/tex/generic/babel/babel.sty
 Package: babel 2008/07/06 v3.8l The Babel package
 
-(/usr/share/texmf-texlive/tex/generic/babel/czech.ldf
-Language: czech 2008/07/06 v3.1a Czech support from the babel system
-
 (/usr/share/texmf-texlive/tex/generic/babel/babel.def
 File: babel.def 2008/07/06 v3.8l Babel common definitions
+
+(/usr/share/texmf-texlive/tex/generic/babel/switch.def
+File: switch.def 2008/07/06 v3.8l Babel language switching mechanism
+)
 \babel@savecnt=\count113
 \U@D=\dimen126
 )
+(/usr/share/texmf-texlive/tex/generic/babel/czech.ldf
+Language: czech 2008/07/06 v3.1a Czech support from the babel system
+
+
+Package babel Warning: No hyphenation patterns were loaded for
+(babel)                the language `Czech'
+(babel)                I will use the patterns loaded for \language=0 instead.
+
+\l@czech = a dialect from \language0
 Package babel Info: Making " an active character on input line 172.
 \cs@wordlen=\count114
 Package babel Info: Making - an active character on input line 226.
-))
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+)) (/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
@@ -595,9 +605,9 @@ Package graphics Info: Driver file: pdftex.def on input line 91.
 (/usr/share/texmf-texlive/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count115
-\float@exts=\toks32
+\float@exts=\toks34
 \float@box=\box28
-\@float@everytoks=\toks33
+\@float@everytoks=\toks35
 \@floatcapt=\box29
 )
 (/usr/share/texmf-texlive/tex/latex/glossaries/base/glossaries.sty
@@ -610,8 +620,8 @@ Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 Package: xkeyval 2008/08/13 v2.6a package option processing (HA)
 
 (/usr/share/texmf-texlive/tex/generic/xkeyval/xkeyval.tex
-\XKV@toks=\toks34
-\XKV@tempa@toks=\toks35
+\XKV@toks=\toks36
+\XKV@tempa@toks=\toks37
 \XKV@depth=\count116
 File: xkeyval.tex 2008/08/13 v2.6a key=value parser (HA)
 ))
@@ -627,7 +637,7 @@ Package: translator 2010/06/12 ver 1.10
 (/usr/share/texmf/tex/latex/beamer/base/translator/translator-language-mappings
 .tex))
 \gls@level=\count117
-\@gls@tmpb=\toks36
+\@gls@tmpb=\toks38
 \gls@tmplen=\skip53
 \istfile=\write3
 
@@ -657,7 +667,7 @@ Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
 \LT@rows=\count120
 \c@LT@tables=\count121
 \c@LT@chunks=\count122
-\LT@p@ftn=\toks37
+\LT@p@ftn=\toks39
 )
 \glsdescwidth=\skip59
 \glspagelistwidth=\skip60
@@ -705,7 +715,7 @@ LaTeX Info: Redefining \cite on input line 694.
 (/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-common.tex
-\pgfutil@everybye=\toks38
+\pgfutil@everybye=\toks40
 )
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def
 \pgfutil@abb=\box35
@@ -724,11 +734,11 @@ Package: pgf 2008/01/15 v2.10 (rcs-revision 1.12)
 Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
 
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks39
-\pgfkeys@temptoks=\toks40
+\pgfkeys@pathtoks=\toks41
+\pgfkeys@temptoks=\toks42
 
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
-\pgfkeys@tmptoks=\toks41
+\pgfkeys@tmptoks=\toks43
 ))
 \pgf@x=\dimen141
 \pgf@y=\dimen142
@@ -792,9 +802,9 @@ Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
 \pgfmath@dimen=\dimen149
 \pgfmath@count=\count131
 \pgfmath@box=\box36
-\pgfmath@toks=\toks42
-\pgfmath@stack@operand=\toks43
-\pgfmath@stack@operation=\toks44
+\pgfmath@toks=\toks44
+\pgfmath@stack@operand=\toks45
+\pgfmath@stack@operation=\toks46
 )
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex)
@@ -906,8 +916,8 @@ Package: pgfcomp-version-1-18 2007/07/23 v2.10 (rcs-revision 1.1)
 Package: pgffor 2010/03/23 v2.10 (rcs-revision 1.18)
 \pgffor@iter=\dimen175
 \pgffor@skip=\dimen176
-\pgffor@stack=\toks45
-\pgffor@toks=\toks46
+\pgffor@stack=\toks47
+\pgffor@toks=\toks48
 ))
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2010/10/13 v2.10 (rcs-revision 1.76)
@@ -949,6 +959,8 @@ LaTeX Font Info:    ... okay on input line 13.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
 LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for IL2/cmr/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
 LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
@@ -1020,11 +1032,11 @@ Package caption Info: End \AtBeginDocument code.
 \scratchbox=\box44
 \nofMPsegments=\count145
 \nofMParguments=\count146
-\everyMPshowfont=\toks47
+\everyMPshowfont=\toks49
 \MPscratchCnt=\count147
 \MPscratchDim=\dimen185
 \MPnumerator=\count148
-\everyMPtoPDFconversion=\toks48
+\everyMPtoPDFconversion=\toks50
 )
 Package hyperref Info: Link coloring OFF on input line 13.
  (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
@@ -1093,17 +1105,6 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 
  [5]
 No file Solanska_DP.gls.
-
-! Package inputenc Error: Unicode char \u8:  not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.88       přenostitelnost dat a další.  
-                                             Replikace se dá využít pro k...
-
-? 
 [6] [7] [8] (./kapitoly/pouzite_metody.tex
 <./obrazky/obrazek_1.png, id=93, 246.1697pt x 603.75563pt>
 File: ./obrazky/obrazek_1.png Graphic file (type png)
@@ -1127,12 +1128,12 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )) [16]
 [17] (./Solanska_DP.aux) ) 
 Here is how much of TeX's memory you used:
- 17925 strings out of 495027
- 302728 string characters out of 1181419
- 387039 words of memory out of 3000000
- 20591 multiletter control sequences out of 15000+50000
+ 17957 strings out of 494936
+ 303399 string characters out of 1181021
+ 388768 words of memory out of 3000000
+ 20739 multiletter control sequences out of 15000+50000
  48535 words of font info for 43 fonts, out of 3000000 for 9000
- 38 hyphenation exceptions out of 8191
+ 24 hyphenation exceptions out of 8191
  63i,10n,90p,1076b,590s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{glo:CAD} has been referen
 ced but does not exist, replaced by a fixed one
@@ -1148,7 +1149,7 @@ fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.p
 fb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/typ
 e1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></us
 r/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Solanska_DP.pdf (16 pages, 227036 bytes).
+Output written on Solanska_DP.pdf (16 pages, 226865 bytes).
 PDF statistics:
  215 PDF objects out of 1000 (max. 8388607)
  38 named destinations out of 1000 (max. 500000)
