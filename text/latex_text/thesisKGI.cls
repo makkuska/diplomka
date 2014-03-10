@@ -98,7 +98,7 @@
 %=======================================================
 %přejmenuje Reference na Literaturu
 \addto\captionsczech{
-  \renewcommand{\refname}{Literatura}
+  \renewcommand{\refname}{LITERATURA}
 }
 %přejmenuje na Seznam zkratek
 \addto\captionsczech{
@@ -225,7 +225,7 @@
 \newcommand{\makeGlossary}{
 \begin{alwayssingle}
 		\pagestyle{plain}
-		\addcontentsline{toc}{section}{Seznam použitých zkratek} 
+		\addcontentsline{toc}{section}{SEZNAM POUŽITÝCH ZKRATEK} 
 		\printglossary[nonumberlist=true]
 \end{alwayssingle}
 }
@@ -233,7 +233,7 @@
 \newcommand{\makeBibliography}[1]{
 \begin{alwayssingle}
 		\pagestyle{empty}
-		\addcontentsline{toc}{section}{Literatura} 
+		\addcontentsline{toc}{section}{LITERATURA} 
 		\bibliography{#1}
 \end{alwayssingle}
 }
@@ -262,6 +262,6 @@ V Olomouci \today \hspace*{13em} \@author
 {\begin{alwayssingle}
   \pagestyle{empty}
   \section*{SUMMARY}
-  \addcontentsline{toc}{section}{Summary}
+  \addcontentsline{toc}{section}{SUMMARY}
   }
 {\end{alwayssingle}}

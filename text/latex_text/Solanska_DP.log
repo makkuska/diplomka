@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdfcslatex 2013.9.16)  17 DEC 2013 18:48
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdfcslatex 2013.9.16)  10 MAR 2014 18:31
 entering extended mode
  %&-line parsing enabled.
 **Solanska_DP.tex
@@ -1105,8 +1105,9 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 
  [5]
 No file Solanska_DP.gls.
-[6] [7] [8] (./kapitoly/pouzite_metody.tex
-<./obrazky/obrazek_1.png, id=93, 246.1697pt x 603.75563pt>
+(./kapitoly/uvod.tex [6]) [7] (./kapitoly/cile.tex) [8]
+(./kapitoly/pouzite_metody.tex
+<./obrazky/obrazek_1.png, id=106, 246.1697pt x 603.75563pt>
 File: ./obrazky/obrazek_1.png Graphic file (type png)
 
 <use ./obrazky/obrazek_1.png>
@@ -1119,19 +1120,30 @@ File: ./obrazky/obrazek_1.png Graphic file (type png)
 
 Package hyperref Warning: Composite letter `\textasciicaron+E'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 157.
+(hyperref)                removing `\textasciicaron' on input line 85.
 
 [15] (./Solanska_DP.bbl
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 25.
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )) [16]
-[17] (./Solanska_DP.aux) ) 
+[17] [18] [19]
+
+Package hyperref Warning: Composite letter `\textasciicaron+R'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 117.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--124
+
+ []
+
+[20] (./Solanska_DP.aux) ) 
 Here is how much of TeX's memory you used:
- 17957 strings out of 494936
- 303399 string characters out of 1181021
- 388768 words of memory out of 3000000
- 20739 multiletter control sequences out of 15000+50000
+ 17969 strings out of 494936
+ 303525 string characters out of 1181021
+ 388773 words of memory out of 3000000
+ 20740 multiletter control sequences out of 15000+50000
  48535 words of font info for 43 fonts, out of 3000000 for 9000
  24 hyphenation exceptions out of 8191
  63i,10n,90p,1076b,590s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1149,9 +1161,9 @@ fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.p
 fb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/typ
 e1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></us
 r/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Solanska_DP.pdf (16 pages, 226865 bytes).
+Output written on Solanska_DP.pdf (19 pages, 230760 bytes).
 PDF statistics:
- 215 PDF objects out of 1000 (max. 8388607)
- 38 named destinations out of 1000 (max. 500000)
- 118 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 243 PDF objects out of 1000 (max. 8388607)
+ 43 named destinations out of 1000 (max. 500000)
+ 142 words of extra memory for PDF output out of 10000 (max. 10000000)
 
