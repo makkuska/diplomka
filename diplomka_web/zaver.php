@@ -9,18 +9,8 @@
 
   <body>
     <!-- Navigace -->
-    <div class="blog-masthead">
-      <div class="container">
-        <nav class="blog-nav">
-        <a class="blog-nav-item" href="index.php">Úvod</a>
-        <a class="blog-nav-item" href="cile.php">Cíle práce</a>
-        <a class="blog-nav-item" href="metody.php">Metody</a>
-        <a class="blog-nav-item" href="vysledky.php">Výsledky</a>
-        <a class="blog-nav-item active" href="zaver.php">Závěr</a>
-        <a class="blog-nav-item" href="summary.php">Summary</a>
-        </nav>
-      </div>
-    </div>
+    <?php include_once("header.html") ?>
+    
     <!-- Nadpis -->
     <div class="sidebar-module-inset">
       <div class="container">
@@ -30,7 +20,7 @@
     </div> 
     </div> 
 
-    <div class="first">
+    <div id="first" class="zaver">
       <div class="container">
         <!-- tělo stránky -->
         <div class="hlavni"> 
@@ -84,5 +74,9 @@
         <?php include_once("footer.html") ?>
       </div> <!-- /container -->
     </div> <!-- konec těla stránky -->
+
+    <script type="text/javascript" src="dist/js/menu.js">
+    </script>
+
   </body>
 </html>
