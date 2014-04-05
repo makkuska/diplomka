@@ -32,29 +32,37 @@
     %poděkování, pokud nějaké chcete uvést, jinak lze tuto sekci smazat
     \begin{dedication}
 
-      Děkuji vedoucímu práce doc. RNDr. Vilému Pechancovi, Ph.D. za podněty a připomínky při vypracování práce.
+      Ráda bych poděkovala vedoucímu práce doc. RNDr. Vilému Pechancovi, Ph.D. za podněty a připomínky při vypracování práce.
 
-      Děkuji také konzultantu Tomáši Vondrovi za pomoc při pochopení a praktickém použití databázového serveru PostgreSQL, za jeho rady a podněty, stejně tak jako i jeho kolegovi Pavlovi Stěhule.
+      Děkuji také konzultantu Tomáši Vondrovi za pomoc při pochopení a praktickém použití databázového serveru PostgreSQL, za jeho cenné rady a připomínky, stejně tak jako i jeho kolegovi Pavlovi Stěhule.
 
-      Dále děkuji konzultantům Boudewijn van Leeuwen a Zalan Tobak z University of Szeged za připomínky a podněty k této práci. 
+      Dále děkuji konzultantům Boudewijn van Leeuwen a Zalan Tobak působích na Universitě v Szegedu v Maďarsku za inspirativní připomínky a podněty k této práci. 
       \vspace{4em}
     \end{dedication}
 
-    %------------------------------------------------------------------------- NASTAVENÍ POČÍTADLA, ZKRATKY
+    %------------------------------------------------------------------------- NASTAVENÍ POČÍTADLA, OBSAH
     
     \setcounter{page}{5}          %nastavení počítadla stránek na správnou hodnotu
     \makeTableOfContent{3}        %vložení obsahu, standardně se používají 3 úrovně
 
-    \makeGlossary                 %formát v nemž se vkládají zkratky, vlouží se pouze ty, které budou použity v textu. v textu vkládáme zkratku pomocí příkazu \gls{DTM}
+    %------------------------------------------------------------------------- ILUSTRACE
+    \newpage
+    \listoffigures
+
+    %------------------------------------------------------------------------- GLOSSARY
+    \makeGlossary               
     %vložení seznamu zkratek, smazat, pokud není třeba
-      \newglossaryentry{CAD}{name=CAD, description={Computer Aided Design}}
-      \newglossaryentry{GIT}{name=GIT, description={geoinformační technologie}}
-      \newglossaryentry{SQL}{name=SQL, description={Structured Query Language}}
+    %formát v nemž se vkládají zkratky, vlouží se pouze ty, které budou použity v textu. 
+    % v textu vkládáme zkratku pomocí příkazu \gls{DTM}
+    \newglossaryentry{Esri}{name=Esri, description={Environmental Systems Research Institute}}
+    \newglossaryentry{SDE}{name=SDE, description={Spatial Database Engine}}
+    \newglossaryentry{SQL}{name=SQL, description={Structured Query Language}}
 
     %------------------------------------------------------------------------- ÚVOD
     %protože je Úvod nečíslovaný je potřeba ho manuálně vložit do obsahu
+    \newpage
     \addcontentsline{toc}{section}{ÚVOD}
-    \section*{Úvod}
+    \section*{ÚVOD}
       \input{kapitoly/uvod.tex}
 
     %------------------------------------------------------------------------- CÍLE PRÁCE
@@ -71,6 +79,11 @@
     %------------------------------------------------------------------------- TEORETICKÁ VÝCHODISKA
     \newpage
     \section{TEORETICKÁ VÝCHODISKA}
+      \input{kapitoly/teorie/1_teorie_uvod.tex}
+      \input{kapitoly/teorie/2_vymezeni_pojmu.tex}
+      \input{kapitoly/teorie/3_replikace.tex}
+      \input{kapitoly/teorie/4_arcgis_produkty.tex}
+      \input{kapitoly/teorie/5_pouzite_programove_prostredky.tex}
     
     %------------------------------------------------------------------------- VÝSLEDKY
     \newpage
@@ -85,15 +98,9 @@
     \section{ZÁVĚR}
 
     %------------------------------------------------------------------------- LITERATURA
-    \newpage
-    \addcontentsline{toc}{section}{LITERATURA}
-    %\makeBibliography{literatura}
-    \bibliography{literatura}
+    \makeBibliography{literatura}
+    %\bibliography{literatura}
 
-    %------------------------------------------------------------------------- ILUSTRACE
-    \newpage
-    \addcontentsline{toc}{section}{SEZNAM ILUSTRACÍ}
-    \section*{SEZNAM ILUSTRACÍ/TABULEK}
 
     %------------------------------------------------------------------------- SUMMARY
     \begin{summary}
@@ -107,29 +114,30 @@
 
     %------------------------------------------------------------------------- PŘÍLOHY
     \newpage
+    \addcontentsline{toc}{section}{PŘÍLOHY}
     \vspace*{180pt}
     \begin{center}
-      {\Large\textbf{PŘÍLOHY}}
+    \section*{PŘÍLOHY}
     \end{center}
     \vspace*{\fill}
 
     \newpage
-    \addcontentsline{toc}{section}{PŘÍLOHY}
-    \section*{SEZNAM PŘÍLOH}
-    \textbf{Volné přílohy}
+    \begin{prilohy}
+      \textbf{Volné přílohy}
 
-    Příloha 1 CD \newline
-    \newline
-    \textbf{Popis sktruktury CD}
+      Příloha 1 CD \newline
+      \newline
+      \textbf{Popis sktruktury CD}
 
-      Adresáře a soubory:
+        Adresáře a soubory:
 
-        - složka se skripty
+          - složka se skripty
 
-        - web - webová stránky jako doplněk k diplomové práci
+          - web - webová stránky jako doplněk k diplomové práci
 
-        - Solanska\_dp.pdf - text diplomové práce
+          - Solanska\_dp.pdf - text diplomové práce
 
-    \vspace*{\fill}
-
+      \vspace*{\fill}
+  \end{prilohy}
+      
   \end{document}

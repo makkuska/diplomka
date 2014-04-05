@@ -1,16 +1,15 @@
- \subsection{Obrázky}
+ \subsection{Obrázkygt}
 
     %ukázka zápisu kódu pro obrázek
     %parametr H říká že to bude přímo na tom místě kde je v textu...více http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.2\textwidth]{./obrazky/obrazek_1.png}
-      \caption {Styly (převzato z: \cite{Celikyilmaz2009})}
       \label{fig:44}
     \end{figure}
 
     %ukázka odkazu na zkratky a obrázek
-    \Gls{GIT} \Gls{CAD} bla bla bla \odkazObrazek{fig:44}. Pokud chceme uvést překlad z angličtiny můžeme to udělat takto \transl{english words}.
+    \gls{Esri} \gls{SQL} bla bla bla \odkazObrazek{fig:44}. Pokud chceme uvést překlad z angličtiny můžeme to udělat takto \transl{english words}.
 
     %dají se dělat i složené obrázky
     \begin{figure}
@@ -18,7 +17,6 @@
         \begin{subfigure}[b]{0.45\textwidth}
           \centering
           \includegraphics[width=\textwidth]{./obrazky/obrazek_1.png}
-          \caption{Cena za metr čtvereční bytů v Londýně (převzato z:\cite{Fotheringham2002})}
           \label{fig2.1}
         \end{subfigure}%
         \quad %add desired spacing between images, e. g. ~, \quad, \qquad etc.
@@ -26,7 +24,7 @@
         \begin{subfigure}[b]{0.45\textwidth}
           \centering
           \includegraphics[width=\textwidth]{./obrazky/obrazek_1.png}
-          \caption{Obsah zinku v půdě (převzato z:\cite{Hengl2009})}
+          \caption{Obsah zinku v půdě }
           \label{fig2.2}
         \end{subfigure}
         \caption{Povrch socioekonomického (a) a fyzickogeografického (b) ukazatele}
@@ -65,6 +63,5 @@
 
     Vzorce pak odkazujeme \odkazVzorec{eq1}. 
 
-    Citace se dají dělat buď jako \citep{Talasova2003} nebo \cite{Talasova2003}.
 
 

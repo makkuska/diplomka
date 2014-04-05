@@ -1,0 +1,11 @@
+This is makeindex, version 2.15 [TeX Live 2009] (kpathsea + Thai support).
+Scanning input file Solanska_DP.glo...
+!! Input index error (file = Solanska_DP.glo, line = 1):
+   -- Unknown index keyword \glossaryentry.
+!! Input index error (file = Solanska_DP.glo, line = 2):
+   -- Unknown index keyword \glossaryentry.
+!! Input index error (file = Solanska_DP.glo, line = 3):
+   -- Unknown index keyword \glossaryentry.
+done (0 entries accepted, 3 rejected).
+Nothing written in Solanska_DP.ind.
+Transcript written in Solanska_DP.ilg.

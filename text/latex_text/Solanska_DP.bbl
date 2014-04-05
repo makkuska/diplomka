@@ -1,33 +1,144 @@
-\begin{thebibliography}{4}
+\begin{thebibliography}{20}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Celikyilmaz a Turksen(2009)Celikyilmaz, Turksen]{Celikyilmaz2009}
-CELIKYILMAZ, A., TURKSEN, I.~B.
-\newblock \emph{Modeling uncertainty with fuzzy logic : with recent theory and
-  applications}.
-\newblock Studies in fuzziness and soft computing. Berlin~: Springer, 2009.
+\bibitem[Bell et~al.(2010)Bell, Kindahl,, Thalmann]{BellKindahlThalmann2010}
+BELL, C., KINDAHL, M., THALMANN, L.
+\newblock \emph{MySQL high availability}.
+\newblock Vyd. ~1. Sebastopol, CA: O'Reilly Media, Inc, 2010.
+\newblock ISBN 978-059-6807-306.
 
-\bibitem[Fotheringham et~al.(2002)Fotheringham, Brunsdon,,
-  Charlton]{Fotheringham2002}
-FOTHERINGHAM, A.~S., BRUNSDON, C., CHARLTON, M.
-\newblock \emph{Geographically weighted regression : the analysis of spatially
-  varying relationships}.
-\newblock Chichester, England ; Hoboken, NJ, USA~: Wiley, 2002.
+\bibitem[Böszörmenyi a Schönig(c2013)Böszörmenyi,
+  Schönig]{Boszormenyi2013}
+BöSZöRMENYI, Z., SCHöNIG, H.-J.
+\newblock \emph{PostgreSQL replication: understand basic replication concepts
+  and efficiently replicate PostgreSQL using high-end techniques to protect
+  your data and run your server without interruptions}.
+\newblock Birmingham: Packt Publishing, c2013.
+\newblock ISBN 978-1-84951-672-3.
 
-\bibitem[Hengl(2009)]{Hengl2009}
-HENGL, T.
-\newblock \emph{A Practical Guide to Geostatistical Mapping}.
-\newblock Amsterdam~: University of Amsterdam, 2nd edition, 2009.
-\newblock Dostupné z: \url{http://spatial-analyst.net/book/}.
-\newblock ISBN 978-90-9024981-0.
+\bibitem[Chacon(c2009)]{Chacon2009}
+CHACON, S.
+\newblock \emph{Pro Git}.
+\newblock Edice CZ.NIC. Praha: CZ.NIC, c2009.
+\newblock ISBN 978-80-904248-1-4.
 
-\bibitem[TALAŠOVÁ(2003)]{Talasova2003}
-TALAŠOVÁ, J.
-\newblock \emph{Fuzzy metody vícekriteriálního hodnocení a rozhodování}.
-\newblock Univerzita Palackého v Olomouci, 2003.
+\bibitem[Connolly(2005)]{Connolly2005}
+CONNOLLY, T.
+\newblock \emph{Database Systems: A Practical Approach to Design,
+  Implementation, and Management}.
+\newblock Vyd. ~4. Harlow: Addison-Wesley, 2005.
+\newblock ISBN 03-212-1025-5.
+
+\bibitem[Esri(2006)]{Esri2006}
+ESRI.
+\newblock \emph{ArcGIS 9: Co je ArcGIS 9.2?}
+\newblock United States: ESRI Press, US, 2006.
+\newblock ISBN 15-894-8166-6.
+
+\bibitem[Esri(2013{\natexlab{a}})]{Esri2013a}
+ESRI.
+\newblock A quick tour of working with databases in arcgis.
+\newblock \emph{ArcGIS Help 10.1 [online]}, 2013{\natexlab{a}}.
+\newblock Dostupné z:
+  \url{http://resources.arcgis.com/en/help/main/10.1/index.html#/A_quick_tour_%
+of_working_with_databases_in_ArcGIS/019v00000008000000/}.
+
+\bibitem[Esri(2013{\natexlab{b}})]{Esri2013b}
+ESRI.
+\newblock Preparing data for replication.
+\newblock \emph{ArcGIS Help 10.1 [online]}, 2013{\natexlab{b}}.
+\newblock Dostupné z:
+  \url{http://resources.arcgis.com/en/help/main/10.1/index.html#/Preparing_dat%
+a_for_replication/003n000000z5000000/}.
+
+\bibitem[Law(2008)]{Law2008}
+LAW, D.
+\newblock Enterprise geodatabase 101: A review of design and key features for
+  gis managers and database administrators.
+\newblock \emph{Esri: Understanding our world. [online]}, 2008.
+\newblock Dostupné z:
+  \url{http://www.esri.com/news/arcuser/0408/entergdb_101.html}.
+
+\bibitem[Leiter(2009)]{Leiter2009}
+LEITER, C.
+\newblock \emph{Beginning Microsoft SQL server 2008 administration}.
+\newblock Indianapolis, IN: Wiley Pub., 2009.
+\newblock ISBN 978-047-0440-919.
+
+\bibitem[Microsoft(2013)]{Microsoft2013}
+MICROSOFT.
+\newblock \uppercase{SQL} server - replication.
+\newblock \emph{Microsoft [online]}, 2013.
+\newblock Dostupné z:
+  \url{http://technet.microsoft.com/en-us/library/ms151198(v=sql.100).aspx}.
+
+\bibitem[Momjian(2001)]{Momjian2001}
+MOMJIAN, B.
+\newblock \emph{PostgreSQL: introduction and concepts}.
+\newblock Boston, MA: Addison-Wesley, 2001.
+\newblock ISBN 02-017-0331-9.
+
+\bibitem[Obe a Hsu(2011)Obe, Hsu]{ObeHsu2011}
+OBE, R., HSU, L.
+\newblock \emph{PostGIS in action}.
+\newblock London: Pearson Education [distributor], 2011.
+\newblock ISBN 19-351-8226-9.
+
+\bibitem[Obe a Hsu(2012)Obe, Hsu]{ObeHsu2012}
+OBE, R., HSU, L.
+\newblock \emph{Postgresql: Up and Running}.
+\newblock Sebastopol, CA: O'Reilly, 2012.
+\newblock ISBN 978-144-9326-333.
+
+\bibitem[OpenGeo(2012b)]{OpenGeo2012}
+OPENGEO.
+\newblock Introduction to postgis [online].
+\newblock \emph{Section 17: Geography}, 2012b.
+\newblock Dostupné z:
+  \url{http://workshops.opengeo.org/stack-intro/openlayers.html}.
+
+\bibitem[Oppel(2009)]{Oppel2009}
+OPPEL, A.~J.
+\newblock \emph{Databases: a beginner's guide}.
+\newblock New York: McGraw-Hill, 2009.
+\newblock ISBN 00-716-0846-X.
+
+\bibitem[OSGeo(2013)]{OSGEO2013}
+OSGEO.
+\newblock Postgis and arcsde/arcgis articles.
+\newblock \emph{PostGIS Tracker and Wiki [online]}, 2013.
+\newblock Dostupné z:
+  \url{http://trac.osgeo.org/postgis/wiki/UsersWikiPostgisarcgis}.
+
+\bibitem[PostgreSQL(2012)]{PostgreSQL2012}
+POSTGRESQL.
+\newblock Faq.
+\newblock \emph{PostgreSQL wiki [online]}, 2012.
+\newblock Dostupné z: \url{http://wiki.postgresql.org/wiki/FAQ}.
+
+\bibitem[Riggs a Krosing(2010)Riggs, Krosing]{RiggsKrossing2010}
+RIGGS, S., KROSING, H.
+\newblock \emph{PostgreSQL 9 administration cookbook: solve real-world
+  PostgreSQL problems with over 100 simple, yet incredibly effective recipes}.
+\newblock Birmingham: Packt Publishing, 2010.
+\newblock ISBN 978-1-849510-28-8.
+
+\bibitem[Whalen(2008)]{Whalen2008}
+WHALEN, E. a.~k.
+\newblock \emph{Microsoft SQL Server 2005: velký průvodce administrátora}.
+\newblock Vyd. ~1. / \emph{Edice Administrace (Computer Press)}. Brno: Computer
+  Press, 2008.
+\newblock ISBN 978-80-251-1949-5.
+
+\bibitem[Činčura(2009)]{Cincura2009}
+ČINčURA, J.
+\newblock \uppercase{MS SQL 2008} – prostorová data poprvé.
+\newblock \emph{Databázový svět [online]}, 2009.
+\newblock Dostupné z:
+  \url{http://www.dbsvet.cz/view.php?cisloclanku=2009101201}.
 
 \end{thebibliography}

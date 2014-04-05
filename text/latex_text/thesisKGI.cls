@@ -82,6 +82,9 @@
 \RequirePackage[pdftex]{graphicx}
 \RequirePackage{float}
 
+%\usepackage{glossary}
+
+%\usepackage[table]{xcolor}
 %package pro tvorbu seznamu zkratek
 \RequirePackage{glossaries}
 \makeglossaries
@@ -97,12 +100,12 @@
 %úpravy jmen kapitol
 %=======================================================
 %přejmenuje Reference na Literaturu
-\addto\captionsczech{
-  \renewcommand{\refname}{LITERATURA}
-}
+ \addto\captionsczech{
+   \renewcommand{\refname}{LITERATURA}
+ }
 %přejmenuje na Seznam zkratek
 \addto\captionsczech{
-  \renewcommand{\glossaryname}{Seznam použitých zkratek}
+  \renewcommand{\glossaryname}{SEZNAM POUŽITÝCH ZKRATEK}
 }
 
 %=======================================================
@@ -128,6 +131,7 @@
 \newcommand\aj{\mbox{{aj. }}}
 
 \newcommand{\odkazObrazek}[1]{(\viz obr. \ref{#1})}
+\newcommand{\odkazKapitola}[1]{\ref{#1}}
 \newcommand{\odkazVzorec}[1]{(\viz \eqref{#1})}
 \newcommand{\odkazTabulka}[1]{(\viz tab. \ref{#1})}
 
@@ -148,7 +152,7 @@
        \else\newpage\fi}
        {\if@restonecol\twocolumn\else\newpage\fi}
 
-	   
+% MAKE TITLE
 \renewcommand{\maketitle}{
 \begin{alwayssingle}
 		\thispagestyle{empty}
@@ -213,7 +217,8 @@
 		\end{center}
 \end{alwayssingle}
 }
- 
+
+% MAKE TABLE OF CONTENT
 \newcommand{\makeTableOfContent}[1]{
 \begin{alwayssingle}
 		\pagestyle{plain}
@@ -222,6 +227,7 @@
 \end{alwayssingle}
 }
 
+% MAKE GLOSSARY
 \newcommand{\makeGlossary}{
 \begin{alwayssingle}
 		\pagestyle{plain}
@@ -230,14 +236,16 @@
 \end{alwayssingle}
 }
 
+% MAKE BIBLIOGRAPHY
 \newcommand{\makeBibliography}[1]{
 \begin{alwayssingle}
-		\pagestyle{empty}
+		\pagestyle{plain}
 		\addcontentsline{toc}{section}{LITERATURA} 
 		\bibliography{#1}
 \end{alwayssingle}
 }
 
+% MAKE DECLARATION
 \newenvironment{declaration}
 {\begin{alwayssingle}
   \pagestyle{empty}
@@ -248,7 +256,7 @@
 V Olomouci \today \hspace*{13em} \@author
 \end{alwayssingle}}
 
-
+% MAKE DEDICATION
 \newenvironment{dedication}
 {\begin{alwayssingle}
   \pagestyle{empty}
@@ -258,10 +266,18 @@ V Olomouci \today \hspace*{13em} \@author
   }
 {\end{alwayssingle}}
 
-\newenvironment{summary}
-{\begin{alwayssingle}
-  \pagestyle{empty}
+% MAKE SUMMARY
+\newenvironment{summary}{
+\begin{alwayssingle}
+  \pagestyle{plain}
   \section*{SUMMARY}
   \addcontentsline{toc}{section}{SUMMARY}
+  }
+{\end{alwayssingle}}
+
+\newenvironment{prilohy}{
+\begin{alwayssingle}
+  \pagestyle{plain}
+  \section*{SEZNAM PŘÍLOH} 
   }
 {\end{alwayssingle}}

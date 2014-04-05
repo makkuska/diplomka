@@ -2,47 +2,44 @@ This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: Solanska_DP.aux
 The style file: csplainnat.bst
 Database file #1: literatura.bib
-`address' is a missing field, not a string, for entry Talasova2003
-while executing---line 1449 of file csplainnat.bst
-You've used 4 entries,
+You've used 20 entries,
             2837 wiz_defined-function locations,
-            647 strings with 5710 characters,
-and the built_in function-call counts, 1451 in all, are:
-= -- 114
-> -- 71
-< -- 3
-+ -- 25
-- -- 21
-* -- 103
-:= -- 260
-add.period$ -- 15
-call.type$ -- 4
-change.case$ -- 19
-chr.to.int$ -- 4
-cite$ -- 8
-duplicate$ -- 80
-empty$ -- 129
-format.name$ -- 34
-if$ -- 292
-int.to.chr$ -- 1
+            764 strings with 8070 characters,
+and the built_in function-call counts, 6694 in all, are:
+= -- 580
+> -- 264
+< -- 22
++ -- 99
+- -- 78
+* -- 413
+:= -- 1182
+add.period$ -- 84
+call.type$ -- 20
+change.case$ -- 80
+chr.to.int$ -- 19
+cite$ -- 40
+duplicate$ -- 388
+empty$ -- 621
+format.name$ -- 132
+if$ -- 1381
+int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 8
-newline$ -- 30
-num.names$ -- 16
-pop$ -- 42
+missing$ -- 32
+newline$ -- 128
+num.names$ -- 80
+pop$ -- 182
 preamble$ -- 1
-purify$ -- 11
+purify$ -- 46
 quote$ -- 0
-skip$ -- 50
+skip$ -- 239
 stack$ -- 0
-substring$ -- 8
-swap$ -- 4
-text.length$ -- 0
+substring$ -- 40
+swap$ -- 26
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 24
+type$ -- 160
 warning$ -- 0
-while$ -- 12
+while$ -- 60
 width$ -- 0
-write$ -- 61
-(There was 1 error message)
+write$ -- 291

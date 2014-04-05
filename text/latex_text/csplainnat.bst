@@ -282,6 +282,7 @@ FUNCTION {format.isbn}
   if$
 }
 
+
 FUNCTION {format.issn}
 { issn empty$
     { "" }
@@ -458,7 +459,7 @@ FUNCTION {either.or.check}
 FUNCTION {format.bvolume}
 { volume empty$
     { "" }
-    { "" volume tie.or.space.connect %  ZMENA mudrd8mz 2005-10-12 vypoustim "volume"
+    { "Vyd. " volume tie.or.space.connect %  ZMENA mudrd8mz 2005-10-12 vypoustim "volume"
       series empty$
         'skip$
         { " / " * series emphasize * } % ZMENA mudrd8mz 2005-10-12 menim "of" na "/"
@@ -768,7 +769,7 @@ FUNCTION {book}
       format.bvolume output
       format.number.series output
       new.sentence
-      address "~: " * publisher *   % ZMENA mudrd8mz 2005-10-12 menim styl adresy a vydavatele
+      address ": " * publisher *   % ZMENA mudrd8mz 2005-10-12 menim styl adresy a vydavatele
       "publisher" output.check      
     }
     { new.block
