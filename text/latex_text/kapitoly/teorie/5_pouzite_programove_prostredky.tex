@@ -139,16 +139,40 @@
 
         Existují tři úrovně ArcSDE databáze: desktop (ArcSDE Desktop), skupinová
         (ArcSDE Workgroup) a podniková (ArcSDE Enterprise). Každá verze má jiné
-        parametry a umožňuje různou úroveň editace \odkazObrazek{sde}. 
+        parametry a umožňuje různou úroveň editace \odkazTabulka{sde}. 
 
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=1\textwidth]{../../../grafy/obr/tabulka_ArcSDE_primo.png}
-            \caption[Přehled verzí ArcSDE, jejich parametrů a možností]{Přehled verzí ArcSDE, jejich parametrů a možností\newline \textsuperscript{1} zdroj 
-        http://www.esri.com/software/arcgis/geodatabase/multi-user-geodatabase}
+        \begin{table}[H]
+          \caption[Přehled verzí ArcSDE, jejich parametrů a možností]{Přehled verzí ArcSDE, jejich parametrů a možností}
             \label{sde}
-          \end{figure}
-        
+          \begin{footnotesize}
+            \begin{center}
+              \rowcolors{3}{lightgray}{white}
+              \begin{tabular}{|>{\centering} m{9.5em} |>{\centering} m{9.5em} >{\centering} m{9.5em} m{9.5em}  <{\centering}|}
+                \hline
+                \multirow{2}{*}{{\bf \color{purpurova7}databáze}} & \multicolumn{3}{c|}{\bf \color{purpurova7}ArcSDE} \\
+                & {\bf \color{purpurova7}Desktop\textsuperscript{1}} & {\bf \color{purpurova7}Workgroup\textsuperscript{1}} & {\bf \color{purpurova7}Enterprise\textsuperscript{1}}\\
+                \hline
+                  databázový server & SQL Server Express & SQL Server Express &	PostgreSQL, Oracle, SQL Server a další \\
+                              licence & ArcGIS for Destop &	ArcGIS for Server Workgroup	& ArcGIS for Server Enterprise \\
+                   operační systém & Windows & Windows & multiplatformní \\
+                     požaduje ArcSDE & ano & ano & ano \\
+                 vlastní datový typ & ne & ne & ano \\
+           víceuživatelská editace & ne & ano & ano \\
+                      počet editorů	&	1 &	10 & bez limitu \\
+                   počet čtenářů & 3 & 10 &	bez limitu \\
+                        master server\textsuperscript{2}  & ne & ne & ano \\
+                         slave server\textsuperscript{2}  &	ano &	ano & ano \\
+                          verzování & ano & ano & ano \\
+               závislost na sítích & lokální síť & lokální síť, internet & lokální síť, internet \\
+                   velikostní limity & 10GB & 10GB & záleží na velikosti serveru \\
+               \hline
+               \multicolumn{4}{l}{\textsuperscript{1}\scriptsize{ http://www.esri.com/software/arcgis/geodatabase/multi-user-geodatabase}}\\
+               \multicolumn{4}{l}{\textsuperscript{2}\scriptsize{je možno použít jako master/slave server}} \\
+              \end{tabular}
+            \end{center}
+          \end{footnotesize}
+        \end{table}
+
         ArcGIS 9.2 je ArcSDE Desktop spolu s databázovým systémem MS SQL Server Express
         součástí licence produktů ArcGIS for Desktop Standard a Advanced. Takovou
         databázi mohou současně používat 4 uživatelé, z toho jen jeden může databázi

@@ -38,11 +38,25 @@
         verzí\footnote{ Kompletní seznam na oficiálních webových stránkách Esri
         http://www.esri.com/products nebo http://www.arcdata.cz/produkty-a-sluzby/software/arcgis/}. 
 
-          \begin{figure}[H]
-            \centering
-            \includegraphics[width=1\textwidth]{../../../grafy/obr/tabulka_verzeArcGIS_primo.png}
-            \caption{Verze programu ArcGIS platné od verze 10.1.}
-          \end{figure}
+        \begin{table}[H]
+          \caption{Verze programu ArcGIS platné od verze 10.1.}
+          \label{verzeArcGIS}
+          \begin{footnotesize}
+            \begin{center}
+              \rowcolors{1}{white}{lightgray}
+              \begin{tabular}{|>{\centering} c |>{\centering}m{9.5em}  m{8.5em}  <{\centering} m{11em}  <{\centering}|}
+                \hline
+                {\bf \color{purpurova7}Produkt}	& \multicolumn{3}{c|}{\bf \color{purpurova7}Verze} \\
+                \hline
+                ArcGIS for Desktop & Basic & Standard & Advanced \\
+                 ArcGIS for Server &	Basic &	Standard &	Advanced \\
+                 ArcGIS for Mobile &	ArcGIS for Windows Mobile &	ArcPAD &	ArcGIS for Smartphone and Tablet \\
+                   ArcGIS Online   & & &	\\	
+                \hline
+              \end{tabular}
+            \end{center}
+          \end{footnotesize}
+        \end{table}
 
         Dle \cite{Law2008} je nativním formátem produktů ArcGIS geodatabáze a
         jsou rozlišovány tři druhy geodatabáze. Ani v jednom případě se však
@@ -61,12 +75,37 @@
         právem čtení. Nepodporují dlouhé transakce ani verzování. 
 
 
-          \begin{figure}[H]
+        \begin{table}[H]
+          \caption{Přehled rozdílů personální a souborové geodatabáze v ArcGIS}
+          \label{verzeArcGIS}
+          \begin{footnotesize}
             \centering
-            \includegraphics[width=1\textwidth]{../../../grafy/obr/tabulka_filePersonalDB_primo.png}
-            \caption[Přehled rozdílů personální a souborové geodatabáze v ArcGIS]{Přehled rozdílů personální a souborové geodatabáze používané programem ArcGIS\newline\newline\textsuperscript{1}\small{http://www.esri.com/software/arcgis/geodatabase/single-user-geodatabase}\newline\textsuperscript{2}\small{http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html\#//003n00000007000000}
-      }
-          \end{figure}
+            \begin{center}
+              \rowcolors{1}{white}{lightgray}
+              \begin{tabular}{|>{\centering} m{10.2em} |>{\centering}m{10.2em}  m{10.2em}  <{\centering}|}
+                \hline
+                {\bf \color{purpurova7}databáze}	& {\bf \color{purpurova7}souborová .gdb\textsuperscript{1}} & {\bf \color{purpurova7}personální .mdb\textsuperscript{1}}\\
+                \hline
+                datové uložiště/ databázový server & lokální souborový systém &	MS Access \\
+                licence & ArcGIS for Destop (všechny verze) & ArcGIS for Destop (všechny verze) \\
+                operační systém & Windows (možná i jiné) & Windows \\
+                požaduje ArcSDE & ne &	ne \\
+                vlastní datový typ & ne &	ne \\
+                víceuživatelská editace & ano, ale s limity &	ne \\
+                počet editorů	&	1 pro každý dataset \newline nebo tabulku\textsuperscript{2} &	1\textsuperscript{2} \\
+                počet čtenářů &	více než 1\textsuperscript{2} &	více než 1\textsuperscript{2} \\
+          master server\textsuperscript{3} & ne\textsuperscript{1} &	ne\textsuperscript{1} \\
+            slave server\textsuperscript{3} & ano &	ano \\
+                verzování & ne &	ne \\
+                velikostní limity &	1TB pro každý dataset\textsuperscript{1} & 2GB\textsuperscript{1} \\
+                \hline
+                \multicolumn{3}{l}{\textsuperscript{1}\scriptsize{http://www.esri.com/software/arcgis/geodatabase/single-user-geodatabase}}\\
+                \multicolumn{3}{l}{\textsuperscript{2}\scriptsize{http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html\#//003n00000007000000}} \\
+                \multicolumn{3}{l}{\textsuperscript{3}\scriptsize{je možno použít jako master/slave server}} \\
+              \end{tabular}
+            \end{center}
+          \end{footnotesize}
+        \end{table}
 
         Tato práce se více zaměřuje na třetí typ, technologii ArcSDE, kterou v
         některých materiálech nazývají “geodatabáze ArcSDE”. Nejedná se o

@@ -1,20 +1,23 @@
 \select@language {czech}
-\contentsline {section}{SEZNAM POU\IeC {\v Z}IT\IeC {\'Y}CH ZKRATEK}{7}{section*.2}
-\contentsline {section}{\IeC {\'U}VOD}{7}{section*.2}
-\contentsline {section}{\numberline {1}C\IeC {\'I}LE PR\IeC {\'A}CE}{9}{section.1}
-\contentsline {section}{\numberline {2}POU\IeC {\v Z}IT\IeC {\'E} METODY A POSTUPY PR\IeC {\'A}CE}{10}{section.2}
-\contentsline {subsection}{\numberline {2.1}Obr\IeC {\'a}zkygt}{10}{subsection.2.1}
-\contentsline {section}{\numberline {3}TEORETICK\IeC {\'A} V\IeC {\'Y}CHODISKA}{12}{section.3}
-\contentsline {subsection}{\numberline {3.1}Vymezen\IeC {\'\i } pojm\IeC {\r u}}{13}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Replikace}{16}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}ArcGIS produkty}{19}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Pou\IeC {\v z}it\IeC {\'e} programov\IeC {\'e} prost\IeC {\v r}edky}{21}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}PostgreSQL 9.x (PostGIS)}{21}{subsubsection.3.4.1}
-\contentsline {subsubsection}{\numberline {3.4.2}Microsoft SQL Server Express 2008}{23}{subsubsection.3.4.2}
-\contentsline {subsubsection}{\numberline {3.4.3}ArcSDE geodatabase}{24}{subsubsection.3.4.3}
-\contentsline {section}{\numberline {4}V\IeC {\'Y}SLEDKY}{26}{section.4}
-\contentsline {section}{\numberline {5}DISKUZE}{27}{section.5}
-\contentsline {section}{\numberline {6}Z\IeC {\'A}V\IeC {\v E}R}{28}{section.6}
-\contentsline {section}{LITERATURA}{29}{section.6}
-\contentsline {section}{SUMMARY}{31}{section*.18}
-\contentsline {section}{P\IeC {\v R}\IeC {\'I}LOHY}{32}{section*.18}
+\contentsline {section}{SEZNAM POU\IeC {\v Z}IT\IeC {\'Y}CH ZKRATEK}{8}{section*.3}
+\contentsline {section}{\IeC {\'U}VOD}{8}{section*.3}
+\contentsline {section}{\numberline {1}C\IeC {\'I}LE PR\IeC {\'A}CE}{10}{section.1}
+\contentsline {section}{\numberline {2}POU\IeC {\v Z}IT\IeC {\'E} METODY A POSTUPY PR\IeC {\'A}CE}{11}{section.2}
+\contentsline {subsection}{\numberline {2.1}Obr\IeC {\'a}zkygt}{11}{subsection.2.1}
+\contentsline {section}{\numberline {3}TEORETICK\IeC {\'A} V\IeC {\'Y}CHODISKA}{13}{section.3}
+\contentsline {subsection}{\numberline {3.1}Vymezen\IeC {\'\i } pojm\IeC {\r u}}{14}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Replikace}{17}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}ArcGIS produkty}{20}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Pou\IeC {\v z}it\IeC {\'e} programov\IeC {\'e} prost\IeC {\v r}edky}{23}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}PostgreSQL 9.x (PostGIS)}{23}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Microsoft SQL Server Express 2008}{24}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}ArcSDE geodatabase}{25}{subsubsection.3.4.3}
+\contentsline {subsection}{\numberline {3.5}N\IeC {\'a}stroje pro replikaci v PostgreSQL}{27}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Slony-I}{27}{subsubsection.3.5.1}
+\contentsline {subsubsection}{\numberline {3.5.2}Streaming replikace}{28}{subsubsection.3.5.2}
+\contentsline {section}{\numberline {4}V\IeC {\'Y}SLEDKY}{29}{section.4}
+\contentsline {section}{\numberline {5}DISKUZE}{30}{section.5}
+\contentsline {section}{\numberline {6}Z\IeC {\'A}V\IeC {\v E}R}{31}{section.6}
+\contentsline {section}{LITERATURA}{32}{section.6}
+\contentsline {section}{SUMMARY}{34}{section*.18}
+\contentsline {section}{P\IeC {\v R}\IeC {\'I}LOHY}{35}{section*.18}

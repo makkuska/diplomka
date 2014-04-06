@@ -84,7 +84,9 @@
 
 %\usepackage{glossary}
 
-%\usepackage[table]{xcolor}
+\usepackage[table]{xcolor}
+\definecolor{lightgray}{RGB}{230,230,230}
+\definecolor{purpurova7}{RGB}{107,0,148}
 %package pro tvorbu seznamu zkratek
 \RequirePackage{glossaries}
 \makeglossaries

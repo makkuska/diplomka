@@ -1,0 +1,23 @@
+\subsection{Nástroje pro replikaci v PostgreSQL}
+
+PostgreSQL nabízí hned několik nástrojů pro řešení replikace. Je možno použít zabudovanou streaming replikaci, která je dostupná od verze PostgreSQL 9.0 nebo některou z extenzí, napřílad Slony-I, Skytools nebo Postgres-XC. Tato kapitola se dále bude zabývat a porovnávat nativní streaming replikace s extenzí Slony-I.
+
+\subsubsection{Slony-I}
+\label{Slony}
+
+Podle \cite{Boszormenyi2013} je Slony-I jeden z nejrozšířenějších externích nástrojů pro replikaci pro PostgreSQL. Zároveň se také řadí mezi nejstarší, plně používán je v PostgreSQL již od verze 7.3. a má velice dobrou podporu dalších i externích řešeních pro PostgreSQL například programu PgAdmin3, který nabízí správu dat pomocí grafického rozhraní \citep{Boszormenyi2013}.
+
+Jedná se o trigger-based replikaci, což znamená, že je ke každé exitující tabulce přidán trigger, který zajistí, že je každá změna dat replikovaná. Z toho také vyplývá, žese jedná o logickou replikaci, kdy se možné replikovat pouze změny v datech, tedy SQL příkazy INSERT a UPDATE, nikoli strukturu databáze, příkazy typu CREATE/DROP TABLE, ALTER TABLE. Slony-I tedy nikdy nereplikuje celou databázi včerně struktury, ale pouze data. Zato umožňuje replikovat pouze námi vybrané tabulky, což může být v některých případech žádoucí. Vytváří se tzv. replikační set, kde se zapíší pouze ty tabulky, které je potřeba replikovat. 
+
+Velkou výhodou oproti streaming replikaci je, že umožňuje replikovat data mezi různými verzemi PostgreSQL bez ohledu na platformu a architekturu. Naopoak spíše nevýhodou je, že při instalaci si ke každé databázi vytváří vlastní schéma, což způsobuje redundanci dat. 
+
+Replikace je z principu asynchronní, zpoždění je v řádu vteřin nebo v desítkách. Umožňuje Hot Standby mode, kdy je možno použít repliku na dotazy, i kaskádovou replikaci. Slony-I má vlastní konfigurační nástroj, pomocí kterého se nastavuje replikace. Samotná replikace běží díky vlastnímu replikačnímu démonu, který běží stále, registruje změny a kopíruje je na Slave servery.
+
+\subsubsection{Streaming replikace}
+\label{Streaming}
+
+Streaming replikace je nativní řešení, který je do PostgreSQL implementováno od verze 9.0. Jedná se o log-shipping replikaci, což znamená, že jsou změny zapsány nejdříve vždy do transakčního logu v PostgreSQL nazvaného WAL (Write Ahead Log) přímým zápisem na disk a až poté potvzeny jako úspěšné. Tento způsob zajišťuje datům naprosté bezpeční, protože kdyby došlo k chybě a změny se nezapisovaly na disk, ale byly pouze cachované, mohlo by dojít k jejich ztrátě. Zároveň to zajišťuje jak kopii dat, tak struktury databází. Existuje pouze jeden transakční log pro jednu instalaci PostgreSQL, proto se replikují vždy všechny databáze a není možné výběru jen několika tabulek, tak jak je to možné v Slony-. Protože replikace probíhá pomocí transakčního logu, je nutné použití stejné verze PostgreSQL, stejné platformy i architektury na všech uzlech replikačního clusteru. 
+
+Streaming replikace umožňuje jak synchronní, tak asynchronní replikaci, dále Hot standby mode i kaskádovou replikaci.
+
+
