@@ -1,4 +1,4 @@
-\begin{thebibliography}{20}
+\begin{thebibliography}{21}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -113,6 +113,12 @@ OSGEO.
 \newblock \emph{PostGIS Tracker and Wiki [online]}, 2013.
 \newblock Dostupné z:
   \url{http://trac.osgeo.org/postgis/wiki/UsersWikiPostgisarcgis}.
+
+\bibitem[pgpool Global Development~Group(2013)]{pgpool2014}
+GLOBAL DEVELOPMENT~GROUP.
+\newblock What is pgpool-ii?
+\newblock \emph{Pgpool Wiki}, 2013.
+\newblock Dostupné z: \url{http://www.pgpool.net/docs/latest/pgpool-en.html}.
 
 \bibitem[PostgreSQL(2012)]{PostgreSQL2012}
 POSTGRESQL.

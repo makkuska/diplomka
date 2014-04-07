@@ -82,11 +82,31 @@
 \RequirePackage[pdftex]{graphicx}
 \RequirePackage{float}
 
-%\usepackage{glossary}
-
+%package pro barvičky
 \usepackage[table]{xcolor}
 \definecolor{lightgray}{RGB}{230,230,230}
+\definecolor{bordova}{RGB}{173,0,26}
+\definecolor{dooranzova}{RGB}{225,72,24}
 \definecolor{purpurova7}{RGB}{107,0,148}
+
+%package pro kódy
+\usepackage{listings}
+\lstset{ %
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  xleftmargin=\parindent,
+  language=SQL,
+  showstringspaces=false,
+  basicstyle=\ttfamily,
+  keywordstyle=\bfseries\color{purpurova7},
+  commentstyle=\itshape\color{purple!40!black},
+  %identifierstyle=\color{purpurova7},
+  identifierstyle=\color{green!40!black},
+  stringstyle=\color{dooranzova},
+  morekeywords={PASSWORD, ENCRYPTED, REPLICATION, scp, rsync, pg\_basebackup, pg\_dump, pg\_restore},  
+ }
+
+%\usepackage{glossary}
 %package pro tvorbu seznamu zkratek
 \RequirePackage{glossaries}
 \makeglossaries

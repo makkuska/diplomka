@@ -20,4 +20,20 @@ Streaming replikace je nativní řešení, který je do PostgreSQL implementová
 
 Streaming replikace umožňuje jak synchronní, tak asynchronní replikaci, dále Hot standby mode i kaskádovou replikaci.
 
+\subsubsection{pgpool}
+\label{pgpool}
+Nástroj pgpool, který je stejně jako Slony-I extenzí pro PostgreSQL, je dalším z nástrojů, které je možno v použít pro replikaci dat, umožňuje však i mnohé další funkce. Je prostředníkem pro komunikaci mezi klientem a PostgreSQL serverem a jeho hlavní úlohou zvýšit efektivitu a rychlost práce s databázi. 
+
+Jednou ze základních výhod použití pgpool je možnost sdílení spojení klienta s databází, což v praxi znamená, že se vytvoří několik spojení, která i po skončení dotazu zůstanou otevřená a připravená pro další použití. Nemusí se tedy navazovat spojení při každém požadavku, ze strany klienta, což velice zrychlí provoz a zajistí plynulost užívání databáze. 
+
+Umožňuje také paralerní dotazování, tedy složitý dotaz rozdělí mezi více uzlů, což velice sníží čas vykonání daného dotazu. Zároveň je nástrojem pro optimalizaci nastavení replikace, což je velice praktické hned z několika důvodů \citep{pgpool2014}. V případě, že je v repliačním clusteru třeba deset různých serverů, je potřeba dát každému uživateli přístup k jinému serveru, nebo přístupy do databáze manuálně rozkládat skrze složité programové řešení. pgpool tohle vše zajišťuje. Sám rozděluje dotazy mezi uzly v replikačním clusteru dle aktuální zátěže. Zároveň, pokud má uživatel přístup k zápisu i čtení, umí na základě jeho aktuálního SQL příkazu, rozhodnout, zda jej připojí k master nebo slave databázi.
+
+pgpool se navenek jeví jako jakákoliv jiná databáze, do kterého se připojí všichni uživatelé bez ohledu na jejich práva či požadavek, a on poté rozhodne, ke kterému z uzlů bude daný uživatel připojen. \citep{Boszormenyi2013}. Tento způsob zjednoduší admimistraci databáze i nastavení pro běžného uživatele, který se připojí do jedné databáze a víc se nestará, zda z databáze pouze čte, nebo do ní i zapisuje. 
+
+          \begin{figure}[H]
+            \centering
+            \includegraphics[scale=1]{../../../grafy/obr/schema_pgpool.png}
+            \caption{Schéma pgpool}
+            \label{pgpool_obr}
+          \end{figure}
 

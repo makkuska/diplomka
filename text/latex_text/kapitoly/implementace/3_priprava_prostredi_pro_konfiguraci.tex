@@ -1,0 +1,105 @@
+\subsection{Příprava prostředí pro konfiguraci replikace}
+Na začátku bylo potřeba připravit testovací prostředí hned s několika závislostmi. Hlavní používaný software je PostgreSQL s extenzemi PostGIS, Slony-I a pgpool. Informace o instalacích jednotlivých komponent jsou dostupné na jejich webových stránkách, ve Windows si stačí stáhnout pouze instalační balík PostgreSQL, který je možno naistalovat, skrze PostgresQL Stack Builder, se všemi výše zmíněnými extenzemi. Pro grafickou administraci databáze je doporučený, ale né povinný, program PgAdminIII, který je taktéž multiplatformní. Většina konfigurace zde bude popisována skrze příkazový řádek, neznamená to však, že nemá ekvivalentní použití skrze grafické rozhraní.
+
+Všechny technologie byly testovány na Debian-based Linux, Slony-I také na Windows XP. 
+
+U všech typů replikace je potřeba začít s vytvořením databázového uživatele s právem pro replikaci, pod kterým bude replikace probíhat. Je možné vytvořit nového uživatele nebo použít již existující účet postgres, kterému je však potřeba hned na začátku po instalaci, změnit heslo. Je možné jej použít, protože má super uživatelské možnosti, tedy i replikaci.
+
+Změna hesla:
+
+\begin{lstlisting}
+ALTER ROLE postgres ENCRYPTED PASSWORD 'kgigis';
+\end{lstlisting}
+
+Vytvoření nového uživatele:
+
+\begin{lstlisting}
+ADD ROLE replikator REPLICATION;
+ALTER ROLE replikator ENCRYPTED PASSWORD 'kgigis';
+\end{lstlisting}
+
+Předtím, než k dojde samotné konfiguraci replikace, je potřeba vytvořit totožnou repliku dat hlavního serveru. Je potřeba připravit kopii jak dat, tak také konfiguračních souborů. Tento krok je velice důležitý pro správný chod replikace. V případě, že se data nespávně zkopírují, nebude poté možno replikaci zprovoznit. 
+
+Obecně se dá říct, že pokud se jedná o kopii dat mezi dvěmi databázemi stejného systému a architektury, je možné kopírovat celou složku, tery přímo binární data. Je mnoho způsobů, jak toho dosáhnout, klasickým kopírováním skrze skript \texttt{cp}, resp. \texttt{scp} u vzdálených složek nebo skriptem \texttt{rsync}. 
+
+Kopírování dat za běhu databáze ještě vyžaduje použití příkazu \texttt{SELECT pg\_start\_backup}, který zajistí, že bude archivovat transakční log do té doby než proběhne příkaz \texttt{SELECT pg\_stop\_backup}. Tím nepřijdeme o žádné změny.
+
+Příklady možných způsobu zkopírování dat na repliku:
+
+\begin{lstlisting}
+SELECT pg_start_backup('backup', true)
+
+scp -r root@158.194.94.93:/var/lib/postgresql/9.1/main /var/lib/postgresql/9.1/main
+\end{lstlisting}
+\indent nebo
+\begin{lstlisting}
+rsync -ave ssh root@158.194.94.93:/var/lib/postgresql/9.1/main /var/lib/postgresql/9.1/main
+
+SELECT pg_stop_backup()
+\end{lstlisting}
+
+Další možností kopie dat je použití skriptu přímo určeného pro zálohování dat v PostgreSQL pg\_basebackup. 
+
+Použití pg\_basebackup pro vytvoření repliky:
+
+\begin{lstlisting}
+pg_basebackup -D /var/lib/postgresql/9.1/main/ -U replikator -h 158.194.94.93
+\end{lstlisting}
+
+Kopie souborové struktury dat je potřeba především pro streaming replikaci. U systému, které nejsou stejné, nikdy nemůžeme dosáhnout totožné kopie, protože adresářové struktury se mohou lišit. V takovém případě je nutné zvolit jinou variantu, například skript \texttt{pg\_dump} na master a \texttt{pg\_restore} na slave serveru. 
+
+Příklad exportu dat z databáze dat skrze:
+\begin{lstlisting}
+pg_dump > /tmp/dump.sql
+pg_restore /tmp/dump.sql
+\end{lstlisting}
+
+Pokud se začíná s prázdným databázovým systémem, je kopírování dat vždy velmi rychlé, je tedy vhodné vhodné nastavit replikaci dřív, než se data začnou přidávat do databáze. V případě, že už databáze naplněná daty je, není problém replikaci nastavit, jen je třeba počítat s delším časem kopírovaní dat a větší opatrností při konfiguraci. 
+
+Aby bylo možné pracovat s databázi, je nejdříve nutné chápat význam jednotlivých konfiguračních souborů a mít přehled o souborové struktuře PostgreSQL. Vzhledem k tomu, že si ji každý systém uzpůsobuje podle sebe, nezbývá než po instalaci PostgreSQL nastudovat, kde se jaký soubor nachází. Naštěstí existuje tabulka \texttt{pg\_settings}, která uchovává veškeré informace o nastavení databáze. 
+
+Příklad SQL příkazu, spuštěného na serveru geohydro, který vypíše umístění jednotlivých souborů a složek:
+
+\begin{lstlisting}
+SELECT name, setting FROM pg_settings WHERE category = 'File Locations';
+\end{lstlisting}
+
+      \begin{table}[H]
+        \label{fileLocation}
+          \begin{center}
+            \begin{tabular}{lll}
+              \texttt{name} & &\texttt{ settings}\\
+              \texttt{--------------------------------------}&\texttt{+}&\texttt{---------------------------------------------------------------------------------}\\
+                                    \texttt{data\_directory} & \texttt{|}&\texttt{ /var/lib/postgresql/9.1/main} \\
+              \texttt{external\_pid\_file} & \texttt{|}&\texttt{ /var/run/postgresql/9.1-main.pid} \\
+                      \texttt{hba\_file} & \texttt{|}&\texttt{ /etc/postgresql/9.1/main/pg\_hba.conf}\\ 
+                     \texttt{config\_file} & \texttt{|}&\texttt{ /etc/postgresql/9.1/main/postgresql.conf} \\
+                    \texttt{ident\_file} & \texttt{|}&\texttt{ /etc/postgresql/9.1/main/pg\_ident.conf} \\
+            \end{tabular}
+          \end{center}
+      \end{table}
+
+
+Jak je možno vidět, existují tři hlavní konfigurační soubory:
+\begin{itemize}
+  \item postgres.conf, který ovládá obecné nastavení jako výchozí uložiště, kterým IP databáze naslouchá, velikost alokované poměti a další,
+  \item pg\_hba.conf, který povoluje konkrétním uživatelům přístup z určitých IP adres,
+  \item pg\_ident.conf, který slouží k mapování uživatel operačního systému na uživatele PostgreSQL \citep{ObeHsu2012}.
+\end{itemize}
+
+Je vhodné zajistit také práva jednotlivým složkám a souborům. Vzhledem k tomu, že databáze zapisuje do složky s daty (data\_directory), musí mít postgres, i po zkopírování celé datové struktury, právana jiný server, práva pro zápis.
+ 
+A v neposlední řade je potřeba zajistit konektivitu obou, resp. všech serverů v replikačním clusteru. S tím souvisí i nutnost nastavení povolení přístupu z IP adresy slave serverů, kterou je možno zajistit skrze konfigurační soubor pg\_hba.conf.
+
+Následující příklad ukazuje možné nastavení souboru pg\_hba.conf na master serveru. Povoluje uživetelům market a replication,přihlášených z dané IP adresy, přistupovat na master server a číst, resp. replikovat data.
+      \begin{table}[H]
+        \label{pgHba}
+          \begin{center}
+            \begin{tabular}{lllll}
+              \texttt{\#host} & \texttt{DATABASE} & \texttt{USER} & \texttt{ADDRESS} & \texttt{METHOD} \\
+                \texttt{host} & \texttt{all} & \texttt{market} & \texttt{80.188.74.1/32} & \texttt{md5} \\
+       \texttt{host} & \texttt{replication} & \texttt{replication} & \texttt{80.188.74.1/32} &	\texttt{md5} \\
+            \end{tabular}
+          \end{center}
+      \end{table}
+

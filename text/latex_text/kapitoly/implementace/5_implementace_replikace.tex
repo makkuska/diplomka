@@ -1,0 +1,53 @@
+\subsection{Implementace replikace}
+\subsubsection{Slony-I replikace}
+\subsubsection{Streaming replikace}
+Inicializace asynchronní streaming replikace
+
+Samotné nastavení replikace, není nijak náročné. V první fázi je potřeba konfigurace postgresql.conf na master servere. Stačí editace pouhých dvou parametrů, aby byla replikace v provozu. 
+
+\begin{lstlisting}
+wal_level = hot_standby
+max_wal_senders = 1
+\end{lstlisting}
+
+Stejně tak je potřeba konfigurovat \texttt{postgresql.conf} na slave serveru. \texttt{Wal\_level} a \texttt{max\_level\_sender} může a nemusí zůstat stejný jako na masteru. Pokud však má slave být slave připraven, že by zastoupit master server v případě, že by master vypadl, pak je v hodné, aby hodnoty byly nastaveny stejně. Co je potřeba nastavit je \texttt{hot\_standby} a \texttt{hot\_stadby\_feedback}.
+
+\begin{lstlisting}
+wal_level = hot_standby
+max_wal_senders = 1
+hot_standby = on	
+hot_standby_feedback = on
+\end{lstlisting}
+
+Tím však nastavení replikace nekončí. Ve složce s daty je potřeba vytvoři \texttt{recovery.conf}, který ponese informace o master serveru, viz příklad. 
+
+\begin{lstlisting}
+standby_mode = 'on'
+primary_conninfo = 'host=158.194.94.93 user=replication password=kgigis'
+\end{lstlisting}
+
+Inicializace synchronní streaming replikace
+
+Synchronní replikace vyžaduje v \texttt{postgresql.conf} na master serveru přidání hodnoty parametru \texttt{synchronous\_standby\_names}:
+
+\begin{lstlisting}
+synchronous_standby_names = 'synchronous_gis'
+\end{lstlisting}
+
+a dále v \texttt{recovery.conf} na slave serveru přidat parametr \texttt{application\_name}, který nese stejnou hodnotu jako výše změněný parametr:
+
+\begin{lstlisting}
+standby_mode = 'on'
+primary_conninfo = 'host=158.194.94.93 application_name=synchrounous_gis user=replication password=kgigis'
+\end{lstlisting}
+
+Inicializace kaskádové streaming replikace
+
+Kaskádová replikace vyžaduje nejméně tři servery v clusteru. Ale nejedná se o nic složitějšího než o změnu konfigurace souboru \texttt{recovery.conf} na replice, kde se hodnoty masteru vymění za hodnoty slavu, ze kterého chceme na danou repliku kopírovat. 
+
+\begin{lstlisting}
+standby_mode = 'on'
+primary_conninfo = 'host=158.194.94.18 user=replication password=kgigis'
+\end{lstlisting}
+
+Přehled všech parametrů týkající se replikace včetně vystvětlení jejich smyslu je možné najít v oficiální dokumentaci\footnote{http://www.postgresql.org/docs/9.1/static/runtime-config-replication.html}.
