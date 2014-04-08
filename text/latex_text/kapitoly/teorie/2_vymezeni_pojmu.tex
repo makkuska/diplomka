@@ -1,61 +1,25 @@
         \subsection{Vymezení pojmů}
-        Pro lepší porozumění textu této práce je potřeba definovat pojmy replikace,
-        synchronizace a verzování, včetně popisu toho, jak jsou dané pojmy chápány v
-        produktech ArcGIS. Je vhodné upozornit, že výše zmíněné procesy jsou v
-        literatuře často chápány lehce odlišně. Některé zdroje pojmy replikace a
-        synchronizace rozlišují, jiné je naopak považují za synonyma. 
+Pro lepší porozumění textu této práce je potřeba definovat pojmy replikace, synchronizace a verzování, včetně popisu toho, jak jsou dané pojmy chápány v produktech ArcGIS. Je vhodné upozornit, že výše zmíněné procesy jsou v literatuře často užívány lehce odlišně. Některé zdroje pojmy replikace a synchronizace rozlišují, jiné je naopak považují za synonyma. 
 
-        Všechny dotyčné pojmy úzce souvisí se zálohováním dat, tedy kopírovaním dat
-        mezi dvěmi a více uložišti. To, co tyto pojmy spojuje, je totiž vždy, v nějaké
-        míře, zabránění ztrátě dat, ať už chybou či fyzickým poškozením disku. Dané
-        pojmy se poté liší například konkrétním způsobem provedení zálohy, či přesným
-        důvodem kopírování dat. 
+Všechny dotyčné pojmy úzce souvisí se zálohováním dat, tedy kopírovaním dat mezi dvěmi a více uložišti. To, co tyto pojmy spojuje, je totiž vždy, v nějaké míře, zabránění ztráty dat, ať už chybou či fyzickým poškozením disku. Dané pojmy se poté liší například konkrétním způsobem provedení zálohy, či konkrétním důvodem pro použití daného procesu.
 
-        Z mého pohledu je synchronizace nadmnožinou replikace. V případě, že existují
-        dva datové zdroje a v jeden okamžik se rozhodneme, že chceme tyto dvě složky
-        sjednotit, poté je možno mluvit o synchronizaci souborů či datových složek.
-        Soubor, který se podle názvu nachází ve složce A a zároveň se nenachází ve
-        složce B, se jednoduše zkopíruje do složky A. U souborů se stejným názvem, se
-        dále porovnává čas posledního zápisu, velikost nebo obsah souboru. Poté je
-        soubor se starším datem, resp. menší velikostí, přepsán tím novějším, resp.
-        větším. Synchronizací se tedy dá proces označit v okamžiku, kdy existují
-        nejméně dva datové zdroje a smyslem synchronizace je porovnat tato uložiště a
-        dostat je do stejného stavu. To může například přispět snazší spolupráci více
-        uživatelů nad stejnými daty nebo uživateli, který pracuje na více počítačích.
+Synchronizace je obecnější pojem, který může být považován za nadmnožinou replikace. V případě, že existují dva datové zdroje, které je potřeba v daný okamžik sjednotit, je možno mluvit o synchronizaci souborů či datových složek. U souborů se shodným názvem se porovnává čas posledního zápisu, velikost nebo obsah souboru, naopak soubory, které shodu nezaznamenají, jsou jednoduše zkopírovány. Synchronizací se tedy dá proces označit v okamžiku, kdy existují nejméně dva datové zdroje a smyslem synchronizace je porovnat tato uložiště a dostat je do stejného stavu. To může například přispět snazší spolupráci více uživatelů nad stejnými daty nebo uživateli, který pracuje na více počítačích.
+
+
         %parametr H říká že to bude přímo na tom místě kde je v textu...více http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
           \begin{figure}[H]
             \centering
             \includegraphics[scale=1]{../../../grafy/obr/schema_synchronizace_maxiTence.png}
             \caption {Příklad obousměrné synchronizace dat mezi dvěmi datovými uložišti}
           \end{figure}
-        Replikace naopak, podle mého názoru, začíná s daty existujícími pouze na jednom
-        uložišti. Často je tento proces používán právě ve spojitosti s databázemi, kdy
-        je kopie dat (také replika) tvořena z důvodu snížení zátěže serveru, či ochraně
-        dat. V případě, že je tato kopie již vytvořena, je poté možno mluvit i o
-        synchronizaci dat, protože replika průběžně kontroluje, zda na hlavním serveru
-        nedošlo ke změně, a pokud ano, dané změny zkopíruje.
 
-        Oba procesy je možno použít jednostranně, tedy kopírovat data pouze z jednoho
-        uložiště na druhé a nikolik opačně, nebo oboustraně, kdy se datové zdroje
-        kopírují navzájem mezi sebou.
+Replikace naopak začíná s daty existujícími pouze na jednom uložišti. Často je tento proces používán právě ve spojitosti s databázemi, kdy je kopie dat (také replika) tvořena z důvodu snížení zátěže serveru, či ochraně dat. Replikace je tedy často vyžadována z jiných důvodů než synchronizace a pro zajištění konzistence dat používá jiných technologií. V případě, že je již kopie vytvořena, je poté možno mluvit i o synchronizaci dat, protože replika průběžně kontroluje, zda na hlavním serveru nedošlo ke změně, a pokud ano, dané změny zkopíruje. Více se replikací zabývá kapitola \odkazKapitola{kReplikace} Replikace.
 
-        Specifickým způsobem zálohy dat je verzování, kdy se data na záložním datovém
-        uložišti nepřepisují, ale systematicky ukládající v takzvaných verzích tak, aby
-        se uživatel mohl snadno kdykoliv vrátit k předchozím stavům souborů. Smyslem
-        verzování je zachovat všechny zvolené stavy práce, čímž se verzování liší od
-        zálohování, kde stačí mít aktuální kopii daných dat. To, co je zde popsáno jako
-        verzování, se v produktech ArcGIS nazývá archivování dat \citep{Law2008}. 
+Oba procesy je možno použít jednostranně, tedy kopírovat data pouze z jednoho uložiště na druhé a nikolik opačně, nebo oboustraně, kdy se datové zdroje kopírují navzájem mezi sebou.
 
-        Verzování může probíhat ručně, poloautomatizovaně či plně automatizovaně díky
-        speciálním nástrojům pro správu verzí. Oblíbeným verzovací systémem
-        programátorů je GIT\footnote{Více na http://git-scm.com/}, open-source nástroj
-        pro správu verzí, který pomáhá při práci s~malými i velkými projekty a
-        podporuje týmovou spolupráci. Umožňuje vrátit jednotlivé soubory nebo celý
-        projekt do předchozího stavu, porovnávat změny provedené v~průběhu času,
-        zjistit, kdo naposledy upravil něco, co nyní možná způsobuje problémy, kdo
-        vložil jakou verzi a mnoho dalšího \citep{Chacon2009}. GIT je vhodný zejména
-        pro textové soubory, protože dokáže analyzovat části textu, či programového
-        kódu a~zvýraznit části, které se změnily.
+Specifickým způsobem zálohy dat je verzování, kdy se data na záložním datovém uložišti nepřepisují, ale systematicky ukládající v takzvaných verzích tak, aby se uživatel mohl snadno kdykoliv vrátit k předchozím stavům souborů. Smyslem verzování je zachovat všechny zvolené stavy práce, čímž se verzování liší od zálohování, kde stačí mít aktuální kopii daných dat. To, co je zde popsáno jako verzování, se v produktech ArcGIS nazývá archivování dat \citep{Law2008}. 
+
+Verzování může probíhat ručně, poloautomatizovaně či plně automatizovaně díky speciálním nástrojům pro správu verzí, kterých je na internetu dostupná celá řada. Oblíbeným verzovací systémem programátorů je Git\footnote{více na http://git-scm.com/}, open-source nástroj pro správu verzí, který pomáhá při práci s malými i velkými projekty a podporuje týmovou spolupráci. Umožňuje vrátit jednotlivé soubory nebo celý projekt do předchozího stavu, porovnávat změny provedené v průběhu času, zjistit, kdo naposledy upravil něco, co nyní možná způsobuje problémy, kdo vložil jakou verzi a mnoho dalšího \citep{Chacon2009}. Git je vhodný zejména pro textové soubory, protože dokáže analyzovat části textu, či programového kódu a zvýraznit místa, která se změnila.
         
           \begin{figure}[H]
             \centering
@@ -63,27 +27,11 @@
             \caption {Příklad verzování souboru}
           \end{figure}
 
-        Samotná databáze verzování dat neumožňuje. Nejsnazším způsobem, jak získat
-        verzi dat, je dump, tedy export databáze do souboru. V MS SQL Serveru je tento
-        prces nazýván Snapshot, tedy snímek databáze nebo také snímková replikace.
-        Takový soubor se poté může verzovat podobným způsobem jako jakýkoliv jiný
-        binární soubor typu shapefile. A to samé platí i pokud v databázi ukládáme
-        geodata. 
+Samotná databáze verzování dat neumožňuje. Nejsnazší způsob, jak získat verzi dat, je skriptem \texttt{dump}, který exportuje databázi do souboru. V MS SQL Serveru je tento proces nazýván Snapshot, tedy snímek databáze nebo také snímková replikace. Takový soubor se poté může verzovat podobným způsobem jako jakýkoliv jiný binární soubor typu shapefile. A to samé platí i pokud v databázi ukládáme geodata. 
 
-        Proto byl vytvořen verzovací systém také pro prostorová data, který vychází ze
-        systému gitu a nese název GeoGIT. Umožňuje uživatelům zachovávat změny v
-        souborech shapefile, SpatialLite a z databáze PostGIS (PostgreSQL). Umožňuje,
-        tak jako git, uchovávat historii prostorových dat, či vrátit se k předchozí
-        verzi. 
+Proto byl vytvořen verzovací systém také pro prostorová data, který vychází ze systému Git a nese název GeoGIT. Umožňuje uživatelům uchovávat změny v souborech shapefile, SpatialLite a z databáze PostGIS (PostgreSQL), stejně tak jako vrátit se k jakékoliv z předchozích verzí. 
 
-        Verzování může být chápáno také jako vytvoření pracovní verze. V případě, že
-        programový kód či data jsou plno funkční či aktuální, ale je potřeba je
-        testovit či jinak měnit, pak je vhodné vytvořit tzn. pracovní verzi, aby
-        nedošlo k poškození té správné. Pracovní verze je kopie aktuálního stavu, na
-        které je možno pracovat a zkoušet. V~případě, že práce nedopadne podle přestav,
-        je možno změny zahodit, pokud je tomu naopak, je možno pracovní verzi sjednotit
-        s platnou verzí. Tento způsob verzování umožňuje GIT i GeoGIT a takto chápe
-        pojem verzování i společnosti Esri.
+Verzování může být chápáno také jako vytvoření pracovní verze. V případě, že programový kód či data jsou plně funkční či správná, ale je potřeba je aktualizovat, testovat či jinak měnit, pak je vhodné vytvořit tzn. pracovní verzi, aby nedošlo k poškození té aktuální. Jedná se o kopii aktuálního stavu, na které je možno pracovat a zkoušet. V případě, že práce nedopadne podle představ, je možno změny zahodit, pokud je tomu naopak, je možno pracovní verzi sjednotit s platnou verzí. Tento způsob verzování umožňuje Git i GeoGIT a takto chápe pojem verzování i společnosti Esri.
 
           \begin{figure}[H]
             \centering

@@ -30,9 +30,9 @@ Příklady možných způsobu zkopírování dat na repliku:
 SELECT pg_start_backup('backup', true)
 
 scp -r root@158.194.94.93:/var/lib/postgresql/9.1/main /var/lib/postgresql/9.1/main
-\end{lstlisting}
-\indent nebo
-\begin{lstlisting}
+
+                      nebo
+
 rsync -ave ssh root@158.194.94.93:/var/lib/postgresql/9.1/main /var/lib/postgresql/9.1/main
 
 SELECT pg_stop_backup()

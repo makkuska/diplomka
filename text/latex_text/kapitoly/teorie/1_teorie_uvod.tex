@@ -1,47 +1,27 @@
-        Jak definuje \cite{Oppel2009}, databáze je soubor vzájemně propojených datových
-        položek, které jsou spravovány jako jeden celek \citep{Oppel2009}. Databáze
-        představuje entity, atributy a logické vztahy mezi entitami, často zvané
-        relace. Jinými slovy, databáze obsahuje data, která logicky související
-        \citep{Connolly2005}. Databáze umožňuje ukládání a editaci dat, rychlé
-        vyhledávání a komplexní analýzu dat \citep{Momjian2001}. Systém řízení báze
-        dat\footnote{V anglickém originále Database Management System (DBMS)} je
-        počítačový software, který umožňuje uživatelům přistupovat k databázi,
-        definovat, vytvářet a udržovat data \citep{Connolly2005}. Pro uložení dat
-        malého projektu je samozřejmě možno použít i jiného formátu určeného pro
-        ukládání dat, například tabulkového procesoru. Pro komplexní správu dat velkého
-        projektu je však databáze více než vhodná. 
+Databáze je soubor vzájemně propojených datových složek, který slouží pro efektivní ukládání dat \citep{Oppel2009}. Ta jsou ukládána ve formě tabulek, entit a atributů, a jsou vzájemně propojeny logickými vazbami, které se nazývájí {\it relace} \citep{Connolly2005}. Toto logické uložení vazeb mezi tabulkami umožňuje efektivní manipulaci s daty, rychlé vyhledávání i komplexní analýzu \citep{Momjian2001}. 
 
-        Prostorová databáze, někdy také zvaná geodatabáze, není nic jiného než databáze
-        přidaná o datový typ určený pro ukládání prostorové informace o prvku,
-        prostorové indexy a sadu funkcí vhodných pro správu prostorových dat. Více
-        informací o prostorových databázích v kapitole \odkazKapitola{PostgreSQL} PostgreSQL 9.x (PostGIS) a \odkazKapitola{MSSQL} MS SQL Server 2008.
+Základy {\it relační databáze} položit v roce 1970 matematik E. F. Codd, který relačnímu modelu přidal i srozumitelné příkazy vycházejících z běžné angličtiny, které jsou dnes známy jako jazyk {\it SQL} (Structured Query Language)\citep{Zak2001}. V dnešní době je možné setkat se také s pojmy objektová a objektově-relační databáze, které přebírají řadu vlastností z oblasti objektového programování.
 
-        Z toho vyvstává otázka, co jsou prostorová data, také zvaná geodata. Z pohledu
-        společnosti ESRI se jedná se prvky, které nesou informaci o geografické poloze,
-        zakódovanou informaci o tvaru (bod, line, polygon) a popis geografického jevu.
-        Tato geodata jsou uložená ve formátu, který je možno použít v geografickém
-        informačním systému \citep{Esri2006}. Příkladem takového formátu může být
-        vektorový Esri shapefile, Esri coverage, GML, KML, GeoJSON nebo rastrový Erdas
-        Image a GeoTIFF. Dalším způsobem je již zmíněná databáze, do níž se vektorová
-        data ukládají ve specifickém tvaru daném standardem OGC\footnote{OGC standardy
-        jsou kontrolované konsorciem Open Geospatial Consortium, \newline{zdroj
-        http://www.opengeospatial.org/ogc}} Simply Feature for SQL 1.2.1, který
-        specifikuje způsob uložení dat v digitální podobě. Simple Features je založen
-        na 2D geometrii s~možností lineární interpolace mezi lomovými body. To umožňuje
-        vložení následujících prvků:
+Obvykle se rozlišují pojmy databáze, který odkazuje na obecný koncept, a pojem databázový systém nebo přesněji {\it systém řízení báze dat} \footnote{angl. Database Management System (DBMS)}, což je konkrétním počítačovým program, který zajišťuje fyzické uložení dat. Moderní SŘBD jsou navrženy na principu klient/server, kdy databáze běží jako služba na pozadí a čeká na dotazy od klientů. Server umožňuje uživatelům přístup k databázi, vytváření a aktualizování dat, stejně jak jako vyhledávání či analyzování \citep{Connolly2005}. Uživatel s databázi komunikuje skrze jazyk SQL většinou v kombinaci s vlastním jazykem daného databázového systému.
+
+Pro uložení dat malého projektu je samozřejmě možno použít i jiného formátu určeného pro ukládání dat, například tabulkového procesoru, formátu XML, či moderního JSON. Pro komplexní správu dat velkého projektu je však databáze pro své relace více než vhodná. 
+
+Prostorová databáze, někdy také zvaná geodatabáze, není nic jiného než databáze přidaná o datový typ určený pro ukládání prostorové informace o prvku, prostorové indexy a sadu funkcí vhodných pro správu prostorových dat. Více informací o prostorových databázích v kapitole \odkazKapitola{PostgreSQL} PostgreSQL 9.x (PostGIS) a \odkazKapitola{MSSQL} MS SQL Server 2008. 
+
+Z toho vyvstává otázka, co jsou prostorová data, také zvaná geodata. Z pohledu společnosti Esri se jedná se prvky, které nesou informaci o geografické poloze, zakódovanou informaci o tvaru (bod, line, polygon) a popis geografického jevu. Tato geodata jsou uložená ve formátu, který je možno použít v geografickém informačním systému \citep{Esri2006}. Příkladem takového formátu může být vektorový Esri shapefile, Esri coverage, GML, KML, GeoJSON nebo rastrový Erdas Image a GeoTIFF. Dalším způsobem je již zmíněná databáze, do níž se vektorová data ukládají ve specifickém tvaru daném standardem OGC\footnote{OGC standardy jsou kontrolované konsorciem Open Geospatial Consortium, zdroj \url{http://www.opengeospatial.org/ogc}} Simply Feature for SQL 1.2.1, který specifikuje způsob uložení dat v digitální podobě. Simple Features je založen na 2D geometrii s~možností lineární interpolace mezi lomovými body. To umožňuje vložení následujících prvků:
 
         \begin{itemize}
-          \item bod - POINT(0 0)
-          \item linie - LINESTRING(0 0, 1 1, 1 2)
-          \item polygon - POLYGON ((0 0,4 0,4 4,0 4,0 0),(1 1, 2 1, 2 2, 1 2,1 1))
-          \item série bodů - MULTIPOINT((0 0),(1 2))
-          \item série linií - MULTILINESTRING((0 0,1 1,1 2),(2 3,3 2,5 4))
-          \item geometrická kolekce, která může obsahovat různé geoprvky (body, linie i polygony) - GEOMETRYCOLLECTION(POINT(2 3),LINESTRING(2 3,3 4))\footnote{Zdroj http://postgis.net/docs/manual-2.1/using\_postgis\_dbmanagement.html\#RefObject}
+          \item bod - POINT(0 0),
+          \item linie - LINESTRING(0 0, 1 1, 1 2),
+          \item polygon - POLYGON ((0 0,4 0,4 4,0 4,0 0),(1 1, 2 1, 2 2, 1 2,1 1)),
+          \item série bodů - MULTIPOINT((0 0),(1 2)),
+          \item série linií - MULTILINESTRING((0 0,1 1,1 2),(2 3,3 2,5 4)),
+          \item geometrická kolekce, která může obsahovat různé geoprvky (body, linie i polygony) - GEOMETRYCOLLECTION(POINT(2 3),LINESTRING(2 3,3 4))\footnote{zdroj http://postgis.net/docs/manual-2.1/using\_postgis\_dbmanagement.html\#RefObject}.
         \end{itemize}
 
-        První slovo specifikace určuje druh prvku (point, linestring, polygon, multipoint,~...), následují v závorce vypsané souřadnice lomových bodů. Za tím ještě může následovat volitelný parametr kód souřadnicového systému.
+První slovo specifikace určuje druh prvku (point, linestring, polygon, multipoint,~...), následují v závorce vypsané souřadnice lomových bodů. Za tím ještě může následovat volitelný parametr kód souřadnicového systému.
 
-        Hodnoty lze dále vkládat přes Well-Known Binary (WKB) nebo Well-Known Text (WKT) reprezentaci. PostGIS funkce pro vkládání geometrie vypadá následovně:
+Hodnoty lze dále vkládat přes Well-Known Binary (WKB) nebo Well-Known Text (WKT) reprezentaci. PostGIS funkce pro vkládání geometrie vypadá následovně:
 
         \begin{itemize}
           \item ST\_AsBinary(geometry) pro bitový zápis WKB
@@ -49,5 +29,5 @@
         \end{itemize}
 
         Příklad uložení linie do databáze s jedním lomovým bodem v souřadnicovém systému WGS84:
-        \newline \newline
-        \texttt{(LINESTRING(15.96 50.84, 17.29 49.64, 18.27 49.80), 4326)\hspace*{4.5em}(1)}
+
+        \texttt{(LINESTRING(15.91 50.84, 17.20 49.64, 18.92 49.82), 4326)}

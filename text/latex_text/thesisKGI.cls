@@ -99,11 +99,11 @@
   showstringspaces=false,
   basicstyle=\ttfamily,
   keywordstyle=\bfseries\color{purpurova7},
+  deletekeywords={nebo},  
+  morekeywords={PASSWORD, ENCRYPTED, REPLICATION, linestring, scp, rsync, pg\_basebackup, pg\_dump, pg\_restore},  
   commentstyle=\itshape\color{purple!40!black},
-  %identifierstyle=\color{purpurova7},
   identifierstyle=\color{green!40!black},
   stringstyle=\color{dooranzova},
-  morekeywords={PASSWORD, ENCRYPTED, REPLICATION, scp, rsync, pg\_basebackup, pg\_dump, pg\_restore},  
  }
 
 %\usepackage{glossary}

@@ -2,44 +2,44 @@ This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: Solanska_DP.aux
 The style file: csplainnat.bst
 Database file #1: literatura.bib
-You've used 21 entries,
+You've used 22 entries,
             2837 wiz_defined-function locations,
-            769 strings with 8188 characters,
-and the built_in function-call counts, 7007 in all, are:
-= -- 609
-> -- 274
-< -- 23
-+ -- 103
-- -- 81
-* -- 429
-:= -- 1237
-add.period$ -- 88
-call.type$ -- 21
-change.case$ -- 84
-chr.to.int$ -- 20
-cite$ -- 42
-duplicate$ -- 407
-empty$ -- 651
-format.name$ -- 137
-if$ -- 1446
+            775 strings with 8305 characters,
+and the built_in function-call counts, 7320 in all, are:
+= -- 638
+> -- 284
+< -- 24
++ -- 107
+- -- 84
+* -- 445
+:= -- 1292
+add.period$ -- 92
+call.type$ -- 22
+change.case$ -- 88
+chr.to.int$ -- 21
+cite$ -- 44
+duplicate$ -- 426
+empty$ -- 681
+format.name$ -- 142
+if$ -- 1511
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 33
-newline$ -- 134
-num.names$ -- 84
-pop$ -- 190
+missing$ -- 34
+newline$ -- 140
+num.names$ -- 88
+pop$ -- 198
 preamble$ -- 1
-purify$ -- 48
+purify$ -- 50
 quote$ -- 0
-skip$ -- 251
+skip$ -- 263
 stack$ -- 0
-substring$ -- 42
-swap$ -- 27
+substring$ -- 44
+swap$ -- 28
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 171
+type$ -- 182
 warning$ -- 0
-while$ -- 63
+while$ -- 66
 width$ -- 0
-write$ -- 305
+write$ -- 319

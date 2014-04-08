@@ -1,4 +1,4 @@
-\begin{thebibliography}{21}
+\begin{thebibliography}{22}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -7,14 +7,14 @@
 
 \bibitem[Bell et~al.(2010)Bell, Kindahl,, Thalmann]{BellKindahlThalmann2010}
 BELL, C., KINDAHL, M., THALMANN, L.
-\newblock \emph{MySQL high availability}.
+\newblock \emph{MySQL High Availability}.
 \newblock Vyd. ~1. Sebastopol, CA: O'Reilly Media, Inc, 2010.
 \newblock ISBN 978-059-6807-306.
 
 \bibitem[Böszörmenyi a Schönig(c2013)Böszörmenyi,
   Schönig]{Boszormenyi2013}
 BöSZöRMENYI, Z., SCHöNIG, H.-J.
-\newblock \emph{PostgreSQL replication: understand basic replication concepts
+\newblock \emph{PostgreSQL Replication: Understand basic replication concepts
   and efficiently replicate PostgreSQL using high-end techniques to protect
   your data and run your server without interruptions}.
 \newblock Birmingham: Packt Publishing, c2013.
@@ -65,7 +65,7 @@ LAW, D.
 
 \bibitem[Leiter(2009)]{Leiter2009}
 LEITER, C.
-\newblock \emph{Beginning Microsoft SQL server 2008 administration}.
+\newblock \emph{Beginning Microsoft SQL Server 2008 Administration}.
 \newblock Indianapolis, IN: Wiley Pub., 2009.
 \newblock ISBN 978-047-0440-919.
 
@@ -78,13 +78,13 @@ MICROSOFT.
 
 \bibitem[Momjian(2001)]{Momjian2001}
 MOMJIAN, B.
-\newblock \emph{PostgreSQL: introduction and concepts}.
+\newblock \emph{PostgreSQL: Introduction and Concepts}.
 \newblock Boston, MA: Addison-Wesley, 2001.
 \newblock ISBN 02-017-0331-9.
 
 \bibitem[Obe a Hsu(2011)Obe, Hsu]{ObeHsu2011}
 OBE, R., HSU, L.
-\newblock \emph{PostGIS in action}.
+\newblock \emph{PostGIS in Action}.
 \newblock London: Pearson Education [distributor], 2011.
 \newblock ISBN 19-351-8226-9.
 
@@ -103,7 +103,7 @@ OPENGEO.
 
 \bibitem[Oppel(2009)]{Oppel2009}
 OPPEL, A.~J.
-\newblock \emph{Databases: a beginner's guide}.
+\newblock \emph{Databases: A Beginner's Guide}.
 \newblock New York: McGraw-Hill, 2009.
 \newblock ISBN 00-716-0846-X.
 
@@ -128,7 +128,7 @@ POSTGRESQL.
 
 \bibitem[Riggs a Krosing(2010)Riggs, Krosing]{RiggsKrossing2010}
 RIGGS, S., KROSING, H.
-\newblock \emph{PostgreSQL 9 administration cookbook: solve real-world
+\newblock \emph{PostgreSQL 9 Administration Cookbook: Solve real-world
   PostgreSQL problems with over 100 simple, yet incredibly effective recipes}.
 \newblock Birmingham: Packt Publishing, 2010.
 \newblock ISBN 978-1-849510-28-8.
@@ -146,5 +146,12 @@ WHALEN, E. a.~k.
 \newblock \emph{Databázový svět [online]}, 2009.
 \newblock Dostupné z:
   \url{http://www.dbsvet.cz/view.php?cisloclanku=2009101201}.
+
+\bibitem[Žák(2001)]{Zak2001}
+ŽáK, K.
+\newblock Historie relačních databází.
+\newblock \emph{Root.cz}, 2001.
+\newblock Dostupné z:
+  \url{http://www.root.cz/clanky/historie-relacnich-databazi/}.
 
 \end{thebibliography}

@@ -1,11 +1,12 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdfcslatex 2013.9.16)  8 APR 2014 00:16
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.9.16)  8 APR 2014 23:35
 entering extended mode
  %&-line parsing enabled.
 **Solanska_DP.tex
 (./Solanska_DP.tex
 LaTeX2e <2009/09/24>
-Loading CZ hyphenation patterns: Pavel Sevecek, v3, 1995
-Loading SK hyphenation patterns: Jana Chlebikova, 1992 (./thesisKGI.cls
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, czech, slovak, loaded.
+(./thesisKGI.cls
 Document Class: thesisKGI 2013/02/10 thesis class
 (/usr/share/texmf-texlive/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
@@ -29,7 +30,7 @@ Package: geometry 2008/12/21 v4.2 Page Geometry
 
 (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks16
+\KV@toks@=\toks14
 )
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2009/04/10 v2.0 Provides the ifpdf switch (HO)
@@ -46,7 +47,7 @@ Package ifvtex Info: VTeX not detected.
 \Gm@wd@mp=\dimen104
 \Gm@odd@mp=\dimen105
 \Gm@even@mp=\dimen106
-\Gm@dimlist=\toks17
+\Gm@dimlist=\toks15
 )
 (/usr/share/texmf-texlive/tex/latex/setspace/setspace.sty
 Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
@@ -54,8 +55,8 @@ Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
 Package: `setspace' 6.7 <2000/12/01>
 ) (/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
-\inpenc@prehook=\toks18
-\inpenc@posthook=\toks19
+\inpenc@prehook=\toks16
+\inpenc@posthook=\toks17
 
 (/usr/share/texmf-texlive/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
@@ -242,8 +243,6 @@ File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+201C (decimal 8220)
    defining Unicode char U+201D (decimal 8221)
 )
-Now handling font encoding IL2 ...
-... no UTF-8 mapping file for font encoding IL2
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
 
@@ -321,22 +320,22 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 )
 (/usr/share/texmf-texlive/tex/latex/amscls/amsthm.sty
 Package: amsthm 2004/08/06 v2.20
-\thm@style=\toks20
-\thm@bodyfont=\toks21
-\thm@headfont=\toks22
-\thm@notefont=\toks23
-\thm@headpunct=\toks24
+\thm@style=\toks18
+\thm@bodyfont=\toks19
+\thm@headfont=\toks20
+\thm@notefont=\toks21
+\thm@headpunct=\toks22
 \thm@preskip=\skip43
 \thm@postskip=\skip44
 \thm@headsep=\skip45
-\dth@everypar=\toks25
+\dth@everypar=\toks23
 )
 (/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 
 (/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
-\@emptytoks=\toks26
+\@emptytoks=\toks24
 \ex@=\dimen107
 )
 \pmbraise@=\dimen108
@@ -382,21 +381,21 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 \dotsspace@=\muskip10
 \c@parentequation=\count97
 \dspbrk@lvl=\count98
-\tag@help=\toks27
+\tag@help=\toks25
 \row@=\count99
 \column@=\count100
 \maxfields@=\count101
-\andhelp@=\toks28
+\andhelp@=\toks26
 \eqnshift@=\dimen110
 \alignsep@=\dimen111
 \tagshift@=\dimen112
 \tagwidth@=\dimen113
 \totwidth@=\dimen114
 \lineht@=\dimen115
-\@envbody=\toks29
+\@envbody=\toks27
 \multlinegap=\skip47
 \multlinetaggap=\skip48
-\mathdisplay@stack=\toks30
+\mathdisplay@stack=\toks28
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
 ) (./bbm.sty
@@ -520,7 +519,7 @@ Package pdftexcmds Info: \pdf@ifprimitive is available.
 \Fld@menulength=\count106
 \Field@Width=\dimen123
 \Fld@charsize=\dimen124
-\Field@toks=\toks31
+\Field@toks=\toks29
 Package hyperref Info: Hyper figures OFF on input line 4377.
 Package hyperref Info: Link nesting OFF on input line 4382.
 Package hyperref Info: Hyper index ON on input line 4385.
@@ -551,7 +550,7 @@ Package: subcaption 2008/08/31 v1.0b Adding subcaptions (AR)
 )
 (/usr/share/texmf-texlive/tex/latex/tools/enumerate.sty
 Package: enumerate 1999/03/05 v3.00 enumerate extensions (DPC)
-\@enLab=\toks32
+\@enLab=\toks30
 )
 (/usr/share/texmf-texlive/tex/latex/paralist/paralist.sty
 Package: paralist 2002/03/18 v2.3b Extended list environments (BS)
@@ -559,33 +558,24 @@ Package: paralist 2002/03/18 v2.3b Extended list environments (BS)
 \plpartopsep=\skip50
 \plitemsep=\skip51
 \plparsep=\skip52
-\pl@lab=\toks33
+\pl@lab=\toks31
 )
 (/usr/share/texmf-texlive/tex/generic/babel/babel.sty
 Package: babel 2008/07/06 v3.8l The Babel package
 
-(/usr/share/texmf-texlive/tex/generic/babel/babel.def
-File: babel.def 2008/07/06 v3.8l Babel common definitions
-
-(/usr/share/texmf-texlive/tex/generic/babel/switch.def
-File: switch.def 2008/07/06 v3.8l Babel language switching mechanism
-)
-\babel@savecnt=\count113
-\U@D=\dimen126
-)
 (/usr/share/texmf-texlive/tex/generic/babel/czech.ldf
 Language: czech 2008/07/06 v3.1a Czech support from the babel system
 
-
-Package babel Warning: No hyphenation patterns were loaded for
-(babel)                the language `Czech'
-(babel)                I will use the patterns loaded for \language=0 instead.
-
-\l@czech = a dialect from \language0
+(/usr/share/texmf-texlive/tex/generic/babel/babel.def
+File: babel.def 2008/07/06 v3.8l Babel common definitions
+\babel@savecnt=\count113
+\U@D=\dimen126
+)
 Package babel Info: Making " an active character on input line 172.
 \cs@wordlen=\count114
 Package babel Info: Making - an active character on input line 226.
-)) (/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+))
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
@@ -605,9 +595,9 @@ Package graphics Info: Driver file: pdftex.def on input line 91.
 (/usr/share/texmf-texlive/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count115
-\float@exts=\toks34
+\float@exts=\toks32
 \float@box=\box28
-\@float@everytoks=\toks35
+\@float@everytoks=\toks33
 \@floatcapt=\box29
 )
 (/usr/share/texmf/tex/latex/xcolor/xcolor.sty
@@ -625,11 +615,11 @@ Package: colortbl 2001/02/13 v0.1j Color table columns (DPC)
 Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen129
 \extrarowheight=\dimen130
-\NC@list=\toks36
+\NC@list=\toks34
 \extratabsurround=\skip53
 \backup@length=\skip54
 )
-\everycr=\toks37
+\everycr=\toks35
 \minrowclearance=\skip55
 )
 LaTeX Info: Redefining \color on input line 702.
@@ -647,7 +637,7 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 (/usr/share/texmf-texlive/tex/latex/listings/listings.sty
 \lst@mode=\count117
 \lst@gtempboxa=\box30
-\lst@token=\toks38
+\lst@token=\toks36
 \lst@length=\count118
 \lst@currlwidth=\dimen131
 \lst@column=\count119
@@ -682,8 +672,8 @@ Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 Package: xkeyval 2008/08/13 v2.6a package option processing (HA)
 
 (/usr/share/texmf-texlive/tex/generic/xkeyval/xkeyval.tex
-\XKV@toks=\toks39
-\XKV@tempa@toks=\toks40
+\XKV@toks=\toks37
+\XKV@tempa@toks=\toks38
 \XKV@depth=\count125
 File: xkeyval.tex 2008/08/13 v2.6a key=value parser (HA)
 ))
@@ -699,7 +689,7 @@ Package: translator 2010/06/12 ver 1.10
 (/usr/share/texmf/tex/latex/beamer/base/translator/translator-language-mappings
 .tex))
 \gls@level=\count126
-\@gls@tmpb=\toks41
+\@gls@tmpb=\toks39
 \gls@tmplen=\skip56
 \istfile=\write3
 
@@ -729,7 +719,7 @@ Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
 \LT@rows=\count129
 \c@LT@tables=\count130
 \c@LT@chunks=\count131
-\LT@p@ftn=\toks42
+\LT@p@ftn=\toks40
 )
 \glsdescwidth=\skip62
 \glspagelistwidth=\skip63
@@ -777,7 +767,7 @@ LaTeX Info: Redefining \cite on input line 694.
 (/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-common.tex
-\pgfutil@everybye=\toks43
+\pgfutil@everybye=\toks41
 )
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def
 \pgfutil@abb=\box37
@@ -796,11 +786,11 @@ Package: pgf 2008/01/15 v2.10 (rcs-revision 1.12)
 Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
 
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks44
-\pgfkeys@temptoks=\toks45
+\pgfkeys@pathtoks=\toks42
+\pgfkeys@temptoks=\toks43
 
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
-\pgfkeys@tmptoks=\toks46
+\pgfkeys@tmptoks=\toks44
 ))
 \pgf@x=\dimen147
 \pgf@y=\dimen148
@@ -846,9 +836,9 @@ Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
 \pgfmath@dimen=\dimen155
 \pgfmath@count=\count140
 \pgfmath@box=\box38
-\pgfmath@toks=\toks47
-\pgfmath@stack@operand=\toks48
-\pgfmath@stack@operation=\toks49
+\pgfmath@toks=\toks45
+\pgfmath@stack@operand=\toks46
+\pgfmath@stack@operation=\toks47
 )
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex)
@@ -960,8 +950,8 @@ Package: pgfcomp-version-1-18 2007/07/23 v2.10 (rcs-revision 1.1)
 Package: pgffor 2010/03/23 v2.10 (rcs-revision 1.18)
 \pgffor@iter=\dimen181
 \pgffor@skip=\dimen182
-\pgffor@stack=\toks50
-\pgffor@toks=\toks51
+\pgffor@stack=\toks48
+\pgffor@toks=\toks49
 ))
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2010/10/13 v2.10 (rcs-revision 1.76)
@@ -1007,8 +997,6 @@ LaTeX Font Info:    ... okay on input line 14.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
 LaTeX Font Info:    ... okay on input line 14.
 LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for IL2/cmr/m/n on input line 14.
 LaTeX Font Info:    ... okay on input line 14.
 LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
 LaTeX Font Info:    ... okay on input line 14.
@@ -1081,11 +1069,11 @@ Package caption Info: End \AtBeginDocument code.
 \scratchbox=\box46
 \nofMPsegments=\count154
 \nofMParguments=\count155
-\everyMPshowfont=\toks52
+\everyMPshowfont=\toks50
 \MPscratchCnt=\count156
 \MPscratchDim=\dimen191
 \MPnumerator=\count157
-\everyMPtoPDFconversion=\toks53
+\everyMPtoPDFconversion=\toks51
 )
 Package hyperref Info: Link coloring OFF on input line 14.
  (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
@@ -1183,71 +1171,67 @@ File: ./obrazky/obrazek_1.png Graphic file (type png)
  <use ./obrazky/obrazek_1.png>) [12 <./obrazky/obrazek_1.png (PNG copy)>] [13] 
 (./kapitoly/teorie/1_teorie_uvod.tex
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 7.
+(Font)              <10> on input line 5.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 7.
+(Font)              <7> on input line 5.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 7.
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 34.
+(Font)              <5> on input line 5.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 11.
+
+(/usr/share/texmf/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [14]
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 14.
 
 (/usr/share/texmf/tex/latex/lm/omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 34.
- [14]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 53.
-
-(/usr/share/texmf/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-))
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 14.
+)
 (./kapitoly/teorie/2_vymezeni_pojmu.tex
-Underfull \hbox (badness 10000) in paragraph at lines 51--1
-
- []
-
 
 Package hyperref Warning: Composite letter `\textring+u'
 (hyperref)                not defined in PD1 encoding,
 (hyperref)                removing `\textring' on input line 1.
 
-
-<../../../grafy/obr/schema_synchronizace_maxiTence.png, id=267, 427.24324pt x 1
+[15]
+<../../../grafy/obr/schema_synchronizace_maxiTence.png, id=278, 427.24324pt x 1
 56.4433pt>
 File: ../../../grafy/obr/schema_synchronizace_maxiTence.png Graphic file (type 
 png)
- <use ../../../grafy/obr/schema_synchronizace_maxiTence.png> [15]
-[16 <../../../grafy/obr/schema_synchronizace_maxiTence.png>]
-<../../../grafy/obr/schema_verzovani_maxiTence.png, id=285, 398.76035pt x 128.3
+ <use ../../../grafy/obr/schema_synchronizace_maxiTence.png> [16 <../../../graf
+y/obr/schema_synchronizace_maxiTence.png>]
+<../../../grafy/obr/schema_verzovani_maxiTence.png, id=289, 398.76035pt x 128.3
 8553pt>
 File: ../../../grafy/obr/schema_verzovani_maxiTence.png Graphic file (type png)
 
- <use ../../../grafy/obr/schema_verzovani_maxiTence.png>
-<../../../grafy/obr/schema_verzovani_branch_maxiTence.png, id=286, 427.24324pt 
+ <use ../../../grafy/obr/schema_verzovani_maxiTence.png> [17 <../../../grafy/ob
+r/schema_verzovani_maxiTence.png>]
+<../../../grafy/obr/schema_verzovani_branch_maxiTence.png, id=297, 427.24324pt 
 x 184.92618pt>
 File: ../../../grafy/obr/schema_verzovani_branch_maxiTence.png Graphic file (ty
 pe png)
- <use ../../../grafy/obr/schema_verzovani_branch_maxiTence.png>
-[17 <../../../grafy/obr/schema_verzovani_maxiTence.png>])
+ <use ../../../grafy/obr/schema_verzovani_branch_maxiTence.png>)
 (./kapitoly/teorie/3_replikace.tex [18 <../../../grafy/obr/schema_verzovani_bra
 nch_maxiTence.png>]
-<../../../grafy/obr/schema_masterMasterSlave_maxiTence.png, id=312, 427.24324pt
+<../../../grafy/obr/schema_masterMasterSlave_maxiTence.png, id=317, 427.24324pt
  x 184.92618pt>
 File: ../../../grafy/obr/schema_masterMasterSlave_maxiTence.png Graphic file (t
 ype png)
 
 <use ../../../grafy/obr/schema_masterMasterSlave_maxiTence.png> [19 <../../../g
 rafy/obr/schema_masterMasterSlave_maxiTence.png>]
-<../../../grafy/obr/schema_asyncSync_maxiTence.png, id=326, 398.76035pt x 170.8
+<../../../grafy/obr/schema_asyncSync_maxiTence.png, id=331, 398.76035pt x 170.8
 973pt>
 File: ../../../grafy/obr/schema_asyncSync_maxiTence.png Graphic file (type png)
 
  <use ../../../grafy/obr/schema_asyncSync_maxiTence.png>
 
-LaTeX Warning: Reference `' on page 20 undefined on input line 32.
+LaTeX Warning: Reference `' on page 20 undefined on input line 33.
 
 [20 <../../../grafy/obr/schema_asyncSync_maxiTence.png>]
-<../../../grafy/obr/schema_kaskadova.png, id=336, 284.82883pt x 147.51582pt>
+<../../../grafy/obr/schema_kaskadova.png, id=342, 284.82883pt x 147.51582pt>
 File: ../../../grafy/obr/schema_kaskadova.png Graphic file (type png)
 
 <use ../../../grafy/obr/schema_kaskadova.png>)
@@ -1260,18 +1244,18 @@ Package hyperref Warning: Composite letter `\textasciicaron+r'
 
 [23] [24]
 Overfull \hbox (52.28983pt too wide) in paragraph at lines 75--75
-[][][]\T1/lmr/m/n/10 Zdroj a dal²í in-for-mace na stránkách Post-greSQL http://
-trac.osgeo.org/postgis/wiki/UsersWikiPostgisarcgis
+[][][]\T1/lmr/m/n/10 Zdroj a dal²í in-for-mace na strán-kách Post-gre-SQL http:
+//trac.osgeo.org/postgis/wiki/UsersWikiPostgisarcgis
  []
 
 
 Overfull \hbox (59.16301pt too wide) in paragraph at lines 75--75
-\T1/lmr/m/n/10 nebo Ar-cGIS http://resources.arcgis.com/en/help/system-requirem
-ents/10.1/index.html#//015100000075000000| 
+\T1/lmr/m/n/10 nebo Ar-c-GIS http://resources.arcgis.com/en/help/system-require
+ments/10.1/index.html#//015100000075000000| 
  []
 
 [25] [26] [27]) (./kapitoly/teorie/6_nastroje_pro_replikaci.tex [28] [29]
-<../../../grafy/obr/schema_pgpool.png, id=459, 198.95506pt x 147.51582pt>
+<../../../grafy/obr/schema_pgpool.png, id=464, 198.95506pt x 147.51582pt>
 File: ../../../grafy/obr/schema_pgpool.png Graphic file (type png)
 
 <use ../../../grafy/obr/schema_pgpool.png>) [30 <../../../grafy/obr/schema_pgpo
@@ -1290,8 +1274,8 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 11.
 
 Underfull \hbox (badness 1983) in paragraph at lines 25--26
-[]\T1/lmr/m/n/12 Kopírování dat za b¥hu databáze je²t¥ vyºaduje pouºití p°íkazu
- \T1/lmtt/m/n/12 SELECT
+[]\T1/lmr/m/n/12 Kopírování dat za b¥hu da-ta-báze je²t¥ vy-ºa-duje po-u-ºití p
+°í-kazu \T1/lmtt/m/n/12 SELECT
  []
 
 [31] [32]) (./kapitoly/implementace/5_implementace_replikace.tex [33] [34])
@@ -1309,8 +1293,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 43--49
 
 
 Underfull \hbox (badness 1540) in paragraph at lines 51--57
-[]\T1/lmr/m/n/12 ESRI.  Prepar-ing data for repli-ca-tion.  \T1/lmr/m/it/12 Ar-
-cGIS Help 10.1 [on-line]\T1/lmr/m/n/12 , 2013b.
+[]\T1/lmr/m/n/12 ESRI.  Pre-pa-ring data for repli-cation.  \T1/lmr/m/it/12 Ar-
+c-GIS Help 10.1 [on-line]\T1/lmr/m/n/12 , 2013b.
  []
 
 [38]) [39] [40]
@@ -1333,13 +1317,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 20290 strings out of 494936
- 335759 string characters out of 1181021
- 476039 words of memory out of 3000000
- 22841 multiletter control sequences out of 15000+50000
- 75847 words of font info for 64 fonts, out of 3000000 for 9000
- 24 hyphenation exceptions out of 8191
- 63i,16n,90p,1228b,1299s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 20269 strings out of 495027
+ 335241 string characters out of 1181419
+ 469333 words of memory out of 3000000
+ 22699 multiletter control sequences out of 15000+50000
+ 76166 words of font info for 65 fonts, out of 3000000 for 9000
+ 38 hyphenation exceptions out of 8191
+ 63i,16n,90p,1228b,1783s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{glo:SQL} has been referenced but does not exist, 
 replaced by a fixed one
 
@@ -1356,10 +1340,10 @@ ype1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr
 /share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/publi
 c/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/
 texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/
-lmtt12.pfb>
-Output written on Solanska_DP.pdf (41 pages, 778638 bytes).
+lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
+Output written on Solanska_DP.pdf (41 pages, 803911 bytes).
 PDF statistics:
- 660 PDF objects out of 1000 (max. 8388607)
- 165 named destinations out of 1000 (max. 500000)
+ 671 PDF objects out of 1000 (max. 8388607)
+ 168 named destinations out of 1000 (max. 500000)
  289 words of extra memory for PDF output out of 10000 (max. 10000000)
 
