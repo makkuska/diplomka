@@ -1,28 +1,26 @@
 \select@language {czech}
-\contentsline {section}{SEZNAM POU\IeC {\v Z}IT\IeC {\'Y}CH ZKRATEK}{9}{section*.3}
 \contentsline {section}{\IeC {\'U}VOD}{9}{section*.3}
 \contentsline {section}{\numberline {1}C\IeC {\'I}LE PR\IeC {\'A}CE}{11}{section.1}
 \contentsline {section}{\numberline {2}POU\IeC {\v Z}IT\IeC {\'E} METODY A POSTUPY PR\IeC {\'A}CE}{12}{section.2}
-\contentsline {subsection}{\numberline {2.1}Obr\IeC {\'a}zkygt}{12}{subsection.2.1}
-\contentsline {section}{\numberline {3}TEORETICK\IeC {\'A} V\IeC {\'Y}CHODISKA}{14}{section.3}
-\contentsline {subsection}{\numberline {3.1}Vymezen\IeC {\'\i } pojm\IeC {\r u}}{15}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Replikace}{18}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}ArcGIS produkty}{22}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Pou\IeC {\v z}it\IeC {\'e} programov\IeC {\'e} prost\IeC {\v r}edky}{24}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}PostgreSQL 9.x (PostGIS)}{24}{subsubsection.3.4.1}
-\contentsline {subsubsection}{\numberline {3.4.2}Microsoft SQL Server Express 2008}{25}{subsubsection.3.4.2}
-\contentsline {subsubsection}{\numberline {3.4.3}ArcSDE geodatabase}{26}{subsubsection.3.4.3}
-\contentsline {subsection}{\numberline {3.5}N\IeC {\'a}stroje pro replikaci v PostgreSQL}{28}{subsection.3.5}
-\contentsline {subsubsection}{\numberline {3.5.1}Slony-I}{28}{subsubsection.3.5.1}
-\contentsline {subsubsection}{\numberline {3.5.2}Streaming replikace}{29}{subsubsection.3.5.2}
-\contentsline {subsubsection}{\numberline {3.5.3}pgpool}{29}{subsubsection.3.5.3}
-\contentsline {section}{\numberline {4}N\IeC {\'A}VRH A IMPLEMENTACE REPLIKACE}{31}{section.4}
-\contentsline {subsection}{\numberline {4.1}P\IeC {\v r}\IeC {\'\i }prava prost\IeC {\v r}ed\IeC {\'\i } pro konfiguraci replikace}{31}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Implementace replikace}{34}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4.2.1}Slony-I replikace}{34}{subsubsection.4.2.1}
+\contentsline {section}{\numberline {3}TEORETICK\IeC {\'A} V\IeC {\'Y}CHODISKA}{13}{section.3}
+\contentsline {subsection}{\numberline {3.1}Vymezen\IeC {\'\i } pojm\IeC {\r u}}{14}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Replikace}{17}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}ArcGIS produkty}{21}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Pou\IeC {\v z}it\IeC {\'e} programov\IeC {\'e} prost\IeC {\v r}edky}{23}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}PostgreSQL 9.x (PostGIS)}{23}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Microsoft SQL Server Express 2008}{24}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}ArcSDE geodatabase}{25}{subsubsection.3.4.3}
+\contentsline {subsection}{\numberline {3.5}N\IeC {\'a}stroje pro replikaci v PostgreSQL}{27}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Slony-I}{27}{subsubsection.3.5.1}
+\contentsline {subsubsection}{\numberline {3.5.2}Streaming replikace}{28}{subsubsection.3.5.2}
+\contentsline {subsubsection}{\numberline {3.5.3}pgpool}{28}{subsubsection.3.5.3}
+\contentsline {section}{\numberline {4}N\IeC {\'A}VRH A KONFIGURACE REPLIKACE}{30}{section.4}
+\contentsline {subsection}{\numberline {4.1}P\IeC {\v r}\IeC {\'\i }prava prost\IeC {\v r}ed\IeC {\'\i } pro konfiguraci replikace}{30}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Konfigurace replikace}{33}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Slony-I replikace}{33}{subsubsection.4.2.1}
 \contentsline {subsubsection}{\numberline {4.2.2}Streaming replikace}{34}{subsubsection.4.2.2}
 \contentsline {section}{\numberline {5}DISKUZE}{36}{section.5}
 \contentsline {section}{\numberline {6}Z\IeC {\'A}V\IeC {\v E}R}{37}{section.6}
 \contentsline {section}{LITERATURA}{38}{section.6}
-\contentsline {section}{SUMMARY}{40}{section*.21}
-\contentsline {section}{P\IeC {\v R}\IeC {\'I}LOHY}{41}{section*.21}
+\contentsline {section}{SUMMARY}{40}{section*.18}
+\contentsline {section}{P\IeC {\v R}\IeC {\'I}LOHY}{41}{section*.18}

@@ -100,8 +100,8 @@
   basicstyle=\ttfamily,
   keywordstyle=\bfseries\color{purpurova7},
   deletekeywords={nebo},  
-  morekeywords={PASSWORD, ENCRYPTED, REPLICATION, linestring, scp, rsync, pg\_basebackup, pg\_dump, pg\_restore},  
-  commentstyle=\itshape\color{purple!40!black},
+  morekeywords={PASSWORD, ENCRYPTED, REPLICATION, DATABASE, linestring, scp, rsync, pg\_basebackup, pg\_dump, pg\_restore},  
+  commentstyle=\color{purple!40!black},
   identifierstyle=\color{green!40!black},
   stringstyle=\color{dooranzova},
  }

@@ -1,5 +1,28 @@
-\subsection{Implementace replikace}
+\subsection{Konfigurace replikace}
 \subsubsection{Slony-I replikace}
+Ukázka konfiguračního souboru na master serveru pro inicializaci clusteru (init cluster) s názvem init\_master.txt uloženého ve složce z daty:
+\begin{lstlisting}[basicstyle=\footnotesize\ttfamily,identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black},
+]
+
+cluster name = second_cluster;
+# definice uzlu
+node 1 admin conninfo='dbname= host=192.168.1.1 user=replikator password=kgigis';
+node 2 admin conninfo='dbname= host=192.168.1.2 user=replikator password=kgigis';
+
+# inicializace clusteru
+init cluster (id=1, comment = 'master');
+store node (id=2, comment = 'slave1', event node=1);
+
+# vytvoreni replikacniho setu a pridani tabulek do setu
+create set (id=1, origin=1, comment='Tabulky k replikaci');
+
+set add table (set id=1, origin=1, id=1, fully qualified name = 'public.student', comment='prehled studentu');
+set add table (set id=2, origin=1, id=1, fully qualified name = 'public.student2', comment='prehled studentu');
+
+store path (server=1, client=2, conninfo='dbname= host=localhost user=postgres  password=tfgt');
+store path (server=2, client=1, conninfo='dbname=repl2 host=localhost user=postgres  password=tfgt');
+
+\end{lstlisting}
 \subsubsection{Streaming replikace}
 Inicializace asynchronní streaming replikace
 
