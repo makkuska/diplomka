@@ -1,11 +1,11 @@
-\BOOKMARK [1][-]{section*.3}{\332VOD}{}
+\BOOKMARK [1][-]{section*.4}{\332VOD}{}
 \BOOKMARK [1][-]{section.1}{C\315LE PR\301CE}{}
 \BOOKMARK [1][-]{section.2}{POU\231IT\311 METODY A POSTUPY PR\301CE}{}
 \BOOKMARK [1][-]{section.3}{TEORETICK\301 V\335CHODISKA}{}
 \BOOKMARK [2][-]{subsection.3.1}{Vymezen\355 pojmu}{section.3}
 \BOOKMARK [2][-]{subsection.3.2}{Replikace}{section.3}
 \BOOKMARK [2][-]{subsection.3.3}{ArcGIS produkty}{section.3}
-\BOOKMARK [2][-]{subsection.3.4}{Pou\236it\351 programov\351 prostredky}{section.3}
+\BOOKMARK [2][-]{subsection.3.4}{Vybran\351 programov\351 prostredky}{section.3}
 \BOOKMARK [3][-]{subsubsection.3.4.1}{PostgreSQL 9.x \(PostGIS\)}{subsection.3.4}
 \BOOKMARK [3][-]{subsubsection.3.4.2}{Microsoft SQL Server Express 2008}{subsection.3.4}
 \BOOKMARK [3][-]{subsubsection.3.4.3}{ArcSDE geodatabase}{subsection.3.4}
@@ -14,12 +14,13 @@
 \BOOKMARK [3][-]{subsubsection.3.5.2}{Streaming replikace}{subsection.3.5}
 \BOOKMARK [3][-]{subsubsection.3.5.3}{pgpool}{subsection.3.5}
 \BOOKMARK [1][-]{section.4}{N\301VRH A KONFIGURACE REPLIKACE}{}
-\BOOKMARK [2][-]{subsection.4.1}{Pr\355prava prostred\355 pro konfiguraci replikace}{section.4}
-\BOOKMARK [2][-]{subsection.4.2}{Konfigurace replikace}{section.4}
-\BOOKMARK [3][-]{subsubsection.4.2.1}{Slony-I replikace}{subsection.4.2}
-\BOOKMARK [3][-]{subsubsection.4.2.2}{Streaming replikace}{subsection.4.2}
+\BOOKMARK [2][-]{subsection.4.1}{N\341vrh replikacn\355ho re\235en\355}{section.4}
+\BOOKMARK [2][-]{subsection.4.2}{Pr\355prava prostred\355 pro konfiguraci replikace}{section.4}
+\BOOKMARK [2][-]{subsection.4.3}{Konfigurace replikace}{section.4}
+\BOOKMARK [3][-]{subsubsection.4.3.1}{Streaming replikace}{subsection.4.3}
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Slony-I replikace}{subsection.4.3}
 \BOOKMARK [1][-]{section.5}{DISKUZE}{}
 \BOOKMARK [1][-]{section.6}{Z\301VER}{}
 \BOOKMARK [1][-]{section.6}{LITERATURA}{}
-\BOOKMARK [1][-]{section*.18}{SUMMARY}{}
-\BOOKMARK [1][-]{section*.18}{PR\315LOHY}{}
+\BOOKMARK [1][-]{section*.22}{SUMMARY}{}
+\BOOKMARK [1][-]{section*.22}{PR\315LOHY}{}
