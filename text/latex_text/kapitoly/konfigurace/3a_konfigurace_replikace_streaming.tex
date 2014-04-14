@@ -1,0 +1,129 @@
+
+Jak bylo nastíněno v kapitole \odkazKapitola{kNavrh}, databázové řešení staví na streaming replikaci a~skládá se ze tří uzlů v~clusteru, jednoho master serveru a dvou slave serverů. Pokud je správně provedena příprava dle kapitoly \odkazKapitola{kPriprava}, samotné nastavení replikace není nijak náročné. V první fázi je potřeba konfigurace souboru \texttt{postgresql.conf} na master serveru. Pro asynchonní replikaci stačí editace parametrů: 
+\begin{itemize}
+\item \texttt{wal\_level}, který určuje, kolik informací má být zapsáno do transakčního logu (WAL) a
+\item \texttt{max\_wal\_senders}, který odpovídá maximálnímu počtu připojených slave serverů. 
+\end{itemize}
+
+Hodnota \texttt{wal\_level}, stanovena na \texttt{hot\_stadby}, zajistí, že na slave serveru bude umožněno dotazování. Vzhledem k tomu, že se bude na master server připojovat pouze \texttt{slave1} a všechny další slave servery se poté budou připojovat k němu, hodnota \texttt{1} zcela dostačuje. Je však možné hodnotu rovnou navýšit, aby se soubor v budoucnu nemusel znovu editovat z důvodu připojení dalšího serveru.
+
+Tyto dva parametry stačí pro achynchronní replikace, pro nastavení synchronní je ještě potřeba přidat \texttt{synchronous\_standby\_names}, jehož hodnota může být libovolné slovo. 
+
+Konfigurace \texttt{postgres.conf} na master serveru:
+\begin{lstlisting}
+wal_level = hot_standby
+max_wal_senders = 1
+synchronous_standby_names = 'gis'
+\end{lstlisting}
+
+Stejně tak je potřeba konfigurovat \texttt{postgresql.conf} na slave serverech. Hodnoty \texttt{wal\_level} a \texttt{max\_level\_sender} můžou a nemusí zůstat stejné jako na masteru. Pokud však má být slave připraven zastoupit master server v případě jeho výpadku, pak je vhodné, aby hodnoty byly nastaveny shodně. Na slave serveru je dále potřeba editovat:
+\begin{itemize}
+  \item\texttt{hot\_standby}, který určuje, zda je na slave serveru umožněno dotazování a 
+  \item\texttt{hot\_stadby\_feedback}, který udává, zda bude replika informovat master server o příkazech, které na ní byly provedeny.
+\end{itemize}
+
+Konfigurace \texttt{postgresql.conf} shodně na obou slave serverech (na \texttt{slave1} a \texttt{slave2}): 
+\begin{lstlisting}
+wal_level = hot_standby
+max_wal_senders = 5
+hot_standby = on	
+hot_standby_feedback = on
+\end{lstlisting}
+
+Posledním krokem je vytvoření souboru \texttt{recovery.conf} na slave serveru ve složce s daty, který definuje parametry:
+\begin{itemize}
+\item \texttt{standby\_mode}, který povoluje či zakazuje použití serveru jako slave a
+\item \texttt{primary\_conninfo}, který nastavuje informace o serveru, ze kterého budou data replikována. Parametr nastavuje IP adresu serveru, ze kterého se data budou replikovat, název replikačního uživatele a jeho heslo a v případě synchronní replikace ještě klíčové slovo, které musí být shodné s hodnotou, která byla nastavená na master serveru v souboru \texttt{postgresql.conf} v parametru \texttt{synchronous\_standby\_name}.
+\end{itemize}
+
+Ukázka konfigurace \texttt{recovery.conf} uloženého ve složce s daty na \texttt{slave1}, který je připojován na master server a běží jako synchronní:
+
+\begin{lstlisting}
+standby_mode='on'
+primary_conninfo='host=192.168.1.100 user=replikator password=kgigis application_name=gis'  
+\end{lstlisting}
+
+V návrhu je počítáno s kaskádovou replikací, tedy s tím, že se \texttt{slave1} bude připojovat na \texttt{slave2} místo na master server. To lze nastavit úpravou souboru \texttt{recovery.conf}, kde IP adresa parametru \texttt{host} bude odpovídat IP adrese \texttt{slave1} serveru. 
+
+Ukázka konfigurace \texttt{recovery.conf} uloženého ve složce s daty na \texttt{slave2}, který běží jako asynchronní a je kaskádově připojován ke slave1:
+
+\begin{lstlisting}
+standby_mode='on'
+primary_conninfo='host=192.168.1.101 user=replikator password=kgigis'
+\end{lstlisting}
+
+To, že je replikace správně nastavená, lze zkontrolovat několika způsoby. Připojené repliky lze vypsat pomocí SQL příkazu \texttt{pg\_stat\_replication}, kde poslední parametr udává, zda se jedná o synchronní nebo asychronní replikaci. 
+
+Spuštění SQL příkazu \texttt{pg\_stat\_replication} z master serveru:
+
+\begin{lstlisting}
+SELECT usename, application_name, client_addr, state, sync_state FROM pg_stat_replication ;
+\end{lstlisting}
+
+    \begin{table}[H]
+      \label{pgHba}
+        \begin{center}
+          \begin{tabular}{lll}
+            \texttt{-[ RECORD 1 ]----} & \texttt{+} & \texttt{--------------}\\
+                      \texttt{usename} &           \texttt{|} &  \texttt{replikator}\\
+            \texttt{application\_name} &  \texttt{|} &  \texttt{gis}\\
+                 \texttt{client\_addr} &       \texttt{|} &  \texttt{192.168.1.101}\\
+                        \texttt{state} &             \texttt{|} &  \texttt{streaming}\\
+                  \texttt{sync\_state} &        \texttt{|} &  \texttt{sync}\\
+          \end{tabular}
+        \end{center}
+    \end{table}
+
+Spuštění stejného SQL příkazu \texttt{pg\_stat\_replication} z \texttt{slave1}:
+
+    \begin{table}[H]
+      \label{pgHba}
+        \begin{center}
+          \begin{tabular}{lll}
+            \texttt{-[ RECORD 1 ]----} & \texttt{+} & \texttt{--------------}\\
+                      \texttt{usename} &           \texttt{|} &  \texttt{replikator}\\
+            \texttt{application\_name} &  \texttt{|} &  \texttt{walreceiver}\\
+                 \texttt{client\_addr} &       \texttt{|} &  \texttt{192.168.1.102}\\
+                        \texttt{state} &             \texttt{|} &  \texttt{streaming}\\
+                  \texttt{sync\_state} &        \texttt{|} &  \texttt{async}\\
+          \end{tabular}
+        \end{center}
+    \end{table}
+Stejně tak lze na slave serveru zjistit, zda běží jako replika či nikoli pomocí SQL příkazu \texttt{pg\_is\_in\_recovery()}:
+
+\begin{lstlisting}
+  postgres=# select pg_is_in_recovery();
+\end{lstlisting}
+    \begin{table}[H]
+        \begin{center}
+      \label{pgHba}
+          \begin{tabular}{l}
+            \texttt{pg\_is\_in\_recovery}\\
+            \texttt{---------------------------------}\\
+            \texttt{t}\\
+            \texttt{(1 row)}\\
+          \end{tabular}
+        \end{center}
+    \end{table}
+
+Zároveň na slave server nesmí být možné zapsat žádná data:
+
+\begin{lstlisting}
+INSERT INTO student (jmeno) VALUES('Jan Vlasovec');
+\end{lstlisting}
+\begin{lstlisting}[keywordstyle=\color{black},identifierstyle=\color{black},stringstyle=\color{black}]
+ERROR:  cannot execute INSERT in a read-only transaction
+\end{lstlisting}
+
+Připojené repliky lze vypsat pomocí SQL příkazu \texttt{pg\_stat\_replication}, kde poslední parametr udává, zda se jedná o synchronní nebo asychronní replikaci:
+
+
+
+V případě, že master server spadne, je možné během pár minut vyměnit role, určit jako master jeden ze slave serverů. Lze to udělat několik způsoby, jedním z nich je sledování existence souboru, který je definován v souboru \texttt{recovery.conf} na kterémkoli slave serveru:
+
+\begin{lstlisting}
+  trigger_file = '/tmp/trigger.txt'
+\end{lstlisting}
+
+Název souboru může být zvolen libovolně a může být zcela prázdný. Slave server pouze hlídá jeho existenci a jen to, že se soubor objeví v dané složce, způsobí, že se ze slave serveru stane master. Obsah souboru můžou tvořit další instrukce, které se můžou ovlivnit další chod databáze. 
+

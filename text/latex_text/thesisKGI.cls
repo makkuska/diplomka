@@ -100,7 +100,7 @@
   basicstyle=\ttfamily,
   keywordstyle=\bfseries\color{purpurova7},
   deletekeywords={nebo},  
-  morekeywords={PASSWORD, ENCRYPTED, REPLICATION, DATABASE, linestring, scp, rsync, pg\_basebackup, pg\_dump, pg\_restore},  
+  morekeywords={PASSWORD, ENCRYPTED, REPLICATION, DATABASE, linestring, scp, rsync, pg\_basebackup, pg\_dump, pg\_restore, slon, slonik},  
   commentstyle=\color{purple!40!black},
   identifierstyle=\color{green!40!black},
   stringstyle=\color{dooranzova},
@@ -152,10 +152,11 @@
 \newcommand\resp{\mbox{{resp. }}}
 \newcommand\aj{\mbox{{aj. }}}
 
-\newcommand{\odkazObrazek}[1]{(\viz obr. \ref{#1})}
+\newcommand{\odkazObrazek}[1]{(\viz obr.~\ref{#1})}
 \newcommand{\odkazKapitola}[1]{\ref{#1}}
-\newcommand{\odkazVzorec}[1]{(\viz \eqref{#1})}
-\newcommand{\odkazTabulka}[1]{(\viz tab. \ref{#1})}
+\newcommand{\odkazVzorec}[1]{(\viz~\eqref{#1})}
+\newcommand{\odkazTabulka}[1]{(\viz tab.~\ref{#1})}
+\newcommand{\vizTabulka}[1]{\viz tab.~\ref{#1}}
 
 %:--------------------------Nové příkazy -----------------------
 %=======================================================

@@ -1,0 +1,110 @@
+
+Jak už bylo zmíněno v kapitole \odkazKapitola{kSlony}, u Slony-I není možné replikovat strukturu databáze. Výhodou však je, že lze vybrat pouze některé tabulky k replikaci a zároveň, že se nemusí shodovat názvy databází. V tomto ohledu tedy nabízí velkou variabilitu propojení. Jak bylo nastíněno v kapitole \odkazKapitola{kPriprava}, nastavení replikace začíná přípravou uživatele, pod kterým bude proces probíhat, vytvořením datové struktury a zajištění shodné kopie dat na všech uzlech v clusteru.
+
+Pro názornost byla vytvořena databáze {\it studenti} pomocí příkazu \texttt{CREATE DATABASE} a  tabulky \texttt{student} a \texttt{rodne\_mesto}, u kterých byl nastaven \texttt{primary key} jakožto podmínka Slony-I replikace, pomocí SQL příkazu \texttt{CREATE TABLE}:
+
+\begin{lstlisting}
+CREATE DATABASE studenti;
+studenti=# CREATE TABLE student (id int, jmeno varchar, id_rodne_mesto int, primary key(id));
+\end{lstlisting}
+\begin{lstlisting}[keywordstyle=\color{black},identifierstyle=\color{black},stringstyle=\color{black}]
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "student_pkey" for table "student"
+CREATE TABLE
+\end{lstlisting}
+\begin{lstlisting}
+studenti=# CREATE TABLE rodne_mesto (id int, jmeno varchar, umisteni geometry, primary key(id));
+\end{lstlisting}
+\begin{lstlisting}[keywordstyle=\color{black},identifierstyle=\color{black},stringstyle=\color{black}]
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "rodne_mesto_pkey" for table "rodne_mesto"
+CREATE TABLE
+\end{lstlisting}
+
+
+Dále tento způsob obnáší vytvoření konfiguračních skriptů, které zajistí inicializaci replikace. Slony-I pro to používá vlastní konfigurační jazyk, pomocí kterého se nastavují konkrétní požadavky na replikaci. Na začátku se díky němu sestaví konfigurační soubor k inicializaci replikace, později se používá pro jakýkoli zásah do replikace, například přidání další tabulky do replikačního setu nebo změny struktury databáze. Tento vzniklý konfigurační skript se provede pomocí utility \texttt{slonik}, která se vždy spouští jednorázově a vykonává požadavky definované v konfiguračním souboru. 
+
+Ukázka konfiguračního skriptu nazvaného \texttt{init\_master.txt} uloženého na master serveru pro inicializaci replikačního clusteru (init cluster):
+\begin{lstlisting}[identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black}]
+$master = 'dbname=studenti host=192.168.1.100 user=replikator password=kgigis'
+$slave1 = 'dbname=studenti host=192.168.1.101 user=replikator password=kgigis'
+$slave2 = 'dbname=studenti host=192.168.1.102 user=replikator password=kgigis'
+
+# nazev clusteru
+cluster name = gis_cluster;
+
+# definice jednotlivych uzlu v clusteru
+node 1 admin conninfo=$master;
+node 2 admin conninfo=$slave1;
+node 3 admin conninfo=$slave2;
+
+# inicializace clusteru
+init cluster (id=1, commnet = 'master');
+store node   (id=2, comment = 'slave1', event node=1);
+store node   (id=3, comment = 'slave2', event node=1);
+
+# vytvoreni replikacniho setu
+create set (id=1, origin=1, comment='Tabulky k replikaci');
+# pridani tabulek do setu
+# prvni id odpovida id setu
+# druhe id odpovida id uzlu masteru
+# treti id je id nove pridane tabulky
+set add table (set id=1, origin=1, id=1, fully qualified name = 'public.student', comment='seznam studentu');
+set add table (set id=1, origin=1, id=2, fully qualified name = 'public.rodne_mesto', comment='seznam mest');
+
+store path (server=1, client=2, conninfo='$slave1';
+store path (server=1, client=3, conninfo='$slave2';
+store path (server=2, client=1, conninfo='$master';
+store path (server=2, client=3, conninfo='$slave2';
+store path (server=3, client=1, conninfo='$master';
+store path (server=3, client=2, conninfo='$slave1';
+
+store listen (origin=1, provider=2, receiver=1);
+store listen (origin=1, provider=1, receiver=2);
+store listen (origin=1, provider=2, receiver=3);
+\end{lstlisting}
+
+Skript {\texttt Slonik} volá příkazy:
+\begin{itemize}
+\item \texttt{cluster name} představující jedinečný název pro daný cluster,
+\item \texttt{node ival/číslo admin conninfo} definující všechny uzly v clusteru a parametry jejich připojení k databázi,
+\item \texttt{init cluster}, který inicializuje cluster a nastavuje master server jako uzel s id 1, 
+\item \texttt{store node}, který vytváří další uzly,
+\item \texttt{create set} vytvářející soubor tabulek určených k replikaci, 
+\item \texttt{set add table} přidávájící vždy jednu tabulku do replikačního setu s identickým id,
+\item \texttt{store path}, který nastavuje cesty mezi jednotlivými uzly a 
+\item \texttt{store listen} nastavující naslouchání jednotlivých uzlů. 
+\end{itemize}
+
+Slony-I rozlišuje tři druhy serverů:
+\begin{itemize}
+\item \texttt{origin} odpovídá master serveru, tedy jedinému uzlu, kterému je povoleno zapisování,
+\item \texttt{subscriber} je ekvivalentem slave serveru s právy čtení a 
+\item \texttt{provider} je poskytovatel dat, může to být master server, ale při kaskádové replikaci, kterýkoliv ze slave serverů. 
+\end{itemize}
+
+Konfigurační skript pro inicializaci clusteru se spustí ze stejné složky, ve které je uložen daný soubor, příkazem \texttt{slonik} a názvem souboru, viz příklad:
+
+\begin{lstlisting}
+# slonik init_master.txt
+\end{lstlisting}
+
+Pomocí dalších skriptu se mohou slave servery přihlásit odběru replikačního setu. Příklad vytvoření skriptu \texttt{subscribe\_slave1.txt} pro přidání serveru do existujícího clusteru (subscribe set):
+
+\begin{lstlisting}[identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black}]
+# nazev clusteru
+cluster name = gis_cluster;
+
+# definice jednotlivych uzlu v clusteru
+node 1 admin conninfo=$master;
+node 2 admin conninfo=$slave1;
+node 3 admin conninfo=$slave2;
+
+subscribe set (id=1, provider=1, receiver=2, forward=yes);
+\end{lstlisting}
+
+Spuštění skriptu \texttt{slonik} pro přidání slave1 do clusteru:
+
+\begin{lstlisting}
+slonik subscribe_slave1.txt
+\end{lstlisting}
+
+Stejný způsobem se připojít k odběru i slave2.
