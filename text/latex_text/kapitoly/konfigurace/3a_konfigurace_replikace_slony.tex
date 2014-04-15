@@ -108,3 +108,125 @@ slonik subscribe_slave1.txt
 \end{lstlisting}
 
 Stejný způsobem se připojít k odběru i slave2.
+
+To, že se vytvořit cluster a tabulka do něj byla přidána, lze zkontrolovat ve výpisu, kde nově přibyly triggery, které sledují změny, které v tabulce nastanou:
+
+    \begin{table}[H]
+      \label{pgHba}
+        \begin{center}
+          \begin{tabular}{lllllll}
+            \multicolumn{7}{l}{\texttt{studenti=\# \slash d student}} \\
+            \multicolumn{5}{c}{\texttt{Tabulka "public.student"}} & & \\
+            \texttt{Column} & \texttt{|} & \texttt{Type} & \texttt{|} & \texttt{Modifiers} & & \\ 
+  \texttt{----------------} & \texttt{+} & \texttt{-------------------} & \texttt{+} & \texttt{--------------} & & \\
+                                        \texttt{id} & \texttt{|} & \texttt{integer} & \texttt{|} & \texttt{not null} & & \\
+                                     \texttt{jmeno} & \texttt{|} & \texttt{character varying} & \texttt{|} & & & \\
+                          \texttt{id\_rodne\_mesto} & \texttt{|} & \texttt{integer} & \texttt{|} & & \\
+            \multicolumn{7}{l}{\texttt{Indexes: "student\_pkey" PRIMARY KEY, btree (id)}} \\
+            \multicolumn{7}{l}{\texttt{Triggers: \_gis\_cluster\_logtrigger AFTER INSERT OR DELETE}} \\
+        \multicolumn{7}{l}{\texttt{OR UPDATE ON repl\_test FOR EACH ROW EXECUTE PROCEDURE}} \\
+      \multicolumn{7}{l}{\texttt{\_is\_cluster.logtrigger('\_gis\_cluster', '1', 'k')}} \\
+  \multicolumn{7}{l}{\texttt{Disabled triggers: \_gis\_cluster\_denyaccess BEFORE INSERT}} \\
+\multicolumn{7}{l}{\texttt{OR DELETE OR UPDATE ON repl\_test FOR EACH ROW EXECUTE PROCEDURE}} \\
+\multicolumn{7}{l}{\texttt{\_gis\_cluster.denyaccess('\_gis\_cluster')}} \\
+          \end{tabular}
+        \end{center}
+    \end{table}
+
+Běh replikace je zajištěn vlastním démonem, který je možnost spustit v okamžiku, kdy je vytvořen cluster a všechny repliky jsou do něj přidány. Démon \texttt{slon}, který je potřeba spustit na všech uzlech, v parametrech přebírá název clusteru a hodnoty připojení daného uzlu k databázi. Je důležité, aby log po spuštění nevypisoval žádné chyby, jinak je potřeba zkontrolovat všechny příkazy konfiguračních souborů. 
+
+Příklad spuštění démona na master serveru s názvem clusteru a parametry připojení k serveru:
+\begin{lstlisting}
+slon gis_cluster 'host=192.168.1.100 dbname=student user=replikator'
+\end{lstlisting}
+Obdobně je démona spuštěn i na obou slave serverech:
+\begin{lstlisting}
+slon gis_cluster 'host=192.168.1.101 dbname=student user=replikator'
+slon gis_cluster 'host=192.168.1.102 dbname=student user=replikator'
+\end{lstlisting}
+
+Podoboně jako u streaming replikace, lze zkontrolovat, že replikace běží správně, přidáním nového záznamu na slave server. Pokud nepovolí přidání a vypíše následující chybu, znamená, že je replikace správně nastavená a funkční.
+
+\begin{lstlisting}
+studenti=# INSERT INTO student (jmeno) VALUES ('Josef Kraus');
+\end{lstlisting}
+\begin{lstlisting}[identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black}]
+ERROR:  Slony-I: Table repl_names is replicated and cannot be modified on a subscriber node - role=0
+\end{lstlisting}
+
+Přidání další tabulky či jakákoli jiná změna struktury databáze probíhá v několika krocích. Nejdříve je potřeba vytvořit soubor, který bude obsahovat SQL příkaz provádějící zvolenou změnu databáze. Poté se spustí program slonik, který zavolá soubor s SQL příkazem a vykoná jej na všech uzlech clusteru. 
+
+Vytvoření souboru \texttt{createTable.sql} ve slozce \texttt{/tmp/} s SQL příkazem \texttt{CREATE TABLE}:
+
+\begin{lstlisting}
+CREATE TABLE predmety (id int, jmeno nazev, primary key(id));
+\end{lstlisting}
+
+Vytvoření skriptu \texttt{ddlZmena.txt}, který umožní přidání tabulky za chodu replikace:
+
+\begin{lstlisting}[identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black}]
+# nazev clusteru
+cluster name = gis_cluster;
+
+# definice jednotlivych uzlu v clusteru
+node 1 admin conninfo=$master;
+node 2 admin conninfo=$slave1;
+node 3 admin conninfo=$slave2;
+
+execute script (
+  SET ID = 1,
+  filename = '/tmp/createTable.sql',
+  event node = 1
+);
+
+\end{lstlisting}
+
+Spuštění programu \texttt{slonik}, který spustí skript a vykoná daný SQL příkaz na všech uzlech. 
+
+\begin{lstlisting}
+slonik ddlZmena.txt
+\end{lstlisting}
+\begin{lstlisting}[identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black}]
+DDL script consisting of 2 SQL statements
+DDL Statement 0: (0,67) [ CREATE TABLE repl_address (id serial, name text, primary key(id));]
+slony_ddl.txt:6: NOTICE:  CREATE TABLE will create implicit sequence "repl_address_id_seq" for serial column "repl_address.id"
+slony_ddl.txt:6: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "repl_address_pkey" for table "repl_address"
+DDL Statement 1: (67,69) [ ]
+Submit DDL Event to subscribers...
+\end{lstlisting}
+
+
+Takto se tabulka přidá do databáze, nikoliv však do replikačního clusteru. K tomu je potřeba vytvořit další slonik skript. 
+
+Vytvoření skriptu \texttt{add\_to\_set.txt} pro přidání tabulky do replikačního clusteru:
+
+\begin{lstlisting}[identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black}]
+# nazev clusteru
+cluster name = gis_cluster;
+
+# definice jednotlivych uzlu v clusteru
+node 1 admin conninfo='dbname=studenti host=192.168.1.100 user=replikator password=kgigis';
+node 2 admin conninfo='dbname=studenti host=192.168.1.101 user=replikator password=kgigis';
+node 3 admin conninfo='dbname=studenti host=192.168.1.102 user=replikator password=kgigis';
+
+# definice noveho setu (id 2)
+create set (id=2, origin=1, comment='Dalsi tabulky k replikaci');
+
+# pridani nove vytvorene tabulky
+set add table (set id=2, origin=1, id=3, fully qualified name = 'public.predmet', comment='seznam predmetu');
+
+# pridani noveho setu id=2
+subscribe set (id=2, provider=1, receiver=2);
+
+# spojeni setu id2 se setem id1
+merge set(id=2, add id=1, origin=1);
+\end{lstlisting}
+
+Spuštění skriptu \texttt{slonik}, které příkazy vykoná
+
+\begin{lstlisting}
+slonik add_to_set.txt
+\end{lstlisting}
+
+Podobně je možné provést také smazání tabulky pomocí parametru \texttt{DROP SET} a mnohé další. 
+

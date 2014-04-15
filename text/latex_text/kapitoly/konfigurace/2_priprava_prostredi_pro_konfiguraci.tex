@@ -9,7 +9,6 @@ Pro databázové servery byla zvolena tři datová uložiště, pro jejichž př
         \begin{table}[H]
           \caption[Přehled databázových serverů]{Přehled databázových serverů}
             \label{tServery}
-          \begin{footnotesize}
             \begin{center}
             \begin{tabular}{lllll}
               \texttt{název serveru} & & \texttt{IP adresa} & & \texttt{port}\\
@@ -19,7 +18,6 @@ Pro databázové servery byla zvolena tři datová uložiště, pro jejichž př
                                  \texttt{slave2} & \texttt{|} & \texttt{192.168.0.102} & \texttt{|} & \texttt{5432}\\
               \end{tabular}
             \end{center}
-          \end{footnotesize}
         \end{table}
 
 Aby bylo možné pracovat s databází, je nejdříve nutné chápat význam jednotlivých konfiguračních souborů a mít přehled o souborové struktuře PostgreSQL. Vzhledem k tomu, že si ji každý systém uzpůsobuje podle sebe, nezbývá než po instalaci PostgreSQL nastudovat, kde se jaký soubor nachází. Existuje tabulka \texttt{pg\_settings}, která uchovává veškeré informace o nastavení databáze. SQL příkazem volajícím tuto tabulku je možno vypsat absolutní cestu k datům (\texttt{data\_directory}) a cestu k souboru, který uchovává PID (process-ID) běžícího procesu (\texttt{external\_pid\_file}). Také popisuje tři hlavní konfigurační soubory:
@@ -77,7 +75,7 @@ Příklad exportu a importu dat z databáze do databáze dat skrze:
 
 Streaming replikace, která funguje pouze mezi dvěmi a více databázemi běžícími na stejném systému a architektuře, vyžaduje kopii celé datové složky s daty \texttt{data\_directory}. Je mnoho způsobů, jak toho dosáhnout, například klasickým kopírováním skrze utilitu \texttt{cp}, resp. \texttt{scp} u vzdálených složek, nebo utilitou \texttt{rsync}. Kopírování dat za běhu databáze navíc vyžaduje použití příkazu \texttt{SELECT pg\_start\_backup}, který zajistí, že bude archivovat transakční log po celou dobu kopírovná, tedy až do té doby než proběhne příkaz \texttt{SELECT pg\_stop\_backup}. Tím nepřijdeme o žádné změny, které nastanou v průběhu kopírování dat.
 
-Příklady možných způsobů zkopírování dat master serveru na repliku slave1 spuštěných z slave1:
+Příklad možného způsobu zkopírování dat master serveru na repliku slave1 spuštěného z slave1:
 \begin{lstlisting}
   SELECT pg_start_backup('backup', true)
 \end{lstlisting}
@@ -85,17 +83,11 @@ Příklady možných způsobů zkopírování dat master serveru na repliku slav
   scp -rv root@192.168.0.100:/var/lib/postgresql/9.1/main /var/lib/postgresql/9.1/main
   rm /var/lib/postgresql/9.1/main/postmaster.pid
 \end{lstlisting}
-\begin{center}
-nebo 
-\end{center}
-\begin{lstlisting}[keywordstyle=\bfseries\color{purpurova7},identifierstyle=\color{black},stringstyle=\color{black}]
-  rsync -ave ssh root@192.168.0.100:/var/lib/postgresql/9.1/main /var/lib/postgresql/9.1/main --exclude postmaster.pid
-\end{lstlisting}
 \begin{lstlisting}
   SELECT pg_stop_backup()
 \end{lstlisting}
 
-Stejný způsobem se provede kopie na slave2. 
+Stejný způsobem je možno provést i kopii na slave2. 
 
 Alternativou výše zmíněných nástrojů je utilita přímo určená pro zálohování dat v PostgreSQL \texttt{pg\_basebackup}. Tento příkaz mimo jiné umožňuje kopírování dat za běhu replikace bez nutnosti použití \texttt{pg\_start/stop\_backup}.
 

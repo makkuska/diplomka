@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.9.16)  15 APR 2014 01:18
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.9.16)  16 APR 2014 01:37
 entering extended mode
  %&-line parsing enabled.
 **Solanska_DP.tex
@@ -998,6 +998,9 @@ LaTeX Warning: Label `pgHba' multiply defined.
 
 LaTeX Warning: Label `pgHba' multiply defined.
 
+
+LaTeX Warning: Label `pgHba' multiply defined.
+
 )
 \openout1 = `Solanska_DP.aux'.
 
@@ -1188,7 +1191,7 @@ Package hyperref Warning: Composite letter `\textring+u'
 (hyperref)                removing `\textring' on input line 1.
 
 [15]
-<../../../grafy/obr/schema_synchronizace_maxiTence.png, id=262, 427.24324pt x 1
+<../../../grafy/obr/schema_synchronizace_maxiTence.png, id=261, 427.24324pt x 1
 56.4433pt>
 File: ../../../grafy/obr/schema_synchronizace_maxiTence.png Graphic file (type 
 png)
@@ -1198,59 +1201,56 @@ y/obr/schema_synchronizace_maxiTence.png>]
 8553pt>
 File: ../../../grafy/obr/schema_verzovani_maxiTence.png Graphic file (type png)
 
- <use ../../../grafy/obr/schema_verzovani_maxiTence.png> [17 <../../../grafy/ob
-r/schema_verzovani_maxiTence.png>]
-<../../../grafy/obr/schema_verzovaniBranch.png, id=281, 427.24324pt x 170.8973p
+ <use ../../../grafy/obr/schema_verzovani_maxiTence.png>
+<../../../grafy/obr/schema_verzovaniBranch.png, id=275, 427.24324pt x 170.8973p
 t>
 File: ../../../grafy/obr/schema_verzovaniBranch.png Graphic file (type png)
- <use ../../../grafy/obr/schema_verzovaniBranch.png>)
-(./kapitoly/teorie/3_replikace.tex [18 <../../../grafy/obr/schema_verzovaniBran
-ch.png>]
-<../../../grafy/obr/schema_masterMasterSlave_maxiTence.png, id=301, 427.24324pt
+ <use ../../../grafy/obr/schema_verzovaniBranch.png> [17 <../../../grafy/obr/sc
+hema_verzovani_maxiTence.png>]) (./kapitoly/teorie/3_replikace.tex [18 <../../.
+./grafy/obr/schema_verzovaniBranch.png>]
+<../../../grafy/obr/schema_masterMasterSlave_maxiTence.png, id=302, 427.24324pt
  x 184.92618pt>
 File: ../../../grafy/obr/schema_masterMasterSlave_maxiTence.png Graphic file (t
 ype png)
 
 <use ../../../grafy/obr/schema_masterMasterSlave_maxiTence.png> [19 <../../../g
 rafy/obr/schema_masterMasterSlave_maxiTence.png>]
-<../../../grafy/obr/schema_asyncSync_maxiTence.png, id=315, 398.76035pt x 170.8
+<../../../grafy/obr/schema_asyncSync_maxiTence.png, id=316, 398.76035pt x 170.8
 973pt>
 File: ../../../grafy/obr/schema_asyncSync_maxiTence.png Graphic file (type png)
 
- <use ../../../grafy/obr/schema_asyncSync_maxiTence.png>
-
-LaTeX Warning: Reference `' on page 20 undefined on input line 33.
-
-[20 <../../../grafy/obr/schema_asyncSync_maxiTence.png>]
-<../../../grafy/obr/schema_kaskadova.png, id=326, 284.82883pt x 147.51582pt>
+ <use ../../../grafy/obr/schema_asyncSync_maxiTence.png> [20 <../../../grafy/ob
+r/schema_asyncSync_maxiTence.png>]
+<../../../grafy/obr/schema_kaskadova.png, id=328, 284.82883pt x 147.51582pt>
 File: ../../../grafy/obr/schema_kaskadova.png Graphic file (type png)
 
 <use ../../../grafy/obr/schema_kaskadova.png>)
 (./kapitoly/teorie/4_arcgis_produkty.tex [21 <../../../grafy/obr/schema_kaskado
-va.png>] [22]) (./kapitoly/teorie/5_pouzite_programove_prostredky.tex [23]
+va.png>] [22]) (./kapitoly/teorie/5_pouzite_programove_prostredky.tex
 
 Package hyperref Warning: Composite letter `\textasciicaron+r'
 (hyperref)                not defined in PD1 encoding,
 (hyperref)                removing `\textasciicaron' on input line 1.
 
-[24]
-Overfull \hbox (52.28983pt too wide) in paragraph at lines 76--76
-[][][]\T1/lmr/m/n/10 Zdroj a dal²í in-for-mace na strán-kách Post-gre-SQL http:
-//trac.osgeo.org/postgis/wiki/UsersWikiPostgisarcgis
+[23] [24]
+Underfull \hbox (badness 2426) in paragraph at lines 21--21
+\T1/lmtt/m/n/10 UsersWikiPostgisarcgis$[] \T1/lmr/m/n/10 nebo Ar-c-GIS Re-sour-
+ces []$\T1/lmtt/m/n/10 http : / / resources . arcgis . com / en / help /
  []
 
+[25] [26]
 
-Overfull \hbox (59.16301pt too wide) in paragraph at lines 76--76
-\T1/lmr/m/n/10 nebo Ar-c-GIS http://resources.arcgis.com/en/help/system-require
-ments/10.1/index.html#//015100000075000000| 
- []
+LaTeX Warning: Reference `kSde' on page 27 undefined on input line 41.
 
-[25] [26] [27]) (./kapitoly/teorie/6_nastroje_pro_replikaci.tex [28] [29]
-<../../../grafy/obr/schema_pgpool.png, id=448, 198.95506pt x 147.51582pt>
+[27]) (./kapitoly/teorie/6_nastroje_pro_replikaci.tex [28]
+
+LaTeX Warning: Reference `pgpool-obr' on page 29 undefined on input line 29.
+
+<../../../grafy/obr/schema_pgpool.png, id=445, 198.95506pt x 147.51582pt>
 File: ../../../grafy/obr/schema_pgpool.png Graphic file (type png)
 
-<use ../../../grafy/obr/schema_pgpool.png>) [30 <../../../grafy/obr/schema_pgpo
-ol.png>] (./kapitoly/konfigurace/0_konfigurace_uvod.tex)
+<use ../../../grafy/obr/schema_pgpool.png> [29]) [30 <../../../grafy/obr/schema
+_pgpool.png>] (./kapitoly/konfigurace/0_konfigurace_uvod.tex)
 (./kapitoly/konfigurace/1_navrh_replikacniho_reseni.tex
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
@@ -1263,7 +1263,7 @@ Package hyperref Warning: Composite letter `\textasciicaron+r'
 (hyperref)                removing `\textasciicaron' on input line 1.
 
 [31]
-<../../../grafy/obr/schema_navrhKatedra2.png, id=467, 427.24324pt x 427.24324pt
+<../../../grafy/obr/schema_navrhKatedra2.png, id=469, 427.24324pt x 427.24324pt
 >
 File: ../../../grafy/obr/schema_navrhKatedra2.png Graphic file (type png)
  <use ../../../grafy/obr/schema_navrhKatedra2.png> [32])
@@ -1280,18 +1280,18 @@ Package hyperref Warning: Composite letter `\textasciicaron+r'
 
 [33 <../../../grafy/obr/schema_navrhKatedra2.png>] [34]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 36.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 34.
  [35] [36])
 (./kapitoly/konfigurace/3_konfigurace_replikace.tex
 (./kapitoly/konfigurace/3a_konfigurace_replikace_streaming.tex [37] [38]
 [39]) (./kapitoly/konfigurace/3a_konfigurace_replikace_slony.tex [40] [41]
-[42])) [43] [44] [45]
+[42] [43] [44] [45])) [46] [47]
 
 Package hyperref Warning: Composite letter `\textasciicaron+E'
 (hyperref)                not defined in PD1 encoding,
 (hyperref)                removing `\textasciicaron' on input line 113.
 
-[46] (./Solanska_DP.bbl
+[48] (./Solanska_DP.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 43--49
 \T1/lmtt/m/n/12 10 . 1 / index . html # /A _ quick _ tour _ of _ working _ with
  _ databases _ in _ ArcGIS /
@@ -1303,18 +1303,18 @@ Underfull \hbox (badness 1540) in paragraph at lines 51--57
 c-GIS Help 10.1 [on-line]\T1/lmr/m/n/12 , 2013b.
  []
 
-[47]) [48] [49]
+[49]) [50] [51]
 
 Package hyperref Warning: Composite letter `\textasciicaron+R'
 (hyperref)                not defined in PD1 encoding,
 (hyperref)                removing `\textasciicaron' on input line 132.
 
-[50]
+[52]
 Underfull \hbox (badness 10000) in paragraph at lines 143--146
 
  []
 
-[51]
+[53]
 
 Package glossaries Warning: No \printglossary or \printglossaries found.
 This document will not have a glossary.
@@ -1328,13 +1328,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 20412 strings out of 495027
- 337521 string characters out of 1181419
- 612385 words of memory out of 3000000
- 22758 multiletter control sequences out of 15000+50000
+ 20508 strings out of 495027
+ 338831 string characters out of 1181419
+ 589385 words of memory out of 3000000
+ 22798 multiletter control sequences out of 15000+50000
  73176 words of font info for 64 fonts, out of 3000000 for 9000
  38 hyphenation exceptions out of 8191
- 63i,16n,73p,1228b,1827s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 63i,16n,73p,1231b,1827s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
 ips/lm/lm-mathsy.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/s
 hare/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/publi
@@ -1344,9 +1344,9 @@ xmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
 type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb><
 /usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1
 /public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Solanska_DP.pdf (50 pages, 894511 bytes).
+Output written on Solanska_DP.pdf (52 pages, 907868 bytes).
 PDF statistics:
- 788 PDF objects out of 1000 (max. 8388607)
- 246 named destinations out of 1000 (max. 500000)
+ 865 PDF objects out of 1000 (max. 8388607)
+ 302 named destinations out of 1000 (max. 500000)
  281 words of extra memory for PDF output out of 10000 (max. 10000000)
 
