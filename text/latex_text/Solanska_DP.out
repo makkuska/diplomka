@@ -6,21 +6,24 @@
 \BOOKMARK [2][-]{subsection.3.2}{Replikace}{section.3}
 \BOOKMARK [2][-]{subsection.3.3}{ArcGIS produkty}{section.3}
 \BOOKMARK [2][-]{subsection.3.4}{Vybran\351 programov\351 prostredky}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.4.1}{PostgreSQL 9.x \(PostGIS\)}{subsection.3.4}
-\BOOKMARK [3][-]{subsubsection.3.4.2}{Microsoft SQL Server Express 2008}{subsection.3.4}
+\BOOKMARK [3][-]{subsubsection.3.4.1}{PostgreSQL \(+ PostGIS\)}{subsection.3.4}
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Microsoft SQL Server}{subsection.3.4}
 \BOOKMARK [3][-]{subsubsection.3.4.3}{ArcSDE geodatabase}{subsection.3.4}
 \BOOKMARK [2][-]{subsection.3.5}{N\341stroje pro replikaci v PostgreSQL}{section.3}
 \BOOKMARK [3][-]{subsubsection.3.5.1}{Slony-I}{subsection.3.5}
 \BOOKMARK [3][-]{subsubsection.3.5.2}{Streaming replikace}{subsection.3.5}
 \BOOKMARK [3][-]{subsubsection.3.5.3}{pgpool}{subsection.3.5}
 \BOOKMARK [1][-]{section.4}{N\301VRH A KONFIGURACE REPLIKACE}{}
-\BOOKMARK [2][-]{subsection.4.1}{N\341vrh replikacn\355ho re\235en\355}{section.4}
-\BOOKMARK [2][-]{subsection.4.2}{Pr\355prava prostred\355 pro konfiguraci replikace}{section.4}
-\BOOKMARK [2][-]{subsection.4.3}{Konfigurace replikace}{section.4}
-\BOOKMARK [3][-]{subsubsection.4.3.1}{Streaming replikace}{subsection.4.3}
-\BOOKMARK [3][-]{subsubsection.4.3.2}{Slony-I}{subsection.4.3}
+\BOOKMARK [2][-]{subsection.4.1}{Aktu\341ln\355 stav spr\341vy dat}{section.4}
+\BOOKMARK [2][-]{subsection.4.2}{Po\236adavky na datab\341zov\351 re\235en\355}{section.4}
+\BOOKMARK [2][-]{subsection.4.3}{N\341vrh replikacn\355ho re\235en\355}{section.4}
+\BOOKMARK [2][-]{subsection.4.4}{Pr\355prava prostred\355 pro konfiguraci replikace}{section.4}
+\BOOKMARK [2][-]{subsection.4.5}{Konfigurace replikace}{section.4}
+\BOOKMARK [3][-]{subsubsection.4.5.1}{Streaming replikace}{subsection.4.5}
+\BOOKMARK [3][-]{subsubsection.4.5.2}{Slony-I}{subsection.4.5}
+\BOOKMARK [2][-]{subsection.4.6}{Rozlo\236en\355 z\341te\236e mezi replikacn\355 servery}{section.4}
 \BOOKMARK [1][-]{section.5}{DISKUZE}{}
 \BOOKMARK [1][-]{section.6}{Z\301VER}{}
 \BOOKMARK [1][-]{section.6}{LITERATURA}{}
-\BOOKMARK [1][-]{section*.25}{SUMMARY}{}
-\BOOKMARK [1][-]{section*.25}{PR\315LOHY}{}
+\BOOKMARK [1][-]{section*.27}{SUMMARY}{}
+\BOOKMARK [1][-]{section*.27}{PR\315LOHY}{}

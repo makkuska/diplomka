@@ -11,19 +11,19 @@ BELL, C., KINDAHL, M., THALMANN, L.
 \newblock Vyd. ~1. Sebastopol, CA: O'Reilly Media, Inc, 2010.
 \newblock ISBN 978-059-6807-306.
 
-\bibitem[Böszörmenyi a Schönig(c2013)Böszörmenyi,
+\bibitem[Böszörmenyi a Schönig(2013)Böszörmenyi,
   Schönig]{Boszormenyi2013}
 BöSZöRMENYI, Z., SCHöNIG, H.-J.
 \newblock \emph{PostgreSQL Replication: Understand basic replication concepts
   and efficiently replicate PostgreSQL using high-end techniques to protect
   your data and run your server without interruptions}.
-\newblock Birmingham: Packt Publishing, c2013.
+\newblock Birmingham: Packt Publishing, 2013.
 \newblock ISBN 978-1-84951-672-3.
 
-\bibitem[Chacon(c2009)]{Chacon2009}
+\bibitem[Chacon(2009)]{Chacon2009}
 CHACON, S.
 \newblock \emph{Pro Git}.
-\newblock Edice CZ.NIC. Praha: CZ.NIC, c2009.
+\newblock Edice CZ.NIC. Praha: CZ.NIC, 2009.
 \newblock ISBN 978-80-904248-1-4.
 
 \bibitem[Connolly(2005)]{Connolly2005}

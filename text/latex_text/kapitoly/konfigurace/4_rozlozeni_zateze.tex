@@ -1,0 +1,126 @@
+\subsection{Rozložení zátěže mezi replikační servery}
+
+Doposud je samotné replikační rešení nastaveno tak, že se uživatelé musí přihlašovat vždy ke konkrétnímu serveru v clusteru. To není úplně vhodné řešení, protože v případě, že se na jeden uzel, například v rámci cvičení, připojí velký počet klientů, může se stát, že se daný server přetíží, zatímco druhý slave server nezaznamená žádnou zátěž. Zároveň by pro plynulý běh databázového clusteru bylo vhodné, aby se uživatelé s dotazy SELECT, připojovali pouze na slave servery, zatímco příkazy, které modifikují data (CREATE, INSERT, DELETE), byly vykonány na master serveru. 
+
+Oba výše diskutované problémy řeší nástroj \texttt{pgpool}, který bude použit v módu \texttt{master/slave} a který zajistí, že se všechny příkazy provádějící změnu v databázi pošlou na master server a ostatní dotazy budou rozloženy mezi slave servery. Dotazy na master server bohužel nemohou být rozloženy, protože v replikačním clusteru smí být vždy jen jeden server s právem pro zapis. Toto řešení zajistí také zvýšení dostupnosti dat, protože tím, že bude mít uživatel přístup ke všem serverům místo pouze jednoho, nebude vůbec omezen výpadkem kteréholi uzlů na straně serveru.
+
+    Konfigurace pgpool se skládá ze tří hlavních souborů:
+\begin{itemize}
+  \item \texttt{pcp.conf}, který nastavuje přístupové jméno a heslo pro administrátora pgpool, 
+  \item \texttt{pool\_hba.conf}, který povoluje přístupy k pgpool pro konkrétní uživatele, soubor je podobný jako pg\_hba.conf v PostgreSQL a 
+  \item \texttt{pgpool.conf}, který zajišťuje obecné nastavení. 
+\end{itemize}
+
+Nejdříve je potřeba nastavit heslo pro administrátora, který bude moct měnit nastavení a sledovat statistiky. Heslo lze vytvořit pomocí ulitity \texttt{pg\_md5}, která vrátí zadané zašifrované heslo, které je poté potřeba zkopírovat do souboru \texttt{pcp.conf} a doplnit jej o uživatelské jméno.
+
+Příklad zašifrování hesla \texttt{kgigis} pomocí \texttt{pg\_md5} s vypsaným výsledkem:
+%\begin{lstlisting}[identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black}]
+\begin{lstlisting}[language=ruby,morekeywords={pg_md5}]
+pg_md5 kgigis
+eea831dcf9dc85ace5836024f3a253e7
+\end{lstlisting}
+
+Přidání přihlašovacích údajů pro administrátora do souboru \texttt{pcp.conf}:
+%\begin{lstlisting}[identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black}]
+\begin{lstlisting}[language=ruby]
+#username:[password encrypted in md5]
+kgi:eea831dcf9dc85ace5836024f3a253e7
+\end{lstlisting}
+
+
+Zvolený master/slave mód počítá s již nastavenou replikací a podporuje jak streaming replikaci, tak Slony-I. Pro usnadnění konfigurace pgpool poskytuje příklady všech konfiguračních souborů včetně různých typů nastavení. Pro master/slave mód jsou připraveny hned dva příkladové soubory, \texttt{pgpool.conf.sample-master-slave} pro Slony-I a \texttt{pgpool.conf.sample-stream} pro streaming replikaci. V případě použití této šablony, je nejdříve potřeba ji přesunout do složky s konfiguračními soubory a poté přejmenovat na \texttt{pgpool.conf}. Šablona zajistí základní konfiguraci pro mód master/slave a streaming replikaci, nastaví parametry:
+\begin{itemize}
+\item \texttt{replication\_mode}, který povoluje replikaci, výchozí hodnota je off, 
+\item \texttt{load\_balance\_mode}, který umožňuje rozložení zátěže, východí hodnota je off
+\item \texttt{master\_slave\_mode}, který povoluje propojení k master a slave serverů, 
+\item \texttt{master\_slave\_sub\_mode}, který nastavuje hodnotu na 'stream’ v případě streaming replikace a ‘slony' v případě Slony-I, 
+\item \texttt{sr\_check\_period = 10}, který nastavuje jak často má systém zkontrolovat pozici v XLOGu, aby zjistil, jestli je zpoždění příliš vysoké, či nikoli, 
+\item \texttt{delay\_threshold}, která definuje maximální možné zpoždění slave za master serverem, menší zpozdeni je možno nastavit v případě, ze je potřeba, aby replikace proběhla velice rychle (hodnota je určena v bytech) a 
+\end{itemize}
+
+Část konfiguračního souboru \texttt{pgpool.cong} s výpisem důležitějších parametrů a jejich hodnot:
+%\begin{lstlisting}[identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black}]
+\begin{lstlisting}[language=ruby]
+replication_mode = off	
+load_balance_mode = on	
+master_slave_mode = on	
+master_slave_sub_mode = 'stream'
+sr_check_period = 10
+log_standby_delay = 'if_over_threshold'
+delay_threshold = 10000000 
+\end{lstlisting}
+
+Další část konfiguračního souboru přidává konkrétní uzly, ke kterým bude po spuštění pgpool možno přistupovat právě přes pgpool. Pro uživatele se v podstatě nic nezmění, k databázi se připojí stejně, jako by se přihlašovali přímo, s jediným rozdílem, že použijí port definovaný v tom souboru parametrem \texttt{port}. Číslo za parametrem začínájícím \texttt{backend} vždy značí číslo daného nodu přidaného do pgpool. V tomto případě jsou přidány tři uzly, který byla přiřazena čísla 0 pro master, 1 pro slave1, 2 pro slave2. Parametr: 
+\begin{itemize}
+\item \texttt{listen\_addresses} definuje IP adresy, na kterých pgpool naslouchá, 
+\item \texttt{port} definuje port, kterým se uživatelé budou přihlašovat k databázovému clusteru (místo nejčastnějšího 5432), 
+\item \texttt{pcp\_port} určuje port, kterým se bude přihlašovat administrátor, 
+\item \texttt{backend\_hostname} nastavuje hosta nebo IP adresu daného uzlu, 
+\item \texttt{backend\_port0} určuje port, na kterém naslouchá daný uzel, 
+\item \texttt{backend\_weight} umožňuje zvýšit danému uzlu zátěž, čím vyšší číslo, tím více datazů bude směřováno na tento uzel místo, 
+\item \texttt{backend\_data\_directory} určuje, kde jsou uložená data daného uzlu a 
+\item \texttt{backend\_flag} povoluje nebo zakazuje daný uzel použít jako master v případě výpadku master servera.
+\end{itemize}
+
+Čast konfigurace souboru \texttt{pgpool.conf}, která nastavuje jednotlivé uzly:
+\begin{lstlisting}[language=ruby]
+listen_addresses = '*'
+port = 9999 		
+pcp_port = 9898 	
+
+# node 0 - master server
+backend_hostname0 = '192.168.1.100' 			
+backend_port0 = 5432 					
+backend_weight0 = 1					
+backend_data_directory0 ='/var/lib/postgresql/9.3/main'
+backend_flag0 = 'ALLOW_TO_FAILOVER'	      
+
+# node1 - slave1
+backend_hostname1 = '192.168.1.101'
+backend_port1 = 5432
+backend_weight1 = 1
+backend_data_directory1 = '/var/lib/postgresql/9.1/main'
+backend_flag1 = 'ALLOW_TO_FAILOVER'
+
+# node2 - slave2
+backend_hostname2 = '192.168.1.102'
+backend_port2 = 5432
+backend_weight2 = 1
+backend_data_directory2 = '/var/lib/postgresql/9.1/main'
+backend_flag2 = 'ALLOW_TO_FAILOVER'
+\end{lstlisting}
+
+Pro správný běh pgpool je potřeba, aby slave server, který má hodnotu \texttt{backend\_flag2 'ALLOW\_TO\_FAILOVER'} měl v souboru \texttt{recovery.conf} přidán parametr \texttt{trigger\_file}, již popisovaný v kapitole \odkazKapitola{kStreaming}.
+
+Než dojde k samotnému spuštění pgpool, je možno zkontrolovat, zda jsou všechny uzly přidány a běží, tak jak mají. Lze použít utilitu \texttt{pcp\_node\_count}, který vypíše počet aktuálně přidaných uzlů. Zadání dále vyžaduje difinici parametrů v pořadí:
+ \begin{itemize}
+\item \texttt{timeout}, který učí maximální čas, po který se má snažit o vykonání příkazu v sekundách,
+\item \texttt{hostname}, který definuje pgpool IP,
+\item \texttt{port} definovaný pro administrátora,
+\item \texttt{username} odpovídá uživatelskému jménu zadanému v pcp.conf a 
+\item \texttt{password} odpovídá heslu definovanámu v pcp.conf a
+
+\end{itemize}
+
+Spuštění nástroje \texttt{pcp\_node\_count} s maximálním časem provedení 30 sekund, pgpool běžícím na localhostu, portem 9898, uživatel kgi a heslem kgigis:
+\begin{lstlisting}[language=ruby]
+pcp_node_count 30 localhost 9898 kgi kgigis
+3
+\end{lstlisting}
+
+Obdobně lze získlad informace o konkrétních uzlech utilitou \texttt{pcp\_node\_info}, která navíc přidává parametr \texttt{nodeID}, který odpovídá ID uzlu, o kterém chceme získat informace.
+
+Spuštění nástroje \texttt{pcp\_node\_info} pro uzly 0, 1 a 2 s maximálním časem provedení 30 sekund, pgpool běžícím na IP adrese 127.0.0.1, portem 9898, uživatel kgi a heslem kgigis:
+\begin{lstlisting}[language=ruby]
+pcp_node_info 30 192.169.1.100 9898 kgi kgigis 0
+192.168.1.100 5432 1 0.333333
+pcp_node_info 30 192.169.1.101 9898 kgi kgigis 1
+192.168.1.101 5432 1 0.333333
+pcp_node_info 30 192.169.1.102 9898 kgi kgigis 2
+192.168.1.102 5432 1 0.333333
+\end{lstlisting}
+
+pgpool nabízí ještě další nástroje, pomocí který lze získat informace o nastavení pgpool (\texttt{pcp\_pool\_info} nebo \texttt{pcp\_promote\_node} pro změnu uzlů z master na slave a opačně\footnote{kompletní seznam nástrojů pgpool na \url{http://www.pgpool.net/docs/latest/pgpool-en.html\#pcp\_command}}. 
+
+Posledním krokem je spuštění démona pgpool. 
+/etc/init.d/pgpool2 start|status|stop
