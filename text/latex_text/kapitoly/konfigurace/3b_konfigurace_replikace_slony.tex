@@ -1,0 +1,275 @@
+Jak už bylo zmíněno v kapitole \odkazKapitola{kSlony}, není u Slony-I možné
+replikovat strukturu databáze. Výhodou však je, že lze vybrat pouze některé
+tabulky k replikaci a zároveň, že se nemusí shodovat názvy databází. V tomto
+ohledu tedy nabízí velkou variabilitu propojení. Jak bylo nastíněno v kapitole
+\odkazKapitola{kPriprava}, nastavení replikace začíná přípravou uživatele, pod
+kterým bude proces probíhat, vytvořením datové struktury a zajištění shodné
+kopie dat na všech uzlech clusteru.
+
+Pro názornost byla vytvořena databáze \texttt{studenti} a tabulky
+\texttt{student} a~\texttt{rodne\_mesto}, u nichž byl nastaven \texttt{primary
+key}, což je podmínkou Slony-I replikace:
+
+\begin{lstlisting}
+CREATE DATABASE studenti;
+studenti=# CREATE TABLE student (id int, jmeno varchar, id_rodne_mesto int, primary key(id));
+studenti=# CREATE TABLE rodne_mesto (id int, jmeno varchar, umisteni geometry, primary key(id));
+\end{lstlisting}
+
+\begin{framed}
+  přeformulovat, opravit
+\end{framed}
+Dále tento způsob obnáší vytvoření konfiguračních skriptů, které zajistí
+inicializaci replikace. Slony-I pro to používá vlastní konfigurační jazyk,
+pomocí kterého se nastavují konkrétní požadavky na replikaci. Na začátku se
+sestaví konfigurační soubor k inicializaci replikace, později se používá pro
+jakýkoli zásah do replikace, například přidání další tabulky do replikačního
+setu nebo změny struktury databáze. Vzniklý konfigurační skript se provede
+pomocí utility \texttt{slonik}, která se vždy spouští jednorázově a vykonává
+požadavky definované v konfiguračním souboru.
+
+Ukázka konfiguračního skriptu pro inicializaci replikačního clusteru nazvaného
+\texttt{init\_master.txt} uloženého na master serveru:
+
+\begin{lstlisting}[language=ruby]
+# nazev clusteru
+cluster name = gis_cluster;
+
+# definice jednotlivych uzlu v clusteru
+node 1 admin conninfo=$master;
+node 2 admin conninfo=$slave1;
+node 3 admin conninfo=$slave2;
+
+# inicializace clusteru
+init cluster (id=1, comment = 'master');
+store node   (id=2, comment = 'slave1', event node=1);
+store node   (id=3, comment = 'slave2', event node=1);
+
+# vytvoreni replikacniho setu
+create set (id=1, origin=1, comment='Tabulky k replikaci');
+# pridani tabulek do setu
+# prvni id odpovida id setu
+# druhe id odpovida id uzlu masteru
+# treti id je id nove pridane tabulky
+set add table (set id=1, origin=1, id=1, fully qualified name = 'public.student', comment='seznam studentu');
+set add table (set id=1, origin=1, id=2, fully qualified name = 'public.rodne_mesto', comment='seznam mest');
+
+store path (server=1, client=2, conninfo=$slave1);
+store path (server=1, client=3, conninfo=$slave2);
+store path (server=2, client=1, conninfo=$master);
+store path (server=2, client=3, conninfo=$slave2);
+store path (server=3, client=1, conninfo=$master);
+store path (server=3, client=2, conninfo=$slave1);
+
+store listen (origin=1, provider=2, receiver=1);
+store listen (origin=1, provider=1, receiver=2);
+store listen (origin=1, provider=2, receiver=3);
+\end{lstlisting}
+
+Výskyty \texttt{\$master}, \texttt{\$slave1} a \texttt{\$slave2} je třeba nahradit
+následovně:
+\begin{lstlisting}
+$master = 'dbname=studenti host=192.168.1.100 user=replikator password=kgigis'
+$slave1 = 'dbname=studenti host=192.168.1.101 user=replikator password=kgigis'
+$slave2 = 'dbname=studenti host=192.168.1.102 user=replikator password=kgigis'
+\end{lstlisting}
+
+Skript \texttt{slonik} volá příkazy:
+\begin{itemize}
+  \item \texttt{cluster name} představující jedinečný název pro daný cluster,
+  \item \texttt{node ival admin conninfo} definující všechny uzly v clusteru a
+    parametry jejich připojení k databázi (\texttt{ival} odpovídá číslu uzlu),
+  \item \texttt{init cluster}, který inicializuje cluster a nastavuje vybraný
+    uzel jako master,
+  \item \texttt{store node}, který vytváří další uzly,
+  \item \texttt{create set} vytvářející soubor tabulek určených k replikaci,
+  \item \texttt{set add table}, který přidává vždy jednu tabulku do replikačního
+    setu,
+  \item \texttt{store path}, který nastavuje cesty mezi jednotlivými uzly a
+  \item \texttt{store listen} nastavující naslouchání jednotlivých uzlů.
+\end{itemize}
+
+Slony-I rozlišuje tři druhy serverů:
+\begin{itemize}
+  \item {\it origin} odpovídá master serveru, tedy jedinému uzlu, kterému je povoleno
+    zapisování,
+  \item {\it subscriber} je ekvivalentem slave serveru s právy čtení a
+  \item {\it provider} je poskytovatel dat, může to být master server, ale při kaskádové
+    replikaci také kterýkoliv ze slave serverů.
+\end{itemize}
+
+Konfigurační skript pro inicializaci clusteru se spustí ze složky, ve které je
+uložen, příkazem \texttt{slonik} s názvem souboru:
+
+\begin{lstlisting}
+> slonik init_master.txt
+\end{lstlisting}
+
+Pomocí dalších skriptů se mohou slave servery přihlásit odběru replikačního
+setu. Příklad skriptu \texttt{subscribe\_slave1.txt} pro přidání serveru do
+existujícího clusteru:
+%\begin{lstlisting}[identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black}]
+\begin{lstlisting}[language=ruby]
+# nazev clusteru
+cluster name = gis_cluster;
+
+# definice jednotlivych uzlu v clusteru
+node 1 admin conninfo=$master;
+node 2 admin conninfo=$slave1;
+node 3 admin conninfo=$slave2;
+
+subscribe set (id=1,provider=1,receiver=2,forward=yes);
+\end{lstlisting}
+Výskyty \texttt{\$master}, \texttt{\$slave1} a \texttt{\$slave2} je třeba opět
+nahradit, viz výše.
+
+Spuštění skriptu \texttt{slonik} pro přidání \texttt{slave1} do clusteru:
+\begin{lstlisting}
+> slonik subscribe_slave1.txt
+\end{lstlisting}
+Stejným způsobem lze přihlásit k odběru i \texttt{slave2}.
+
+To, že se vytvořit cluster a tabulka do něj byla přidána, lze zkontrolovat ve
+výpisu, kde nově přibyly triggery, které sledují změny, které v tabulce
+nastanou:
+
+\begin{lstlisting}[language=sql]
+studenti=# \d student
+\end{lstlisting}
+
+\begin{table}[H]
+  \label{pgHba}
+  \begin{center}
+    \begin{tabular}{lllllll}
+      \multicolumn{5}{c}{\texttt{Table "public.student"}} & & \\
+      \texttt{Column}           & \texttt{|} & \texttt{Type}                & \texttt{|} & \texttt{Modifiers}      &    & \\
+      \texttt{----------------} & \texttt{+} & \texttt{-------------------} & \texttt{+} & \texttt{--------------} &    & \\
+      \texttt{id}               & \texttt{|} & \texttt{integer}             & \texttt{|} & \texttt{not null}       &    & \\
+      \texttt{jmeno}            & \texttt{|} & \texttt{character varying}   & \texttt{|} &                         &    & \\
+      \texttt{id\_rodne\_mesto} & \texttt{|} & \texttt{integer}             & \texttt{|} &                         & \\
+      \multicolumn{7}{l}{\texttt{Indexes: "student\_pkey" PRIMARY KEY, btree (id)}} \\
+      \multicolumn{7}{l}{\texttt{Triggers: \_gis\_cluster\_logtrigger AFTER INSERT OR DELETE}} \\
+      \multicolumn{7}{l}{\texttt{OR UPDATE ON repl\_test FOR EACH ROW EXECUTE PROCEDURE}} \\
+      \multicolumn{7}{l}{\texttt{\_is\_cluster.logtrigger('\_gis\_cluster', '1', 'k')}} \\
+      \multicolumn{7}{l}{\texttt{Disabled triggers: \_gis\_cluster\_denyaccess BEFORE INSERT}} \\
+      \multicolumn{7}{l}{\texttt{OR DELETE OR UPDATE ON repl\_test FOR EACH ROW EXECUTE PROCEDURE}} \\
+      \multicolumn{7}{l}{\texttt{\_gis\_cluster.denyaccess('\_gis\_cluster')}} \\
+    \end{tabular}
+  \end{center}
+\end{table}
+
+Běh replikace je zajištěn vlastním démonem, který je možné spustit v okamžiku,
+kdy je vytvořen cluster a všechny repliky jsou do něj přidány. Démon
+\texttt{slon}, který je potřeba spustit na všech uzlech, v parametrech přebírá
+název clusteru a hodnoty připojení daného uzlu k databázi. Je důležité, aby log
+po spuštění neobsahoval žádné chyby, jinak je potřeba zkontrolovat správnost
+všech příkazů konfiguračních skriptů.
+
+Příklad spuštění démona na master serveru:
+\begin{lstlisting}
+> slon gis_cluster 'host=192.168.1.100 dbname=student  user=replikator'
+\end{lstlisting}
+Obdobně je démon spuštěn i na obou slave serverech:
+\begin{lstlisting}
+> slon gis_cluster 'host=192.168.1.101 dbname=student  user=replikator'
+> slon gis_cluster 'host=192.168.1.102 dbname=student  user=replikator'
+\end{lstlisting}
+
+Stějně jako u streaming replikace, lze zkontrolovat, že replikace běží správně,
+pokusem o přidání nového záznamu na slave server. Pokud nepovolí přidání a
+vypíše následující chybu, je replikace nastavena správně.
+
+\begin{lstlisting}
+studenti=# INSERT INTO student (jmeno) VALUES ('Josef Kraus');
+\end{lstlisting}
+\begin{lstlisting}[identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black}]
+ERROR:  Slony-I: Table student is replicated and cannot be modified on a subscriber node - role=0
+\end{lstlisting}
+
+Přidání další tabulky či jakákoli jiná změna struktury databáze probíhá v
+několika krocích. Nejdříve je potřeba vytvořit soubor, který bude obsahovat SQL
+příkaz provádějící zvolenou změnu databáze. Poté se spustí program
+\texttt{slonik}, který vykoná SQL příkaz na všech uzlech clusteru.
+
+Příklad souboru \texttt{createTable.sql}:
+
+\begin{lstlisting}
+CREATE TABLE predmet (id int, jmeno varchar, primary  key(id));
+\end{lstlisting}
+
+Příklad skriptu \texttt{ddlZmena.txt}, který umožní přidání tabulky za chodu
+replikace:
+
+%\begin{lstlisting}[identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black}]
+\begin{lstlisting}[language=ruby]
+# nazev clusteru
+cluster name = gis_cluster;
+
+# definice jednotlivych uzlu v clusteru
+node 1 admin conninfo=$master;
+node 2 admin conninfo=$slave1;
+node 3 admin conninfo=$slave2;
+
+execute script (
+SET ID = 1,
+filename = '/tmp/createTable.sql',
+event node = 1
+);
+\end{lstlisting}
+Výskyty \texttt{\$master}, \texttt{\$slave1} a \texttt{\$slave2} je třeba opět
+nahradit, viz výše.
+
+
+Spuštění programu \texttt{slonik}, který vykoná daný SQL příkaz na všech uzlech:
+
+\begin{lstlisting}
+> slonik ddlZmena.txt
+\end{lstlisting}
+\begin{lstlisting}[identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black}]
+DDL script consisting of 2 SQL statements
+DDL Statement 0: (0,67) [ CREATE TABLE predmety (id int, nazev varchar, primary key(id));]
+slony_ddl.txt:6: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "predmety_pkey" for table "predmety"
+DDL Statement 1: (67,69) [ ]
+Submit DDL Event to subscribers...
+\end{lstlisting}
+
+Podrobný výpis informuje, že se změnilo schéma databáze. Posledním řádkem
+potvrzuje, že se schéma zapsalo také na slave servery. Takto se tabulka přidá do
+databáze, nikoliv však do replikačního setu. K tomu je potřeba vytvořit
+další slonik skript.
+
+Příklad skriptu \texttt{add\_to\_set.txt} pro přidání tabulky do replikačního
+setu:
+
+%\begin{lstlisting}[identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black}]
+\begin{lstlisting}[language=ruby]
+# nazev clusteru
+cluster name = gis_cluster;
+
+# definice jednotlivych uzlu v clusteru
+node 1 admin conninfo=$master;
+node 2 admin conninfo=$slave1;
+node 3 admin conninfo=$slave2;
+
+# definice noveho setu (id 2)
+create set (id=2, origin=1, comment='Dalsi tabulky k replikaci');
+
+# pridani nove vytvorene tabulky
+set add table (set id=2, origin=1, id=3, fully qualified name = 'public.predmet', comment='seznam predmetu');
+
+# pridani noveho setu id=2
+subscribe set (id=2, provider=1, receiver=2);
+
+# spojeni setu id2 se setem id1
+merge set(id=2, add id=1, origin=1);
+\end{lstlisting}
+Výskyty \texttt{\$master}, \texttt{\$slave1} a \texttt{\$slave2} je třeba opět
+nahradit, viz výše.
+
+Spuštění skriptu \texttt{slonik}, který příkazy vykoná:
+
+\begin{lstlisting}
+> slonik add_to_set.txt
+\end{lstlisting}
+
+Podobně je lze také smazat tabulku příkazem \texttt{drop set}.
