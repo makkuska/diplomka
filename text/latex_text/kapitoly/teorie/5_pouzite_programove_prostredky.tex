@@ -1,18 +1,18 @@
-\subsection{Vybrané programové prostředky}
+\subsection{Vybrané databázové systémy}
 \label{kPouziteProstredky}
 
 \subsubsection{PostgreSQL (+ PostGIS)}
         \label{kPostgreSQL}
 
-PostgreSQL je objektově-relační databázový systém s otevřeným zdrojovým kódem dostupný na většině platforem. Je volně k dispozici pro použití, modifikaci a šíření způsobem, který si sami zvolíme. Jedná se o robustní, výkonný, bezpečný, kompatibilní a interoperabilní software s podporou a dobře komentovaným zdrojovým kódem. Vyhovuje standardům SQL od verze SQL 2008 a nabízí velké množství pokročilých funkcí. PostgreSQL je založen na architektuře klient-server, to znamená, že server pořád běží a čeká na dotazy klienta \citep{Momjian2001}. 
+PostgreSQL je objektově-relační databázový systém s otevřeným zdrojovým kódem dostupný na většině základních platforem. Je volně k dispozici pro použití, modifikaci a šíření způsobem, který si sami zvolíme. Jedná se o robustní, výkonný, bezpečný, kompatibilní a interoperabilní software s zákaznickou podporou. Vyhovuje standardům SQL od verze SQL 2008 a nabízí velké množství pokročilých funkcí. PostgreSQL je založen na architektuře klient-server, to znamená, že server pořád běží a čeká na dotazy klienta \citep{Momjian2001}. 
 
-S vývojem databázového serveru PostgreSQL začala University of California v Berkley již více než před 20 lety. Nyní je vyvíjen a udržován velkou komunitou nezávislých vývojářů. Používá licenci TPL (The PostgreSQL Licence), která je mírně odlišná od open-source licence BSD (Berkeley Distribution Software), ze které vychází \citep{RiggsKrossing2010}.
+S vývojem databázového serveru PostgreSQL začala University of California v~Berkley před více než 20 lety. Nyní je vyvíjen a udržován velkou komunitou nezávislých vývojářů. Používá licenci TPL (The PostgreSQL Licence), která je mírně odlišná od open-source licence BSD (Berkeley Distribution Software), ze které vychází \citep{RiggsKrossing2010}.
 
-Řadí se mezi nejpokročilejší databáze díky schopnosti pracovat s velkými objemy dat, díky své rychlosti a funkcionalitě může soupeřit i s populárními komerčními systémy jako je Oracle, IBM DB2, Microsoft SQL Server 2008 a dalšími \citep{PostgreSQL2012}.
+Řadí se mezi nejpokročilejší databázové systémy. Díky schopnosti pracovat s velkými objemy dat, své rychlosti a bohaté funkcionalitě může soupeřit i s populárními komerčními systémy jako jsou Oracle Database, MySQL a MS SQL Server \citep{PostgreSQL2012}.
 
-Samotné PostgreSQL neobsahuje datové typy ani funkce vhodné pro správu prostorových dat. K tomu je nutné přidat nástavbu PostGIS, která implementuje specifikaci Simple Features for SQL konsorcia OGC a rozšiřuje tak databázi PostgreSQL o podporu geografických dat. PostGIS umožňuje ukládání geometrických objektů (bod, linie, polygon), použití prostorových funkcí pro určení vzdáleností, délky linií, výměr a obvodu ploch, výběr indexu při spojení prostorových a atributových dotazů a mnoho dalších.
+Samotné PostgreSQL neobsahuje datové typy ani funkce vhodné pro správu prostorových dat. K tomu je nutné přidat nadstavbu PostGIS, která implementuje specifikaci {\it Simple Features for SQL} konsorcia OGC a rozšiřuje tak databázový systém PostgreSQL o~podporu geografických dat. PostGIS umožňuje ukládání geometrických objektů (bod, linie, polygon), použití prostorových funkcí pro určení vzdálenosti, délky linií, výměru a obvodu ploch a výběr prostorových indexů.
 
-PostGIS umožňuje práci s rozšířenými XML formáty GML, KML, GeoJSON a SVG, jejichž funkce pro získání geometrie jsou:
+PostGIS umožňuje práci s rozšířenými XML formáty GML, KML, GeoJSON~a SVG, jejichž funkce pro získání geometrie jsou:
 \begin{itemize}
 \item \texttt{ST\_AsGML(geometry)},
 \item \texttt{ST\_AsKML(geometry)},
@@ -20,13 +20,15 @@ PostGIS umožňuje práci s rozšířenými XML formáty GML, KML, GeoJSON a SVG
 \item \texttt{ST\_AsSVG(geometry)}.
 \end{itemize}
 
-PostGIS používá dva základní prostorové datové typy {\it geography} a {\it geometry}. Typ geography ukládá souřadnice v kartézských rovinných souřadnicích, kterým odpovídá souřadnicový systém WGS84. Je zejména vhodný pro malá území, protože při výpočtu vzdálenosti dvou bodů tento datový typ vrátí jako výsledek nejkratší vzdálenost v kilometrech v rovině. Typ geometry data ukládá v polárním rovinném systému a umožňuje nastavit souřadnicový systém dle potřeb. Výsledkem dotazu na vzdálenost dvou bodů tedy bude úhel ve stupních, které po převodu do metrické soustavy určí nejkratší vzdálenost na kouli. Při výběru datového typu může být rozhodující například počet funkcí, kterých typ geometry poskytuje mnohem více než geography, nebo velikosti daného území \citep{OpenGeo2012}.
+PostGIS používá dva základní prostorové datové typy {\it geography} a {\it geometry}. Typ geography ukládá polohu v kartézských rovinných souřadnicích, kterým odpovídá souřadnicový systém WGS84. Je vhodný zejména pro malá území, protože při výpočtu vzdálenosti dvou bodů uložených v tomto datovém typu, funkce vrátí jako výsledek nejkratší vzdálenost v kilometrech v rovině. Typ geometry data ukládá v polárním rovinném systému a umožňuje nastavit souřadnicový systém dle potřeb. Výsledkem dotazu na vzdálenost dvou bodů bude úhel ve stupních, který po přepočtu do metrické soustavy určí nejkratší vzdálenost na povrchu kouli. Při výběru datového typu může být rozhodující například velikost daného území, nebo počet funkcí, jichž pro typ geometry poskytuje PostGIS mnohem více než pro typ geography \citep{OpenGeo2012}.
 
-Existuje také další nástavba PostGIS Raster, která rozšiřuje ukládání a manipulaci s rastrovými daty, nástavba PostGIS Topology pro topologickou správu vektorových dat a pgRouting pro síťové analýzy. PostGIS je podporován velkou řadou softwarových produktů zabývajících se správou geografických dat, což také umožňuje snadnou přenositelnost a použitelnost jednotlivých nástaveb (příklad software podporujících PostGIS: QGIS, GvSIG, GRASS, ArcGIS).
+Existuje také další nadstavba PostGIS Raster, která rozšiřuje PostgreSQL o možnost ukládání a manipulace s rastrovými daty, nadstavba PostGIS Topology pro topologickou správu vektorových dat a nadstavba pgRouting pro síťové analýzy. PostGIS je podporován velkou řadou softwarových produktů zabývajících se správou geografických dat, což také umožňuje snadnou přenositelnost a použitelnost jednotlivých nadstaveb (příklad software podporujících PostGIS: QGIS, GvSIG, GRASS, ArcGIS).
 
-PostGIS implementuje mnoho běžně používaných knihoven jako GEOS (Geometry Engine Open Source) pro implementaci jednoduchých prostorových prvků a metod pro topologii, PROJ4 pro převod mezi kartografickými projekcemi nebo GDAL/OGR (Geospatial Data Abstraction Library) pro převod mezi různými vektorovými i rastrovými formáty \citep{ObeHsu2011}. Nástavba PostGIS 1.5. obsahovala přes 800 funkcí, typů a prostorových indexů \citep{ObeHsu2012}. Aktuální verze PostGIS\footnote{aktuálně na http://postgis.refractions.net/} je 2.1.
+PostGIS využívá mnoho běžně používaných knihoven jako GEOS (Geometry Engine Open Source) pro implementaci jednoduchých prostorových prvků a metod pro topologii, PROJ4 pro převod mezi kartografickými projekcemi nebo GDAL/OGR (Geospatial Data Abstraction Library) pro převod mezi různými vektorovými i rastrovými formáty \citep{ObeHsu2011}. Nadstavba PostGIS 1.5. obsahovala přes 800 funkcí, typů a prostorových indexů \citep{ObeHsu2012}. Aktuální verze PostGIS\footnote{aktuálně na http://postgis.refractions.net/} je 2.1.
 
+Od verze ArcGIS 9.3. je PostgreSQL oficiálně podporovaným databázovým systémem pro ukládání geodat v produktech ArcGIS. Při instalaci je potřeba zajistit kompatibilitu verzí jednotlivých nástrojů, \vizTabulka{tKompatibilita}. Pro verzi ArcGIS 10.1 jsou podporované verze PostgreSQL 9.0 a PostGIS 1.5., pro ArcGIS 10.1 SP1\footnote{Service Pack 1} lze použít novější PostgreSQL 9.1 a PostGIS 2.0 \citep{OSGEO2013}\footnote{zdroj a další informace na stránkách PostgreSQL \url{http://trac.osgeo.org/postgis/wiki/UsersWikiPostgisarcgis} nebo ArcGIS Resources \url{http://resources.arcgis.com/en/help/system-requirements/10.1/index.html\#//015100000075000000}}. Na stránkách ArcGIS Resources\footnote{\url{http://resources.arcgis.com/en/help/system-requirements/10.1/index.html\#//015100000075000000}} jsou dále popsána další doporučení, například že je podporovaná pouze 64-bitová verze PostgreSQL. 
 
+Databázi PostgreSQL lze v ArcGIS produktech použít dvojím způsobem. Buď jen jako uložiště dat bez přidání geografického datového typu, nebo včetně datového typu, tedy včetně PostGIS knihovny. ArcSDE podporuje pouze datový typ PostGIS Geometry a přidává vlastní datový typ Esri St\_Geometry. Výhodou použivání Esri St\_Geometry je nezávislost na zvoleném databázovém systému, tedy snazší přenostitelnost celého řešení. 
 
         \begin{table}[H]
 \caption{Možné kombinace verzí PostgreSQL (+ PostGIS) a ArcGIS }
@@ -51,68 +53,64 @@ PostGIS implementuje mnoho běžně používaných knihoven jako GEOS (Geometry 
           \end{footnotesize}
         \end{table}
 
-Od verze ArcGIS 9.3. je PostgreSQL oficiálně podporovanou databází pro ukládání geodat v produktech ArcGIS. Při instalaci je pouze potřeba zajistit kompatibilitu verzí jednotlivých nástrojů, \vizTabulka{tKompatibilita}. Pro verzi ArcGIS 10.1 jsou podporované verze PostgreSQL 9.0 a PostGIS 1.5., pro ArcGIS 10.1 SP1\footnote{Service Pack 1} lze použít novější PostgreSQL 9.1 a PostGIS 2.0 \citep{OSGEO2013}\footnote{zdroj a další informace na stránkách PostgreSQL \url{http://trac.osgeo.org/postgis/wiki/UsersWikiPostgisarcgis} nebo ArcGIS Resources \url{http://resources.arcgis.com/en/help/system-requirements/10.1/index.html\#//015100000075000000}}. Na stránkách ArcGIS Resources\footnote{\url{http://resources.arcgis.com/en/help/system-requirements/10.1/index.html\#//015100000075000000}} jsou dále popsána další doporučení, například že je podporovaná pouze 64-bitová verze PostgreSQL. 
-
-Databázi PostgreSQL lze v ArcGIS produktech použít dvojím způsobem. Buď jen jako uložiště dat bez přidání geografického datového typu, nebo včetně datového typu, tedy včetně PostGIS knihovny. ArcSDE podporuje pouze datový typ PostGIS Geometry a přidává vlastní datový typ Esri St\_Geometry. Výhodou použivání Esri St\_Geometry je nezávislost na zvoleném databázovém systému, tedy snazší přenostitelnost celého řešení. 
-
-
         \subsubsection{Microsoft SQL Server}
         \label{MSSQL}
-Microsoft SQL Server (dále SQL Server) je relační databázový systém vyvíjený společností Microsoft dostupný pro různé verze operačního systému Windows. Dodává se v mnoha verzích, které lze nainstalovat na různé hadrwarové platformy na základě odlišných licenčních modelů \citep{Whalen2008}. Podle Leitera (2009) SQL Server nabízí 8~základních verzí: Enterprise, Standard, Workgroup, Web, Express, Express Advanced Edition, Developer Edition a Compact Edition. Enterprise edition podporuje naprosto vše, co SQL Server nabízí, naopak verze Express, která je dostupná zdarma, obsahuje omezení některých funkcí a proto je vhodná spíše pro malé nebo začínající projekty \citep{Leiter2009}.
+Microsoft SQL Server (dále MS SQL Server) je relační databázový systém, vyvíjený společností Microsoft, dostupný pro různé verze operačního systému Windows. Dodává se v mnoha verzích, které lze nainstalovat na různé hadrwarové platformy na základě odlišných licenčních modelů \citep{Whalen2008}. Podle Leitera (2009) MS SQL Server nabízí 8~základních verzí: Enterprise, Standard, Workgroup, Web, Express, Express Advanced Edition, Developer Edition a Compact Edition. Enterprise edition podporuje naprosto vše, co MS SQL Server nabízí, naopak verze Express, která je dostupná zdarma, obsahuje omezení některých funkcí a proto je vhodná spíše pro malé nebo začínající projekty \citep{Leiter2009}.
 
-Prostorová data jsou implementována jako CLR rozšíření a přidávají databázovému serveru dva prostorové datové typy geometry a geography, jejichž rozdíl je podobný jako u PostgreSQL. První jmenovaný slouží k reprezentaci dat (bodů, linií, polygonů) v rovině, naproti tomu datový typ geography slouží ukládání stejných dat na povrchu zeměkoule. Oba typy pracují ve dvou dimenzích, nebere se tedy v potaz výška. Podporuje také indexování dat, index je tvořen standardním B~stromem \citep{Cincura2009}. SQL Server podporuje OGC standardy pro prostorová data.
+Podpora prostorových dat je implementována jako CLR rozšíření a přidává databázovému serveru dva prostorové datové typy geometry a geography, jejichž rozdíl je podobný jako u PostgreSQL. První jmenovaný slouží k reprezentaci geografický prvků (bodů, linií, polygonů) v rovině, naproti tomu datový typ geography slouží ukládání těchto prvků na povrchu země. Oba typy pracují ve dvou dimenzích, nebere se tedy v potaz výška. Podporuje také indexování dat, které implementováno standardním B~stromem \citep{Cincura2009}. MS SQL Server podporuje OGC standardy pro prostorová data.
 
-SQL Server je podporován a používán ArcGIS produkty od začátku jeho vývoje\footnote{pro přehled kompatibilních verzí ArcGIS a SQL Server viz \url{http://resources.arcgis.com/en/help/system-requirements/10.1/index.html\#/Microsoft\_SQL\_Server\_Database\_Requirements/015100000070000000/}}. Verze ArcGIS Enterprise může být propojena s jakoukoliv uživatelem zvolenou a zakoupenou licencí databázového systému. Verze ArcSDE Desktop a Workgroup používají verzi Express, která je dostupná zdarma a podporuje většinu základních funkcí. Replikaci plně podporuje verze Enterprise, ostatní verze ji podporují pouze s omezenými funkcemi. Avšak již zmiňovaná verze Express, která je podporávána ArcSDE Desktop a Workgroup, může být použita pouze jako slave server, tedy odběratel replikovaných dat, a do takovéto databáze připojené do replikačního clusteru tedy není možné zapisovat. Nemůže být tím, kdo poskytuje data k replikaci \citep{Whalen2008}. Stejně jako u PostgreSQL platí, že si uživatel může zvolit, zda použije datový typ, který je součastí ArcSDE, nebo ten, který je implementován do SQL Serveru.
+MS SQL Server je podporován a používán ArcGIS produkty od začátku jeho vývoje\footnote{pro přehled kompatibilních verzí ArcGIS a MS SQL Server viz \url{http://resources.arcgis.com/en/help/system-requirements/10.1/index.html\#/Microsoft\_SQL\_Server\_Database\_Requirements/015100000070000000/}}. Verze ArcGIS Enterprise může být propojena s jakoukoliv uživatelem zvolenou a zakoupenou licencí databázového systému. Verze ArcSDE Desktop a Workgroup používají verzi Express, která je dostupná zdarma a podporuje většinu základních funkcí. Replikaci plně podporuje jen verze Enterprise, ostatní verze ji podporují pouze s omezenými funkcemi. Avšak již zmiňovaná verze Express může být použita pouze jako slave server, tedy odběratel replikovaných dat, do takovéto databáze tedy není možné přímo zapisovat \citep{Whalen2008}. Stejně jako u PostgreSQL platí, že si uživatel může zvolit, zda použije datový typ, který je součastí ArcSDE, nebo ten, který je poskytován MS SQL Serverem.
 
-        \subsubsection{ArcSDE geodatabase}
-        \label{kArcSDE}
-        ArcSDE je technologie firmy Esri pro správu geoprostorových dat uložených v relačních databázových systémem. Jedná se o otevřenou a interoperabilní technologii, která podporuje čtení a zápis mnoha standardů. Využívá jako své nativní datové struktury standard konsorcia OGC Simple Feature a prostorový typ ISO pro databázové systémy Oracle, IBM DB2 a Informix. Poskytuje vysoký výkon a je přizpůsobena velkému počtu uživatelů \citep{Esri2006}.
+%       \subsubsection{ArcSDE geodatabase}
+%       \label{kArcSDE}
+% ArcSDE je technologie firmy Esri pro správu geoprostorových dat uložených v relačních databázových systémem. Jedná se o otevřenou a interoperabilní technologii, která podporuje čtení a zápis mnoha standardů. Využívá jako své nativní datové struktury standard konsorcia OGC Simple Feature a prostorový typ ISO pro databázové systémy Oracle, IBM DB2 a Informix. Poskytuje vysoký výkon a je přizpůsobena velkému počtu uživatelů \citep{Esri2006}.
 
-ArcSDE je prostředník pro komunikaci mezi klientem (např. ArcView) a SQL databází (př. PostgreSQL). Umožňuje přístup a správu dat v databázi, současnou editaci jedné databáze více uživateli, archivování  dat, , dlouhé transakce, zajišťuje integritu a poskytuje vlastní prostorový datový typ (St\_Geometry) \citep{Law2008}. 
+% ArcSDE je prostředník pro komunikaci mezi klientem (např. ArcView) a SQL databází (př. PostgreSQL). Umožňuje přístup a správu dat v databázi, současnou editaci jedné databáze více uživateli, archivování  dat, , dlouhé transakce, zajišťuje integritu a poskytuje vlastní prostorový datový typ (St\_Geometry) \citep{Law2008}. 
 
-Vytváří vlastní databázové schéma, tedy databázi s jasně danou strukturou, která definuje jednotlivé funkce, datové typy a indexy a obsahuje data ve formě tabulky, například aktuální změny v databázi. To se používá v případě, že více uživatelů edituje jednu tabulku a k daným datům vytváří tzv. pracovní verzi, kterou po dokončení připojí ke stávajícím datům. Tyto verze jsou právě uchovávány ve schématu ArcSDE ve formě tabulek. 
+% ArcSDE je prostředník pro komunikaci mezi klientem (např. ArcView) a SQL databází (př. PostgreSQL). Umožňuje přístup a správu dat v databázi, současnou editaci jedné databáze více uživateli, archivování  dat, , dlouhé transakce, zajišťuje integritu a poskytuje vlastní prostorový datový typ (St\_Geometry) \citep{Law2008}. 
+% Vytváří vlastní databázové schéma, tedy databázi s jasně danou strukturou, která obsahuje jednotlivé funkce, datové typy a indexy. Zároveň se schéma využívá na ukládání dočasných změn v databázi v případě, že databázi edituje více uživatelů najednou. Každý uživatel si vytvoří pracovní verzi, kterou po dokočení úprav připojí ke stávajícím datům.
 
-Technologie ArcSDE vyžaduje dvě úrovně: databázovou a aplikační, která se skládá z ArcObjects a ArcSDE. Databázová úroveň zajišťuje jednoduchý, formální model pro uložení a správu dat ve formě tabulek, definici typů atributů (datových typů), zpracování dotazů či víceuživatelské transakce \citep{Law2008}. ArcSDE podporuje databázové systémy IBM DB2, IMB Informix, Oracle, Microsoft SQL, PostgreSQL \citep{Esri2013a}.
+% Technologie ArcSDE vyžaduje dvě úrovně: databázovou a aplikační, která se skládá z ArcObjects a ArcSDE. Databázová úroveň zajišťuje jednoduchý, formální model pro uložení a správu dat ve formě tabulek, definici typů atributů (datových typů), zpracování dotazů či víceuživatelské transakce \citep{Law2008}. ArcSDE podporuje databázové systémy IBM DB2, IMB Informix, Oracle, Microsoft SQL, PostgreSQL \citep{Esri2013a}.
 
-Existují tři úrovně ArcSDE databáze: desktop (ArcSDE Desktop), skupinová (ArcSDE Workgroup) a podniková (ArcSDE Enterprise). Každá verze má jiné parametry a umožňuje různou úroveň editace \odkazTabulka{tSde}.
+% Existují tři úrovně ArcSDE databáze: desktop (ArcSDE Desktop), skupinová (ArcSDE Workgroup) a podniková (ArcSDE Enterprise). Každá verze má jiné parametry a umožňuje různou úroveň editace \odkazTabulka{tSde}.
 
-        \begin{table}[H]
-          \caption[Přehled verzí ArcSDE, jejich parametrů a možností]{Přehled verzí ArcSDE, jejich parametrů a možností}
-            \label{tSde}
-          \begin{footnotesize}
-            \begin{center}
-              \rowcolors{3}{lightgray}{white}
-              \begin{tabular}{|>{\centering} m{9.5em} |>{\centering} m{9.5em} >{\centering} m{9.5em} m{9.5em}  <{\centering}|}
-                \hline
-                \multirow{2}{*}{{\bf \color{purpurova7}databáze}} & \multicolumn{3}{c|}{\bf \color{purpurova7}ArcSDE} \\
-                & {\bf \color{purpurova7}Desktop\textsuperscript{1}} & {\bf \color{purpurova7}Workgroup\textsuperscript{1}} & {\bf \color{purpurova7}Enterprise\textsuperscript{1}}\\
-                \hline
-                  databázový server & SQL Server Express & SQL Server Express &	PostgreSQL, Oracle, SQL Server a další \\
-                              licence & ArcGIS for Destop &	ArcGIS for Server Workgroup	& ArcGIS for Server Enterprise \\
-                   operační systém & Windows & Windows & multiplatformní \\
-                     požaduje ArcSDE & ano & ano & ano \\
-                 vlastní datový typ & ne & ne & ano \\
-           víceuživatelská editace & ne & ano & ano \\
-                      počet editorů	&	1 &	10 & bez limitu \\
-                   počet čtenářů & 3 & 10 &	bez limitu \\
-                        master server\textsuperscript{2}  & ne & ne & ano \\
-                         slave server\textsuperscript{2}  &	ano &	ano & ano \\
-                          verzování & ano & ano & ano \\
-               závislost na sítích & lokální síť & lokální síť, internet & lokální síť, internet \\
-                   velikostní limity & 10GB & 10GB & záleží na velikosti serveru \\
-               \hline
-               \multicolumn{4}{l}{\textsuperscript{1}\scriptsize{http://www.esri.com/software/arcgis/geodatabase/multi-user-geodatabase}}\\
-               \multicolumn{4}{l}{\textsuperscript{2}\scriptsize{pozn. je-li možno použít jako master/slave server}} \\
-              \end{tabular}
-            \end{center}
-          \end{footnotesize}
-        \end{table}
+%       \begin{table}[H]
+%         \caption[Přehled verzí ArcSDE, jejich parametrů a možností]{Přehled verzí ArcSDE, jejich parametrů a možností}
+%           \label{tSde}
+%         \begin{footnotesize}
+%           \begin{center}
+%             \rowcolors{3}{lightgray}{white}
+%             \begin{tabular}{|>{\centering} m{9.5em} |>{\centering} m{9.5em} >{\centering} m{9.5em} m{9.5em}  <{\centering}|}
+%               \hline
+%               \multirow{2}{*}{{\bf \color{purpurova7}databáze}} & \multicolumn{3}{c|}{\bf \color{purpurova7}ArcSDE} \\
+%               & {\bf \color{purpurova7}Desktop\textsuperscript{1}} & {\bf \color{purpurova7}Workgroup\textsuperscript{1}} & {\bf \color{purpurova7}Enterprise\textsuperscript{1}}\\
+%               \hline
+%                 databázový server & SQL Server Express & SQL Server Express &	PostgreSQL, Oracle, SQL Server a další \\
+%                             licence & ArcGIS for Destop &	ArcGIS for Server Workgroup	& ArcGIS for Server Enterprise \\
+%                  operační systém & Windows & Windows & multiplatformní \\
+%                    požaduje ArcSDE & ano & ano & ano \\
+%                vlastní datový typ & ne & ne & ano \\
+%          víceuživatelská editace & ne & ano & ano \\
+%                     počet editorů	&	1 &	10 & bez limitu \\
+%                  počet čtenářů & 3 & 10 &	bez limitu \\
+%                       master server\textsuperscript{2}  & ne & ne & ano \\
+%                        slave server\textsuperscript{2}  &	ano &	ano & ano \\
+%                         verzování & ano & ano & ano \\
+%              závislost na sítích & lokální síť & lokální síť, internet & lokální síť, internet \\
+%                  velikostní limity & 10GB & 10GB & záleží na velikosti serveru \\
+%              \hline
+%              \multicolumn{4}{l}{\textsuperscript{1}\scriptsize{http://www.esri.com/software/arcgis/geodatabase/multi-user-geodatabase}}\\
+%              \multicolumn{4}{l}{\textsuperscript{2}\scriptsize{pozn. je-li možno použít jako master/slave server}} \\
+%             \end{tabular}
+%           \end{center}
+%         \end{footnotesize}
+%       \end{table}
 
 
-        Od verze ArcGIS 9.2 je ArcSDE Desktop spolu s databázovým systémem SQL Server Express součástí licence produktů ArcGIS for Desktop Standard a Advanced. Takovou databázi mohou současně používat 4 uživatelé, z toho jen jeden může databázi editovat, jsou však omezeni velikostí databáze.
+%       Od verze ArcGIS 9.2 je ArcSDE Desktop spolu s databázovým systémem SQL Server Express součástí licence produktů ArcGIS for Desktop Standard a Advanced. Takovou databázi mohou současně používat 4 uživatelé, z toho jen jeden může databázi editovat, jsou však omezeni velikostí databáze.
 
-Součastí licence ArcGIS for Server Workgroup je ArcSDE Workgroup, která se liší od verze Desktop především tím, že počet uživatelů, kteří mohou součastně editovat nebo prohlížet databázi, je zvýšen na deset.
+% Součastí licence ArcGIS for Server Workgroup je ArcSDE Workgroup, která se liší od verze Desktop především tím, že počet uživatelů, kteří mohou součastně editovat nebo prohlížet databázi, je zvýšen na deset.
 
-Nejvyšší úroveň, ArcSDE Enterprise, je možno získat s licencí ArcGIS for Server Enterprise, která uživatelům přináší nejméně omezení. Mohou si vybrat z několika komerčních i nekomerčních databázových systémů, počet uživatelů není omezen, stejně jako velikost databáze.
+% Nejvyšší úroveň, ArcSDE Enterprise, je možno získat s licencí ArcGIS for Server Enterprise, která uživatelům přináší nejméně omezení. Mohou si vybrat z několika komerčních i nekomerčních databázových systémů, počet uživatelů není omezen, stejně jako velikost databáze.
 
-Replikaci a synchronizaci dat umožňují pouze ArcSDE Enterprise a Workgroup \citep{Esri2013b}. Jak už bylo zmíněno v předchozí kapitole \odkazKapitola{MSSQL} Microsoft SQL Server Express 2008, SQL Server Express je možný použít v replikačním clusteru pouze jako slave server. Vzhledem k tomu, že proces replikace je implementován přímo do ArcObjects a ArcSDE, nezáleží na konkrétním databázovém systému \citep{Law2008}.
+% Replikaci a synchronizaci dat umožňují pouze ArcSDE Enterprise a Workgroup \citep{Esri2013b}. Jak už bylo zmíněno v předchozí kapitole \odkazKapitola{MSSQL} Microsoft SQL Server Express 2008, SQL Server Express je možný použít v replikačním clusteru pouze jako slave server. Vzhledem k tomu, že proces replikace je implementován přímo do ArcObjects a ArcSDE, nezáleží na konkrétním databázovém systému \citep{Law2008}.

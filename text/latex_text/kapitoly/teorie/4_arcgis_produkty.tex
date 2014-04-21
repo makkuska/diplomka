@@ -1,13 +1,13 @@
 
 \subsection{ArcGIS produkty}
 
-V názvu práce se objevuje spojení Esri platforma, čímž jsou chápány produkty americké společnosti Esri založené v roce 1969 manželi Dangermondovými, a zabývájící se vývojem software zaměřeného na geografické informační systémy \footnote{více informací \url{http://www.esri.com/about-esri/history}}.
+V názvu práce se objevuje spojení Esri platforma, čímž jsou chápány produkty americké společnosti Esri, založené v roce 1969 manželi Dangermondovými, zabývájící se vývojem software zaměřeného na geografické informační systémy\footnote{více informací na adrese \url{http://www.esri.com/about-esri/history}}.
 
-Z hlediska chápání Esri má GIS tři roviny. První je to GIS jako prostorová databáze reprezentující geografické informace, dále sada map zobrazující prvky a vztahy mezi prvky na zemském povrchu a zároveň i software pro GIS jako sada nástrojů pro odvozování nových informací ze stávajících. Esri tyto tři pohledy na GIS propojuje v software ArcGIS jakožto kompletní GIS, který se skládá z katalogu (kolekce geografický datových sad), map a sad nástrojů pro geografické analýzy.
+Z hlediska chápání Esri má GIS tři roviny. První je to GIS jako prostorová databáze ukládající geografické informace, dále sada map zobrazující prvky na zemském povrchu a vztahy mezi nimi a zároveň i software pro GIS jako sada nástrojů pro odvozování nových informací ze stávajících. Esri tyto tři pohledy na GIS propojuje v~software ArcGIS jakožto kompletní GIS, který se skládá z katalogu (kolekce geografický datových sad), map a sady nástrojů pro geografické analýzy.
 
-Esri vytváří integrovanou sadu softwarových produktů ArcGIS, které poskytují nástroje na kompletní správu GIS a přizpůsobují produkty různým úrovním nasazení. Výběr produktu záleží na tom, zda zákazník požaduje jedno nebo více uživatelský systém, zda se má jednat o stolní systém nebo server, popř. zda má být dostupný prostřednictvím internetu. Nabízí také produkty vhodné pro práci v terénu \citep{Esri2006}.
+Esri vytváří integrovanou sadu softwarových produktů ArcGIS, které poskytují nástroje na kompletní správu geografických dat, a přizpůsobuje produkty různým úrovním nasazení. Výběr produktu záleží na tom, zda zákazník požaduje jedno- nebo víceuživatelský systém, zda se má jednat o stolní systém nebo server, popř. zda má být dostupný prostřednictvím internetu. Nabízí také produkty vhodné pro práci v terénu \citep{Esri2006}.
 
-Základními produkty\footnote{Názvy jednotlivých produktů použitých v tomto odstavci jsou platné od verze ArcGIS 10.1. Starší verze ArcGIS používají jiné názvy, jejichž přehled je možný na stránkách firmy ARCDATA Praha \url{http://www.arcdata.cz/produkty-a-sluzby/software/arcgis/prejmenovani-arcgis/.}} jsou stolní systémy ArcGIS for Desktop ve verzích Basic, Standard, Advanced\footnote{zdroj \url{http://www.esri.com/software/arcgis/about/gis-for-me}}, dále serverové verze ArcGIS for Server (pro Linux a Windows) ve třech úrovních funkcionality (Basic, Standard, Advanced) a dvou úrovních kapacity serveru (Workgroup a Enterpise). Další produkt ArcGIS for Mobile, ve verzích ArcPad, ArcGIS for Windows Mobile a ArcGIS for Smartphone and Tablet, je určený především pro práci v terénu. A v neposlední řadě verze dostupná skrze internet ArcGIS Online. K tomu všemu Esri přidává velké množství extenzí a dalších verzí\footnote{kompletní seznam na oficiálních webových stránkách Esri \url{http://www.esri.com/products} nebo \url{http://www.arcdata.cz/produkty-a-sluzby/software/arcgis/}}.
+Základními produkty\footnote{Názvy jednotlivých produktů použitých v tomto odstavci jsou platné od verze ArcGIS 10.1. Starší verze ArcGIS používají jiné názvy, jejichž přehled je možný na stránkách firmy ARCDATA Praha \url{http://www.arcdata.cz/produkty-a-sluzby/software/arcgis/prejmenovani-arcgis/.}} jsou stolní systémy ArcGIS for Desktop ve variantách Basic, Standard, Advanced\footnote{zdroj \url{http://www.esri.com/software/arcgis/about/gis-for-me}}, dále serverové verze ArcGIS for Server (pro Linux a Windows) ve třech úrovních funkcionality (Basic, Standard, Advanced) a dvou úrovních kapacity serveru (Workgroup a Enterpise). Další produkt ArcGIS for Mobile, ve variantách ArcPad, ArcGIS for Windows Mobile a ArcGIS for Smartphone and Tablet, je určený především pro práci v terénu. A v neposlední řadě verze dostupná skrze internet ArcGIS Online. K tomu všemu Esri přidává velké množství extenzí a dalších verzí\footnote{kompletní seznam na oficiálních webových stránkách Esri \url{http://www.esri.com/products} nebo \url{http://www.arcdata.cz/produkty-a-sluzby/software/arcgis/}}.
 
         \begin{table}[H]
           \caption{Varianty programu ArcGIS platné od verze 10.1.}
@@ -29,7 +29,7 @@ Základními produkty\footnote{Názvy jednotlivých produktů použitých v tomt
           \end{footnotesize}
         \end{table}
 
-        Dle \cite{Law2008} je nativním formátem produktů ArcGIS geodatabáze a jsou rozlišovány tři druhy geodatabáze. Ani v jednom případě se však nejedná o databázi v pravém slova smyslu, tak jako ji chápame v \odkazKapitola{PostgreSQL} a \odkazKapitola{MSSQL}. V každém případě však tyto způsoby umožňují uložení, přístup a správu dat. U prvních dvou typů, personální a souborové geodatabáze, se data ukládají do jednoho binárního souboru, kde jsou však ukládaná ve stejné struktuře jako v plnohodnotném databázovém serveru. Do takového geodatabáze můžeme uložit více než jednu vrstvu, což je výrazný rozdíl oproti formátu shapefile. Výhodou je dále možnost použití relací, sofistikované dotazování a v neposlední řadě i snadná přenostitelnost, protože takováto databáze bude vždy jen jeden soubor obsahující několik vrstev. Oproti tomu shapefile, který obsahuje jen jednu vrstvu, je tvořen minimálně 4 soubory. Oba tyto typy podporují pouze jednoho editujícího uživatele a mnoho uživetelů s právem čtení. Nepodporují dlouhé transakce ani verzování.
+        Dle \cite{Law2008} je nativním formátem produktů ArcGIS geodatabáze a jsou rozlišovány tři druhy geodatabáze. Ani v jednom případě se však nejedná o databázi v~pravém slova smyslu, tak jako ji chápame v kapitolách \odkazKapitola{kPostgreSQL} a \odkazKapitola{MSSQL}. V každém případě však tyto způsoby umožňují uložení a správu dat. U prvních dvou typů, personální a~souborové geodatabáze, se data ukládají do jednoho binárního souboru, kde jsou však ukládána ve stejné struktuře jako v plnohodnotném databázovém serveru, tedy ve formě databáze s tabulkami. Do takového souboru můžeme uložit více než jednu vrstvu, což je výrazný rozdíl oproti formátu Shapefile. Výhodou je dále možnost uložení vztahů mezi datovými prvky, sofistikované dotazování a v neposlední řadě i snadná přenositelnost, protože se jedná vždy jen jeden soubor obsahující všechny vrstvy. Oproti tomu Shapefile, který obsahuje jen jednu vrstvu, je tvořen minimálně 4 soubory. Oba tyto formáty podporují pouze jednoho zapisujícího uživatele a mnoho uživetelů s právem čtení, nepodporují dlouhé transakce ani verzování.
 
         \begin{table}[H]
           \caption{Přehled rozdílů personální a souborové geodatabáze v ArcGIS}
@@ -61,5 +61,58 @@ Základními produkty\footnote{Názvy jednotlivých produktů použitých v tomt
           \end{footnotesize}
         \end{table}
 
-        Tato práce se více zaměřuje na třetí typ, technologii ArcSDE, kterou v některých materiálech nazývají {\it geodatabáze ArcSDE}. Nejedná se o geodatabázi, ale spíše o zprostředkovatele komunikace mezi programem ArcGIS a databázovým server. Umožňuje víceuživatelský přístup, verzování i replikaci \citep{Esri2006}. Tato technologie využívá jako datové uložiště některý z již existujících databázových serverů, např. níže popsané PostgreSQL nebo SQL server. Touto technologií se více bude zabývat kapitola \odkazKapitola{kArcSDE} ArcSDE geodatabase.
+        S touto prací nejvíce soubosí třetí typ nazývaný {\it geodatabáze ArcSDE}. Nejedná se o geodatabázi, ale spíše o zprostředkovatele komunikace mezi programem ArcGIS a databázovým server. Umožňuje víceuživatelský přístup, verzování i replikaci \citep{Esri2006}. Tato technologie využívá jako datové uložiště některý z již existujících databázových serverů, např. níže popsané PostgreSQL nebo SQL server. Touto technologií se více bude zabývat kapitola \odkazKapitola{kArcSDE} ArcSDE geodatabase.
 
+        \subsubsection{ArcSDE geodatabase}
+        \label{kArcSDE}
+        ArcSDE je technologie firmy Esri pro správu prostorových dat uložených v relačních databázových systémem. Jedná se o otevřenou a interoperabilní technologii, která podporuje čtení a zápis mnoha standardů. Využívá jako své nativní datové struktury standard konsorcia OGC Simple Features a prostorový typ ISO pro databázové systémy Oracle, IBM DB2 a Informix. Poskytuje vysoký výkon a je přizpůsobena velkému počtu uživatelů \citep{Esri2006}.
+
+ArcSDE je prostředník pro komunikaci mezi klientem (např. ArcView) a SQL databází (př. PostgreSQL). Umožňuje přístup a správu dat v databázi, současnou editaci jedné databáze více uživateli, archivování  dat, dlouhé transakce, zajišťuje integritu a poskytuje vlastní prostorový datový typ (St\_Geometry) \citep{Law2008}. 
+
+ArcSDE je prostředník pro komunikaci mezi klientem (např. ArcView) a SQL databází (př. PostgreSQL). Umožňuje přístup a správu dat v databázi, současnou editaci jedné databáze více uživateli, archivování  dat, , dlouhé transakce, zajišťuje integritu a poskytuje vlastní prostorový datový typ (St\_Geometry) \citep{Law2008}. 
+Vytváří vlastní databázové schéma, tedy databázi s jasně danou strukturou, která obsahuje jednotlivé funkce, datové typy a indexy. Zároveň se schéma využívá na ukládání dočasných změn v databázi v případě, že databázi edituje více uživatelů najednou. Každý uživatel si vytvoří pracovní verzi, kterou po dokočení úprav připojí ke stávajícím datům.
+
+Technologie ArcSDE vyžaduje dvě úrovně: databázovou a aplikační, která se skládá z ArcObjects a ArcSDE. Databázová úroveň zajišťuje jednoduchý, formální model pro uložení a správu dat ve formě tabulek, definici typů atributů (datových typů), zpracování dotazů či víceuživatelské transakce \citep{Law2008}. ArcSDE podporuje databázové systémy IBM DB2, IMB Informix, Oracle, Microsoft SQL, PostgreSQL \citep{Esri2013a}.
+
+Existují tři úrovně ArcSDE databáze: desktop (ArcSDE Desktop), skupinová (ArcSDE Workgroup) a podniková (ArcSDE Enterprise). Každá verze má jiné parametry a umožňuje různou úroveň editace \odkazTabulka{tSde}.
+
+        \begin{table}[H]
+          \caption[Přehled verzí ArcSDE, jejich parametrů a možností]{Přehled verzí ArcSDE, jejich parametrů a možností}
+            \label{tSde}
+          \begin{footnotesize}
+            \begin{center}
+              \rowcolors{3}{lightgray}{white}
+              \begin{tabular}{|>{\centering} m{9.5em} |>{\centering} m{9.5em} >{\centering} m{9.5em} m{9.5em}  <{\centering}|}
+                \hline
+                \multirow{2}{*}{{\bf \color{purpurova7}databáze}} & \multicolumn{3}{c|}{\bf \color{purpurova7}ArcSDE} \\
+                & {\bf \color{purpurova7}Desktop\textsuperscript{1}} & {\bf \color{purpurova7}Workgroup\textsuperscript{1}} & {\bf \color{purpurova7}Enterprise\textsuperscript{1}}\\
+                \hline
+                  databázový server & SQL Server Express & SQL Server Express &	PostgreSQL, Oracle, SQL Server a další \\
+                              licence & ArcGIS for Destop &	ArcGIS for Server Workgroup	& ArcGIS for Server Enterprise \\
+                   operační systém & Windows & Windows & multiplatformní \\
+                     požaduje ArcSDE & ano & ano & ano \\
+                 vlastní datový typ & ne & ne & ano \\
+           víceuživatelská editace & ne & ano & ano \\
+                      počet editorů	&	1 &	10 & bez limitu \\
+                   počet čtenářů & 3 & 10 &	bez limitu \\
+                        master server\textsuperscript{2}  & ne & ne & ano \\
+                         slave server\textsuperscript{2}  &	ano &	ano & ano \\
+                          verzování & ano & ano & ano \\
+               závislost na sítích & lokální síť & lokální síť, internet & lokální síť, internet \\
+                   velikostní limity & 10GB & 10GB & záleží na velikosti serveru \\
+               \hline
+               \multicolumn{4}{l}{\textsuperscript{1}\scriptsize{http://www.esri.com/software/arcgis/geodatabase/multi-user-geodatabase}}\\
+               \multicolumn{4}{l}{\textsuperscript{2}\scriptsize{pozn. je-li možno použít jako master/slave server}} \\
+              \end{tabular}
+            \end{center}
+          \end{footnotesize}
+        \end{table}
+
+
+        Od verze ArcGIS 9.2 je ArcSDE Desktop spolu s databázovým systémem SQL Server Express součástí licence produktů ArcGIS for Desktop Standard a Advanced. Takovou databázi mohou současně používat 4 uživatelé, z toho jen jeden může databázi editovat, jsou však omezeni velikostí databáze.
+
+Součastí licence ArcGIS for Server Workgroup je ArcSDE Workgroup, která se liší od verze Desktop především tím, že počet uživatelů, kteří mohou součastně editovat nebo prohlížet databázi, je zvýšen na deset.
+
+Nejvyšší úroveň, ArcSDE Enterprise, je možno získat s licencí ArcGIS for Server Enterprise, která uživatelům přináší nejméně omezení. Mohou si vybrat z několika komerčních i nekomerčních databázových systémů, počet uživatelů není omezen, stejně jako velikost databáze.
+
+Replikaci a synchronizaci dat umožňují pouze ArcSDE Enterprise a Workgroup \citep{Esri2013b}. Jak už bylo zmíněno v předchozí kapitole \odkazKapitola{MSSQL} Microsoft SQL Server Express 2008, SQL Server Express je možný použít v replikačním clusteru pouze jako slave server. Vzhledem k tomu, že proces replikace je implementován přímo do ArcObjects a ArcSDE, nezáleží na konkrétním databázovém systému \citep{Law2008}.

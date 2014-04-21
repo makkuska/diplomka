@@ -85,7 +85,7 @@ Slony-I rozlišuje tři druhy serverů:
 Konfigurační skript pro inicializaci clusteru se spustí ze stejné složky, ve které je uložen daný soubor, příkazem \texttt{slonik} a názvem souboru, viz příklad:
 
 \begin{lstlisting}
-# slonik init_master.txt
+> slonik init_master.txt
 \end{lstlisting}
 
 Pomocí dalších skriptu se mohou slave servery přihlásit odběru replikačního setu. Příklad vytvoření skriptu \texttt{subscribe\_slave1.txt} pro přidání serveru do existujícího clusteru (subscribe set):
@@ -106,7 +106,7 @@ subscribe set (id=1, provider=1, receiver=2, forward=yes);
 Spuštění skriptu \texttt{slonik} pro přidání slave1 do clusteru:
 
 \begin{lstlisting}
-slonik subscribe_slave1.txt
+> slonik subscribe_slave1.txt
 \end{lstlisting}
 
 Stejný způsobem se připojít k odběru i slave2.
@@ -139,12 +139,12 @@ Běh replikace je zajištěn vlastním démonem, který je možnost spustit v ok
 
 Příklad spuštění démona na master serveru s názvem clusteru a parametry připojení k serveru:
 \begin{lstlisting}
-slon gis_cluster 'host=192.168.1.100 dbname=student  user=replikator'
+> slon gis_cluster 'host=192.168.1.100 dbname=student  user=replikator'
 \end{lstlisting}
 Obdobně je démona spuštěn i na obou slave serverech:
 \begin{lstlisting}
-slon gis_cluster 'host=192.168.1.101 dbname=student  user=replikator'
-slon gis_cluster 'host=192.168.1.102 dbname=student  user=replikator'
+> slon gis_cluster 'host=192.168.1.101 dbname=student  user=replikator'
+> slon gis_cluster 'host=192.168.1.102 dbname=student  user=replikator'
 \end{lstlisting}
 
 Podoboně jako u streaming replikace, lze zkontrolovat, že replikace běží správně, přidáním nového záznamu na slave server. Pokud nepovolí přidání a vypíše následující chybu, znamená, že je replikace správně nastavená a funkční.
@@ -187,7 +187,7 @@ execute script (
 Spuštění programu \texttt{slonik}, který spustí skript a vykoná daný SQL příkaz na všech uzlech: 
 
 \begin{lstlisting}
-slonik ddlZmena.txt
+> slonik ddlZmena.txt
 \end{lstlisting}
 \begin{lstlisting}[identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black}]
 DDL script consisting of 2 SQL statements
@@ -227,7 +227,7 @@ merge set(id=2, add id=1, origin=1);
 Spuštění skriptu \texttt{slonik}, které příkazy vykoná
 
 \begin{lstlisting}
-slonik add_to_set.txt
+> slonik add_to_set.txt
 \end{lstlisting}
 
 Podobně je možné provést také smazání tabulky pomocí parametru \texttt{DROP SET}. 

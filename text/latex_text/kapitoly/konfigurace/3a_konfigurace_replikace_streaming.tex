@@ -92,7 +92,7 @@ Spuštění stejného SQL příkazu \texttt{pg\_stat\_replication} ze \texttt{sl
 Stejně tak lze na slave serveru zjistit, zda běží jako replika či nikoli pomocí SQL příkazu \texttt{pg\_is\_in\_recovery()}:
 
 \begin{lstlisting}
-  postgres=# select pg_is_in_recovery();
+postgres=# select pg_is_in_recovery();
 \end{lstlisting}
     \begin{table}[H]
         \begin{center}
@@ -122,8 +122,8 @@ Připojené repliky lze vypsat pomocí SQL příkazu \texttt{pg\_stat\_replicati
 V případě, že master server spadne, je možné během pár minut vyměnit role, určit jako master jeden ze slave serverů. Lze to udělat několik způsoby, jedním z nich je sledování existence souboru, který je definován v souboru \texttt{recovery.conf} na kterémkoli slave serveru:
 
 \begin{lstlisting}
-  trigger_file = '/tmp/trigger.txt'
+trigger_file = '/tmp/trigger.txt'
 \end{lstlisting}
 
-Název souboru může být zvolen libovolně a může být zcela prázdný. Slave server pouze hlídá jeho existenci a jen to, že se soubor objeví v dané složce, způsobí, že se ze slave serveru stane master. Obsah souboru můžou tvořit další instrukce, které se můžou ovlivnit další chod databáze. 
+Název souboru může být zvolen libovolně a nemusí obsahovat žádná data. Slave server pouze hlídá jeho existenci a jen to, že se soubor objeví v dané složce, způsobí, že slave server povýší na master. Obsah souboru mohou dále tvořit další instrukce, které mohou ovlivnit další chod databáze. 
 

@@ -92,18 +92,18 @@
 %package pro kódy
 \usepackage{listings}
 \lstset{ %
-  belowcaptionskip=1\baselineskip,
-  breaklines=true,
-  xleftmargin=\parindent,
   language=SQL,
-  showstringspaces=false,
   basicstyle=\ttfamily,
   keywordstyle=\bfseries\color{purpurova7},
-  deletekeywords={nebo},  
-  morekeywords={PASSWORD, ENCRYPTED, REPLICATION, DATABASE, linestring, scp, rsync, pg\_basebackup, pg\_dump, pg\_restore, slon, slonik},  
   commentstyle=\color{purple!40!black},
   identifierstyle=\color{green!40!black},
   stringstyle=\color{dooranzova},
+  morekeywords={PASSWORD, ENCRYPTED, REPLICATION, DATABASE, linestring, scp, rsync, pg\_basebackup, pg\_dump, pg\_restore, slon, slonik},  
+  deletekeywords={nebo},  
+  belowcaptionskip=1\baselineskip,
+  showstringspaces=false,
+  breaklines=true,
+  xleftmargin=\parindent,
  }
 
 %\usepackage{glossary}
