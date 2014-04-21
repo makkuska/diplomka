@@ -1,10 +1,28 @@
 \subsection{Testování výkonu}
-Před spuštěním databází to reálného provozu je vhodné provést optimalizaci nastavení nejen replikace, ale celého databází řešení. To zahrnuje jak konkrétní nastavení konfiguračních souborů, ale také zahrnutí všech atributů, jako výkonost serverů, na kterých databáze běží, rychlost sítě, způsobu užívání databáze, počet uživatelů atd. 
+Před spuštěním databázového clusteru v reálném provozu je vhodné provést
+optimalizaci nastavení nejen replikace, ale celého databázového řešení. Je třeba
+zohlednit atributy jako výkonnost serverů, prostupnost sítě, způsob užití
+databáze, počet uživatelů, atd.
 
-V rámci pozorování chování databáze bylo zjištěno, že data i většího rozsahu jsou přeneseny v řádech vteřin. Je však nutno zohlednit, že všechny tři uzly běži po vnitřní síti, což rychlost přenosu zvyšuje. Zároveň nebyl zaznamenán případ, kdyby se přenesla pouze část dat nebo byla některá přenesená data chybná. 
+V rámci pozorování chování databázového řešení bylo zjištěno, že data i většího
+rozsahu jsou přenesena v řádech jednotek vteřin. Je však nutno zohlednit, že
+všechny tři uzly komunikují po vnitřní síti, což rychlost přenosu zvyšuje.
+Zároveň nebyl zaznamenán případ, kdy by se přenesla pouze část dat nebo byla
+některá přenesená data chybná.
 
-Při použití pgpool je možno testovat rozdíl počtu transakcí za sekundu v případě připojení pouze na master, resp. slave server a na pgpool. V ideální případě by měl pgpool znásobit počet transakcí o třetinu. Tím, že se zvýší počet transakcí za sekundu, je možno zjistit, že pgpool efektivně rozkládá dotazy mezi jednotlivé uzly. Je třeba zohlednit, že pgpool nějakou dobu vyhodnocuje příkaz, než jej přepošle dál. To může proces mírně zpomalit, pak záleží na tom, jak velké dotazy jsou do něj posílány. 
-Testování je vždy potřeba testovat až na hotovém řešení s ohledem na konkrétní nastavení, zohlednit je potřeba i typy operací, které jdou v databázi vykonávány, např. jaké příkazy provádí ArcGIS server.
-Dá se vycházet z předpokladů, že při synchronní i asynchronní replikaci by nemělo docházet ke zpomalení přenosu transakcí při čtení z databáze a stejně tak u asynchronní replikace při zápisu na master. V případě zápisu do databáze může mít vliv synchronní replikace, která čeká, až je dotaz zapsán na slave, synchronní možné zpomalení vlivem latence sítě. 
+Při použití pgpool je možno testovat rozdíl počtu transakcí za sekundu v případě
+připojení pouze na master, resp. slave server a na pgpool. V ideálním případě by
+měl pgpool znásobit počet transakcí třikrát. To, že se zvýší počet transakcí za
+sekundu, dokazuje, že pgpool efektivně rozkládá dotazy mezi jednotlivé uzly. Je
+třeba zohlednit, že pgpool nějakou dobu vyhodnocuje příkaz, než jej přepošle
+dál. To může proces mírně zpomalit, pak záleží na tom, jak velké dotazy jsou do
+něj posílány.
 
-Pro testování výkonu existuje několik nástrojů, například pgbench. 
+Při použití asynchronní replikace nedochází ke zpomalení vykonání transakcí při
+čtení ani zápisu. U synchronní replikace však dochází ke zpomalení zápisu, neboť
+se čeká, až je dotaz zapsán na slave, viz kapitola \ref{kpgpool}.
+
+Testovat je vždy potřeba až hotové řešení s ohledem na konkrétní nastavení.
+Zohlednit je potřeba i typy operací, které jsou v databázi vykonávány, např.
+jaké příkazy provádí ArcGIS server.  Pro testování výkonu existuje několik
+nástrojů, například pgbench.
