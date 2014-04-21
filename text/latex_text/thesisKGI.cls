@@ -19,9 +19,9 @@
 %číslování stránek arabské
 \pagenumbering{arabic}
 
-%---------------------------------------------------- 
+%----------------------------------------------------
 %nastavení velice citlivé kontroly na vdovy a sirotky
-%---------------------------------------------------- 
+%----------------------------------------------------
 \widowpenalty=2000
 \clubpenalty=1000
 
@@ -98,13 +98,14 @@
   commentstyle=\color{purple!40!black},
   identifierstyle=\color{green!40!black},
   stringstyle=\color{dooranzova},
-  morekeywords={PASSWORD, ENCRYPTED, REPLICATION, DATABASE, linestring, scp, rsync, pg\_basebackup, pg\_dump, pg\_restore, slon, slonik},  
-  deletekeywords={nebo},  
+  morekeywords={PASSWORD, ENCRYPTED, REPLICATION, DATABASE, linestring, scp, rsync, pg\_basebackup, pg\_dump, pg\_restore, slon, slonik},
+  deletekeywords={nebo},
   belowcaptionskip=1\baselineskip,
   showstringspaces=false,
   breaklines=true,
   xleftmargin=\parindent,
  }
+\usepackage{framed}
 
 %\usepackage{glossary}
 %package pro tvorbu seznamu zkratek
@@ -180,7 +181,7 @@
 \begin{alwayssingle}
 		\thispagestyle{empty}
 		\begin{center}
-		
+
 		\begingroup
 			\textbf{
 				\fontsize{14pt}{14pt}\selectfont
@@ -189,54 +190,54 @@
 				{Katedra geoinformatiky}
 			}
 		\endgroup
-		
+
 		\vspace{7em}
-		
+
 		\begingroup
 			\textbf{
 				\fontsize{14pt}{14pt}\selectfont
 				\@author
 			}
 		\endgroup
-		
+
 		\vspace{5em}
-		
+
 		\begingroup
 			\textbf{
 				\fontsize{20pt}{20pt}\selectfont
 				\@title
 			}
 		\endgroup
-		
+
 		\vspace{2em}
-		
+
 		\begingroup
 			\textbf{
 				\fontsize{14pt}{14pt}\selectfont
 				\@thesistype
 			}
 		\endgroup
-		
+
 		\vfill
-		
+
 		\begingroup
 			\textbf{
 				\fontsize{14pt}{14pt}\selectfont
 				{Vedoucí práce: \@advisor}
 			}
 		\endgroup
-		
+
 		\vspace{5em}
-		
+
 		\begingroup
 			\textbf{
 				\fontsize{14pt}{14pt}\selectfont
 				{Olomouc \the\year}
 			}
 		\endgroup
-		
+
 		\vspace{1em}
-		
+
 		\end{center}
 \end{alwayssingle}
 }
@@ -245,7 +246,7 @@
 \newcommand{\makeTableOfContent}[1]{
 \begin{alwayssingle}
 		\pagestyle{plain}
-		\setcounter{tocdepth}{#1} 
+		\setcounter{tocdepth}{#1}
 		\tableofcontents
 \end{alwayssingle}
 }
@@ -254,7 +255,7 @@
 \newcommand{\makeGlossary}{
 \begin{alwayssingle}
 		\pagestyle{plain}
-		\addcontentsline{toc}{section}{SEZNAM POUŽITÝCH ZKRATEK} 
+		\addcontentsline{toc}{section}{SEZNAM POUŽITÝCH ZKRATEK}
 		\printglossary[nonumberlist=true]
 \end{alwayssingle}
 }
@@ -263,7 +264,7 @@
 \newcommand{\makeBibliography}[1]{
 \begin{alwayssingle}
 		\pagestyle{plain}
-		\addcontentsline{toc}{section}{LITERATURA} 
+		\addcontentsline{toc}{section}{LITERATURA}
 		\bibliography{#1}
 \end{alwayssingle}
 }
@@ -301,6 +302,6 @@ V Olomouci \today \hspace*{13em} \@author
 \newenvironment{prilohy}{
 \begin{alwayssingle}
   \pagestyle{plain}
-  \section*{SEZNAM PŘÍLOH} 
+  \section*{SEZNAM PŘÍLOH}
   }
 {\end{alwayssingle}}

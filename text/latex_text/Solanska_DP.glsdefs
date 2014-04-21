@@ -1,0 +1,90 @@
+\ifglsentryexists{Esri}{}%
+{%
+\gls@defglossaryentry{Esri}%
+{%
+name={Esri},%
+sort={Esri},%
+type={main},%
+first={Esri},%
+firstplural={Esris},%
+text={Esri},%
+plural={Esris},%
+description={Environmental Systems Research Institute},%
+descriptionplural={Environmental Systems Research Institute},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{SDE}{}%
+{%
+\gls@defglossaryentry{SDE}%
+{%
+name={SDE},%
+sort={SDE},%
+type={main},%
+first={SDE},%
+firstplural={SDEs},%
+text={SDE},%
+plural={SDEs},%
+description={Spatial Database Engine},%
+descriptionplural={Spatial Database Engine},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{SQL}{}%
+{%
+\gls@defglossaryentry{SQL}%
+{%
+name={SQL},%
+sort={SQL},%
+type={main},%
+first={SQL},%
+firstplural={SQLs},%
+text={SQL},%
+plural={SQLs},%
+description={Structured Query Language},%
+descriptionplural={Structured Query Language},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
