@@ -19,11 +19,10 @@ NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "rodne_mesto_pkey
 CREATE TABLE
 \end{lstlisting}
 
-
 Dále tento způsob obnáší vytvoření konfiguračních skriptů, které zajistí inicializaci replikace. Slony-I pro to používá vlastní konfigurační jazyk, pomocí kterého se nastavují konkrétní požadavky na replikaci. Na začátku se díky němu sestaví konfigurační soubor k inicializaci replikace, později se používá pro jakýkoli zásah do replikace, například přidání další tabulky do replikačního setu nebo změny struktury databáze. Tento vzniklý konfigurační skript se provede pomocí utility \texttt{slonik}, která se vždy spouští jednorázově a vykonává požadavky definované v konfiguračním souboru. 
 
 Ukázka konfiguračního skriptu nazvaného \texttt{init\_master.txt} uloženého na master serveru pro inicializaci replikačního clusteru (init cluster):
-%\begin{lstlisting}[identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black}]
+
 \begin{lstlisting}[language=ruby]
 $master = 'dbname=studenti host=192.168.1.100 user=replikator password=kgigis'
 $slave1 = 'dbname=studenti host=192.168.1.101 user=replikator password=kgigis'
@@ -64,23 +63,19 @@ store listen (origin=1, provider=2, receiver=3);
 \end{lstlisting}
 
 Skript {\texttt Slonik} volá příkazy:
-\begin{itemize}
-\item \texttt{cluster name} představující jedinečný název pro daný cluster,
-\item \texttt{node ival/číslo admin conninfo} definující všechny uzly v clusteru a parametry jejich připojení k databázi,
-\item \texttt{init cluster}, který inicializuje cluster a nastavuje master server jako uzel s id 1, 
-\item \texttt{store node}, který vytváří další uzly,
-\item \texttt{create set} vytvářející soubor tabulek určených k replikaci, 
-\item \texttt{set add table} přidávájící vždy jednu tabulku do replikačního setu s identickým id,
-\item \texttt{store path}, který nastavuje cesty mezi jednotlivými uzly a 
-\item \texttt{store listen} nastavující naslouchání jednotlivých uzlů. 
-\end{itemize}
+\texttt{cluster name} představující jedinečný název pro daný cluster,
+\texttt{node ival/číslo admin conninfo} definující všechny uzly v clusteru a parametry jejich připojení k databázi,
+\texttt{init cluster}, který inicializuje cluster a nastavuje master server jako uzel s id 1, 
+\texttt{store node}, který vytváří další uzly,
+\texttt{create set} vytvářející soubor tabulek určených k replikaci, 
+\texttt{set add table} přidávájící vždy jednu tabulku do replikačního setu s identickým id,
+\texttt{store path}, který nastavuje cesty mezi jednotlivými uzly a 
+\texttt{store listen} nastavující naslouchání jednotlivých uzlů. 
 
 Slony-I rozlišuje tři druhy serverů:
-\begin{itemize}
-\item \texttt{origin} odpovídá master serveru, tedy jedinému uzlu, kterému je povoleno zapisování,
-\item \texttt{subscriber} je ekvivalentem slave serveru s právy čtení a 
-\item \texttt{provider} je poskytovatel dat, může to být master server, ale při kaskádové replikaci, kterýkoliv ze slave serverů. 
-\end{itemize}
+{\it origin} odpovídá master serveru, tedy jedinému uzlu, kterému je povoleno zapisování,
+{\it subscriber} je ekvivalentem slave serveru s právy čtení a 
+{\it provider} je poskytovatel dat, může to být master server, ale při kaskádové replikaci, kterýkoliv ze slave serverů. 
 
 Konfigurační skript pro inicializaci clusteru se spustí ze stejné složky, ve které je uložen daný soubor, příkazem \texttt{slonik} a názvem souboru, viz příklad:
 
@@ -135,7 +130,7 @@ To, že se vytvořit cluster a tabulka do něj byla přidána, lze zkontrolovat 
         \end{center}
     \end{table}
 
-Běh replikace je zajištěn vlastním démonem, který je možnost spustit v okamžiku, kdy je vytvořen cluster a všechny repliky jsou do něj přidány. Démon \texttt{slon}, který je potřeba spustit na všech uzlech, v parametrech přebírá název clusteru a hodnoty připojení daného uzlu k databázi. Je důležité, aby log po spuštění nevypisoval žádné chyby, jinak je potřeba zkontrolovat všechny příkazy konfiguračních souborů. 
+    Běh replikace je zajištěn vlastním démonem, který je možnost spustit v okamžiku, kdy je vytvořen cluster a všechny repliky jsou do něj přidány. Démon \texttt{slon}, který je potřeba spustit na všech uzlech, v parametrech přebírá název clusteru a hodnoty připojení daného uzlu k databázi. Je důležité, aby log po spuštění nevypisoval žádné chyby, jinak je potřeba zkontrolovat všechny příkazy konfiguračních souborů.
 
 Příklad spuštění démona na master serveru s názvem clusteru a parametry připojení k serveru:
 \begin{lstlisting}
@@ -147,7 +142,7 @@ Obdobně je démona spuštěn i na obou slave serverech:
 > slon gis_cluster 'host=192.168.1.102 dbname=student  user=replikator'
 \end{lstlisting}
 
-Podoboně jako u streaming replikace, lze zkontrolovat, že replikace běží správně, přidáním nového záznamu na slave server. Pokud nepovolí přidání a vypíše následující chybu, znamená, že je replikace správně nastavená a funkční.
+Obdobně jako u streaming replikace, lze zkontrolovat, že replikace běží správně, přidáním nového záznamu na slave server. Pokud nepovolí přidání a vypíše následující chybu, znamená, že je replikace správně nastavená a funkční.
 
 \begin{lstlisting}
 studenti=# INSERT INTO student (jmeno) VALUES ('Josef Kraus');
@@ -197,7 +192,8 @@ DDL Statement 1: (67,69) [ ]
 Submit DDL Event to subscribers...
 \end{lstlisting}
 
-Podrobný výpis informuje, že se změnilo DDL\footnote{Data Definition Language} schéma, které provádí příkazy CREATE, ALTER, DROP, tedy příkazy měnící strukturu databáze. Posledním řádkem potvrzuje, že se schéma zapsalo také na slave servery. Takto se tabulka přidá do databáze, nikoliv však do replikačního clusteru. K tomu je potřeba vytvořit další slonik skript. 
+
+Podrobný výpis informuje, že se změnilo DDL\footnote{Data Definition language} schéma, které provádí příkazy CREATE, ALTER, DROP, tedy příkazy měnící strukturu databáze. Posledním řádkem potvrzuje, že se schéma zapsalo také na slave servery. Takto se tabulka přidá do databáze, nikoliv však do replikačního clusteru. K tomu je potřeba vytvořit další slonik skript. 
 
 Vytvoření skriptu \texttt{add\_to\_set.txt} pro přidání tabulky do replikačního clusteru:
 
@@ -230,5 +226,5 @@ Spuštění skriptu \texttt{slonik}, které příkazy vykoná
 > slonik add_to_set.txt
 \end{lstlisting}
 
-Podobně je možné provést také smazání tabulky pomocí parametru \texttt{DROP SET}. 
+Podobně je možné provést také smazání tabulky pomocí parametru \texttt{DROP SET} a mnohé další. 
 
