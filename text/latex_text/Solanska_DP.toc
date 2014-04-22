@@ -24,8 +24,8 @@
 \contentsline {subsubsection}{\numberline {4.5.2}Slony-I}{41}{subsubsection.4.5.2}
 \contentsline {subsection}{\numberline {4.6}Rozlo\IeC {\v z}en\IeC {\'\i } z\IeC {\'a}t\IeC {\v e}\IeC {\v z}e mezi replika\IeC {\v c}n\IeC {\'\i } servery}{47}{subsection.4.6}
 \contentsline {subsection}{\numberline {4.7}Testov\IeC {\'a}n\IeC {\'\i } v\IeC {\'y}konu}{51}{subsection.4.7}
-\contentsline {section}{\numberline {5}DISKUZE}{52}{section.5}
-\contentsline {section}{\numberline {6}Z\IeC {\'A}V\IeC {\v E}R}{53}{section.6}
-\contentsline {section}{LITERATURA}{54}{section.6}
-\contentsline {section}{SUMMARY}{56}{section*.27}
-\contentsline {section}{P\IeC {\v R}\IeC {\'I}LOHY}{57}{section*.27}
+\contentsline {section}{\numberline {5}DISKUZE}{53}{section.5}
+\contentsline {section}{\numberline {6}Z\IeC {\'A}V\IeC {\v E}R}{54}{section.6}
+\contentsline {section}{LITERATURA}{55}{section.6}
+\contentsline {section}{SUMMARY}{57}{section*.27}
+\contentsline {section}{P\IeC {\v R}\IeC {\'I}LOHY}{58}{section*.27}
