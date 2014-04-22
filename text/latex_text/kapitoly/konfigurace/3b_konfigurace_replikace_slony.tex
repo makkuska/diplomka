@@ -16,17 +16,34 @@ studenti=# CREATE TABLE student (id int, jmeno varchar, id_rodne_mesto int, prim
 studenti=# CREATE TABLE rodne_mesto (id int, jmeno varchar, umisteni geometry, primary key(id));
 \end{lstlisting}
 
-\begin{framed}
-  přeformulovat, opravit
-\end{framed}
-Dále tento způsob obnáší vytvoření konfiguračních skriptů, které zajistí
-inicializaci replikace. Slony-I pro to používá vlastní konfigurační jazyk,
-pomocí kterého se nastavují konkrétní požadavky na replikaci. Na začátku se
-sestaví konfigurační soubor k inicializaci replikace, později se používá pro
-jakýkoli zásah do replikace, například přidání další tabulky do replikačního
-setu nebo změny struktury databáze. Vzniklý konfigurační skript se provede
-pomocí utility \texttt{slonik}, která se vždy spouští jednorázově a vykonává
-požadavky definované v konfiguračním souboru.
+Slony-I má vlastní konfigurační jazyk, pomocí kterého se píší skripty pro inicializaci 
+replikačního clusteru nebo jakoukoli změnu struktury databáze. Tyto skripty
+jsou poté provedeny pomocí utility \texttt{slonik}, která se spouští
+jednorázově.
+
+Pro inicializaci clusteru skript \texttt{slonik} volá příkazy:
+\begin{itemize}
+  \item \texttt{cluster name} představující jedinečný název pro daný cluster,
+  \item \texttt{node ival admin conninfo} definující všechny uzly v clusteru a
+    parametry jejich připojení k databázi (\texttt{ival} odpovídá číslu uzlu),
+  \item \texttt{init cluster}, který inicializuje cluster a nastavuje vybraný
+    uzel jako master,
+  \item \texttt{store node}, který vytváří další uzly,
+  \item \texttt{create set} vytvářející soubor tabulek určených k replikaci,
+  \item \texttt{set add table}, který přidává vždy jednu tabulku do replikačního
+    setu,
+  \item \texttt{store path}, který nastavuje cesty mezi jednotlivými uzly a
+  \item \texttt{store listen} nastavující naslouchání jednotlivých uzlů.
+\end{itemize}
+
+Slony-I rozlišuje tři druhy serverů:
+\begin{itemize}
+  \item {\it origin} odpovídá master serveru, tedy jedinému uzlu, kterému je povoleno
+    zapisování,
+  \item {\it subscriber} je ekvivalentem slave serveru s právy čtení a
+  \item {\it provider} je poskytovatel dat, může to být master server, ale při kaskádové
+    replikaci také kterýkoliv ze slave serverů.
+\end{itemize}
 
 Ukázka konfiguračního skriptu pro inicializaci replikačního clusteru nazvaného
 \texttt{init\_master.txt} uloženého na master serveru:
@@ -65,7 +82,6 @@ store listen (origin=1, provider=2, receiver=1);
 store listen (origin=1, provider=1, receiver=2);
 store listen (origin=1, provider=2, receiver=3);
 \end{lstlisting}
-
 Výskyty \texttt{\$master}, \texttt{\$slave1} a \texttt{\$slave2} je třeba nahradit
 následovně:
 \begin{lstlisting}
@@ -73,30 +89,6 @@ $master = 'dbname=studenti host=192.168.1.100 user=replikator password=kgigis'
 $slave1 = 'dbname=studenti host=192.168.1.101 user=replikator password=kgigis'
 $slave2 = 'dbname=studenti host=192.168.1.102 user=replikator password=kgigis'
 \end{lstlisting}
-
-Skript \texttt{slonik} volá příkazy:
-\begin{itemize}
-  \item \texttt{cluster name} představující jedinečný název pro daný cluster,
-  \item \texttt{node ival admin conninfo} definující všechny uzly v clusteru a
-    parametry jejich připojení k databázi (\texttt{ival} odpovídá číslu uzlu),
-  \item \texttt{init cluster}, který inicializuje cluster a nastavuje vybraný
-    uzel jako master,
-  \item \texttt{store node}, který vytváří další uzly,
-  \item \texttt{create set} vytvářející soubor tabulek určených k replikaci,
-  \item \texttt{set add table}, který přidává vždy jednu tabulku do replikačního
-    setu,
-  \item \texttt{store path}, který nastavuje cesty mezi jednotlivými uzly a
-  \item \texttt{store listen} nastavující naslouchání jednotlivých uzlů.
-\end{itemize}
-
-Slony-I rozlišuje tři druhy serverů:
-\begin{itemize}
-  \item {\it origin} odpovídá master serveru, tedy jedinému uzlu, kterému je povoleno
-    zapisování,
-  \item {\it subscriber} je ekvivalentem slave serveru s právy čtení a
-  \item {\it provider} je poskytovatel dat, může to být master server, ale při kaskádové
-    replikaci také kterýkoliv ze slave serverů.
-\end{itemize}
 
 Konfigurační skript pro inicializaci clusteru se spustí ze složky, ve které je
 uložen, příkazem \texttt{slonik} s názvem souboru:
@@ -272,4 +264,9 @@ Spuštění skriptu \texttt{slonik}, který příkazy vykoná:
 > slonik add_to_set.txt
 \end{lstlisting}
 
-Podobně je lze také smazat tabulku příkazem \texttt{drop set}.
+
+- omit copy - vyvaruje se toho, že smaže všechno na slavu a začne kopírovat znovu
+- umožňuje switchover, musí se všechno přerušit a pak příkazy log set a move set servery -prohodit
+- umožňuje failover - přesunutí mastera na slave (příkaz failover - povýšení slave databáze na master)
+
+Podobně je lze také smazat tabulku příkazem \texttt{drop set}. 

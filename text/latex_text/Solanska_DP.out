@@ -1,30 +1,30 @@
-\BOOKMARK [1][-]{section*.4}{\332VOD}{}% 1
-\BOOKMARK [1][-]{section.1}{C\315LE PR\301CE}{}% 2
-\BOOKMARK [1][-]{section.2}{POU\231IT\311 METODY A POSTUPY PR\301CE}{}% 3
-\BOOKMARK [1][-]{section.3}{TEORETICK\301 V\335CHODISKA}{}% 4
-\BOOKMARK [2][-]{subsection.3.1}{Vymezen\355 pojmu}{section.3}% 5
-\BOOKMARK [2][-]{subsection.3.2}{Replikace}{section.3}% 6
-\BOOKMARK [2][-]{subsection.3.3}{ArcGIS produkty}{section.3}% 7
-\BOOKMARK [3][-]{subsubsection.3.3.1}{ArcSDE geodatabase}{subsection.3.3}% 8
-\BOOKMARK [2][-]{subsection.3.4}{Vybran\351 datab\341zov\351 syst\351my}{section.3}% 9
-\BOOKMARK [3][-]{subsubsection.3.4.1}{PostgreSQL \(+ PostGIS\)}{subsection.3.4}% 10
-\BOOKMARK [3][-]{subsubsection.3.4.2}{Microsoft SQL Server}{subsection.3.4}% 11
-\BOOKMARK [2][-]{subsection.3.5}{N\341stroje pro replikaci v PostgreSQL}{section.3}% 12
-\BOOKMARK [3][-]{subsubsection.3.5.1}{Slony-I}{subsection.3.5}% 13
-\BOOKMARK [3][-]{subsubsection.3.5.2}{Streaming replikace}{subsection.3.5}% 14
-\BOOKMARK [3][-]{subsubsection.3.5.3}{pgpool}{subsection.3.5}% 15
-\BOOKMARK [1][-]{section.4}{N\301VRH A KONFIGURACE REPLIKACE}{}% 16
-\BOOKMARK [2][-]{subsection.4.1}{Aktu\341ln\355 stav spr\341vy dat}{section.4}% 17
-\BOOKMARK [2][-]{subsection.4.2}{Po\236adavky na datab\341zov\351 re\235en\355}{section.4}% 18
-\BOOKMARK [2][-]{subsection.4.3}{N\341vrh replikacn\355ho re\235en\355}{section.4}% 19
-\BOOKMARK [2][-]{subsection.4.4}{Pr\355prava serveru pred konfigurac\355 replikace}{section.4}% 20
-\BOOKMARK [2][-]{subsection.4.5}{Konfigurace replikace}{section.4}% 21
-\BOOKMARK [3][-]{subsubsection.4.5.1}{Streaming replikace}{subsection.4.5}% 22
-\BOOKMARK [3][-]{subsubsection.4.5.2}{Slony-I}{subsection.4.5}% 23
-\BOOKMARK [2][-]{subsection.4.6}{Rozlo\236en\355 z\341te\236e mezi replikacn\355 servery}{section.4}% 24
-\BOOKMARK [2][-]{subsection.4.7}{Testov\341n\355 v\375konu}{section.4}% 25
-\BOOKMARK [1][-]{section.5}{DISKUZE}{}% 26
-\BOOKMARK [1][-]{section.6}{Z\301VER}{}% 27
-\BOOKMARK [1][-]{section.6}{LITERATURA}{}% 28
-\BOOKMARK [1][-]{section*.27}{SUMMARY}{}% 29
-\BOOKMARK [1][-]{section*.27}{PR\315LOHY}{}% 30
+\BOOKMARK [1][-]{section*.4}{\332VOD}{}
+\BOOKMARK [1][-]{section.1}{C\315LE PR\301CE}{}
+\BOOKMARK [1][-]{section.2}{POU\231IT\311 METODY A POSTUPY PR\301CE}{}
+\BOOKMARK [1][-]{section.3}{TEORETICK\301 V\335CHODISKA}{}
+\BOOKMARK [2][-]{subsection.3.1}{Vymezen\355 pojmu}{section.3}
+\BOOKMARK [2][-]{subsection.3.2}{Replikace}{section.3}
+\BOOKMARK [2][-]{subsection.3.3}{ArcGIS produkty}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.3.1}{ArcSDE geodatabase}{subsection.3.3}
+\BOOKMARK [2][-]{subsection.3.4}{Vybran\351 datab\341zov\351 syst\351my}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.4.1}{PostgreSQL \(+ PostGIS\)}{subsection.3.4}
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Microsoft SQL Server}{subsection.3.4}
+\BOOKMARK [2][-]{subsection.3.5}{N\341stroje pro replikaci v PostgreSQL}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.5.1}{Slony-I}{subsection.3.5}
+\BOOKMARK [3][-]{subsubsection.3.5.2}{Streaming replikace}{subsection.3.5}
+\BOOKMARK [3][-]{subsubsection.3.5.3}{pgpool}{subsection.3.5}
+\BOOKMARK [1][-]{section.4}{N\301VRH A KONFIGURACE REPLIKACE}{}
+\BOOKMARK [2][-]{subsection.4.1}{Aktu\341ln\355 stav spr\341vy dat}{section.4}
+\BOOKMARK [2][-]{subsection.4.2}{Po\236adavky na datab\341zov\351 re\235en\355}{section.4}
+\BOOKMARK [2][-]{subsection.4.3}{N\341vrh replikacn\355ho re\235en\355}{section.4}
+\BOOKMARK [2][-]{subsection.4.4}{Pr\355prava serveru pred konfigurac\355 replikace}{section.4}
+\BOOKMARK [2][-]{subsection.4.5}{Konfigurace replikace}{section.4}
+\BOOKMARK [3][-]{subsubsection.4.5.1}{Streaming replikace}{subsection.4.5}
+\BOOKMARK [3][-]{subsubsection.4.5.2}{Slony-I}{subsection.4.5}
+\BOOKMARK [2][-]{subsection.4.6}{Rozlo\236en\355 z\341te\236e mezi replikacn\355 servery}{section.4}
+\BOOKMARK [2][-]{subsection.4.7}{Testov\341n\355 v\375konu}{section.4}
+\BOOKMARK [1][-]{section.5}{DISKUZE}{}
+\BOOKMARK [1][-]{section.6}{Z\301VER}{}
+\BOOKMARK [1][-]{section.6}{LITERATURA}{}
+\BOOKMARK [1][-]{section*.27}{SUMMARY}{}
+\BOOKMARK [1][-]{section*.27}{PR\315LOHY}{}

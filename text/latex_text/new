@@ -1,0 +1,12 @@
+
+\begin{lstlisting} 
+psql -U postgres -h 192.168.1.100 -c "SELECT pg_start_backup('x',true);"
+\end{lstlisting}
+\begin{lstlisting}[keywordstyle=\bfseries\color{purpurova7},identifierstyle=\color{black},stringstyle=\color{black}]
+> scp -rv root@192.168.0.100:/etc/postgresql/9.1/main /etc/postgresql/9.1/main
+> scp -rv root@192.168.0.100:/var/lib/postgresql/9.1/main /var/lib/postgresql/9.1/main
+> rm /var/lib/postgresql/9.1/main/postmaster.pid
+\end{lstlisting}
+\begin{lstlisting}
+psql -U postgres -h 192.168.1.100 -c "SELECT pg_stop_backup();"
+\end{lstlisting}

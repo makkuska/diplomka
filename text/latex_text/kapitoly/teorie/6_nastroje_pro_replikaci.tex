@@ -10,14 +10,14 @@
               \rowcolors{1}{white}{lightgray}
               \begin{tabular}{|c|cccccc|}
                 \hline
-                {\bf \color{purpurova7}nástroje}	& {\bf \color{purpurova7}typ} & {\bf \color{purpurova7}technika} & {\bf \color{purpurova7}M/M} & {\bf \color{purpurova7}M/S} & {\bf \color{purpurova7}sync} & a{\bf \color{purpurova7}sync} \\
+                {\bf \color{purpurova7}nástroje}	& {\bf \color{purpurova7}typ} & {\bf \color{purpurova7}technika} & {\bf \color{purpurova7}M/M} & {\bf \color{purpurova7}M/S} & {\bf \color{purpurova7}sync} & {\bf \color{purpurova7}async} \\
                 \hline
-                PostgreSQL 9.1* & fyzická & xlog & ne & ano & ano & ano \\
-                     pgpool-II & logická & proxy & ano & ne & ano & ne \\
-                       slony-I & logická & triggers & ne & ano & ne & ano \\
-                      Londiste & logická & triggers & ne & ano & ne & ano \\
-                       Bucardo & logická & triggers & ano & ano & ne & ano \\
-                   Postgres-XC & cluster & - & ano & ne & ne & ano \\
+                PostgreSQL 9.3* & fyzická & xlog     & ne  & ano & ano & ano \\ 
+                      pgpool-II & logická & proxy    & ano & ne  & ano & ne  \\
+                        slony-I & logická & triggers & ne  & ano & ne  & ano \\ 
+                       Londiste & logická & triggers & ne  & ano & ne  & ano \\ 
+                        Bucardo & logická & triggers & ano & ano & ne  & ano \\ 
+                    Postgres-XC & cluster & -        & ano & ne  & ne  & ano \\ 
                 \hline
                 \multicolumn{3}{l}{\scriptsize{*streaming replikace}} & \multicolumn{4}{r}{\scriptsize{zdroj: Tomáš Vondra, 2011}}\\
               \end{tabular}
@@ -34,16 +34,37 @@
 
 Další výhodou, a to zvlášť v porování se streaming replikací, je možnost replikace dat mezi různými verzemi PostgreSQL bez ohledu na platformu a architekturu. Naopak spíše za nevýhodu je považováno, že si vytváři ke každé tabulce vlastní schéma, do kterého se ukládají replikovaná data, což způsobuje redundanci dat. 
 
-Slony-I replikace je z principu asynchronní, umožňuje kaskádovou replikaci i Hot Standby mód, což znamená, že v případě pádu master serveru je slave automaticky povýšen na master. Slony-I má vlastní konfigurační nástroj a samotná replikace funguje díky vlastnímu replikačnímu démonu, který běží stále, registruje změny a kopíruje je na slave servery.
+  Slony-I umožňuje master-master i master-slave replikaci, která je z principu asynchronní. 
+  Slony-I replikaci je možno nastavit jako kaskádovou i jako Hot Standby, což
+  znamená, že v případě pádu master serveru je slave automaticky povýšen na
+  master. Slony-I má vlastní konfigurační nástroj a samotná replikace funguje
+  díky vlastnímu replikačnímu démonu, který běží stále, registruje změny a
+  kopíruje je na slave servery.
 
-      \subsubsection{Streaming replikace}
-      \label{kStreamingTeorie}
+  \subsubsection{Streaming replikace}
+  \label{kStreamingTeorie}
 
-      Streaming replikace je nativní řešení PostgreSQL implementované od verze 9.0. Jedná se o fyzickou replikaci, proto je nutné použití stejné verze PostgreSQL, stejné platformy i architektury na všech uzlech replikačního clusteru. Jedná se o log-shipping replikaci, což znamená, že jsou na slave servery posílány záznamy transakčního logu, v PostgreSQL nazývané WAL (Write Ahead Log). Do něj jsou změny nejdříve zaznamenávány přímým zápisem na disk a až poté potvzeny jako úspěšné. Tento způsob zajišťuje datům naprosté bezpečí, protože kdyby došlo k chybě a změny se nezapisovaly na disk, ale pouze do cache, mohlo by dojít k jejich ztrátě. Zároveň to zajišťuje kopii jak dat, tak i struktury databáze. Existuje pouze jeden transakční log pro jednu instalaci PostgreSQL, proto se replikují vždy všechny databáze a není možné výběru jen několika tabulek, tak jako u Slony-I \citep{Boszormenyi2013}. . 
+  Streaming replikace je nativní řešení PostgreSQL implementované od verze
+  9.0. Jedná se o fyzickou replikaci, proto je nutné použití stejné verze
+  PostgreSQL, stejné platformy i architektury na všech uzlech replikačního
+  clusteru. 
+  
+  Jde se o log-shipping replikaci, což znamená, že jsou na slave servery
+  posílány záznamy transakčního logu, v PostgreSQL nazývané WAL (Write Ahead
+  Log). Do něj jsou změny nejdříve zaznamenávány přímým zápisem na disk a až
+  poté potvzeny jako úspěšné. Tento způsob zajišťuje datům naprosté bezpečí,
+  protože kdyby došlo k chybě a změny se nezapisovaly na disk, ale pouze do
+  cache, mohlo by dojít k jejich ztrátě. Existuje pouze jeden transakční log
+  pro jednu instalaci PostgreSQL, proto se replikují vždy všechny databáze a
+  není možné výběru jen několika tabulek, tak jako u Slony-I \citep{Boszormenyi2013}. 
  
-      {\color{purpurova7}Výhodou tohoto řešení je která jakožto nativní řešení PostgreSQL nabízí větší efektivitu a stabilitu, než jiná diskutovaná řešení. Tento výběr má i tu nevýhodu, že servery je nutno aktualizovat 'všechny najednou, co se týče verze software, operačního systému i architektury - výhodou je, nevýhodou }
+  Výhodou tohoto nativního řešení je větší efektivita a stabilita replikace,
+  než nabízí jiná diskutovaná řešení. Použití toho způsobu replikace však má i
+  tu nevýhodu, že aktualizaci databázového systému, operačního systému i
+  architektury je třeba provést na všech serverech najednou.
 
-Streaming replikace umožňuje jak synchronní, tak asynchronní replikaci, dále Hot standby mode i kaskádovou replikaci.
+  Streaming replikace umožňuje pouze master-slave replikaci ve variantách
+  synchronní, asynchronní a kaskádová\footnote{podporovaná od verze PostgreSQL 9.2} a Hot Standby mód.
 
       \subsubsection{pgpool}
       \label{kpgpool}

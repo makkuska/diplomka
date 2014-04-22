@@ -12,12 +12,9 @@ serveru. Pro asynchonní replikaci stačí nastavit parametry:
     slave serverů.
 \end{itemize}
 
-\begin{framed}
-  zkontrolovat obsah
-\end{framed}
-
-Hodnota \texttt{wal\_level} nastavená na \texttt{hot\_stadby} zajistí, že na
-slave serveru bude umožněno dotazování. Vzhledem k tomu, že se bude na master
+Hodnota \texttt{wal\_level} nastavená na \texttt{hot\_stadby} zajistí, že do
+transakčního logu bude zapisován takový typ informací, který poté na slave
+serveru umožní dotazování. Vzhledem k tomu, že se bude na master
 server připojovat pouze \texttt{slave1} a všechny další slave servery se poté
 budou připojovat k němu, hodnota \texttt{1} parametru \texttt{max\_wal\_senders}
 zcela dostačuje. Je však možné hodnotu rovnou navýšit, aby se soubor v budoucnu
@@ -41,9 +38,6 @@ Hodnoty parametrů \texttt{wal\_level} a \texttt{max\_level\_sender} mohou a
 nemusí zůstat stejné jako na masteru. Pokud však má být slave připraven
 zastoupit master server v případě jeho výpadku, je nutné, aby hodnoty byly
 nastaveny shodně.  Na slave serveru je dále potřeba nastavit:
-\begin{framed}
-  zkontrolovat obsah
-\end{framed}
 \begin{itemize}
   \item\texttt{hot\_standby}, který určuje, zda je na slave serveru umožněno
     dotazování a
@@ -61,9 +55,6 @@ hot_standby_feedback = on
 
 Posledním krokem je vytvoření souboru \texttt{recovery.conf} na slave serveru ve
 složce s daty, který definuje parametry:
-\begin{framed}
-  zkontrolovat obsah
-\end{framed}
 \begin{itemize}
   \item \texttt{standby\_mode}, který povoluje či zakazuje použití serveru jako
     slave a
@@ -77,7 +68,6 @@ složce s daty, který definuje parametry:
 
 Ukázka konfigurace \texttt{recovery.conf} uloženého ve složce s daty na
 \texttt{slave1}, který je připojen k master serveru a replikuje synchronně:
-
 \begin{lstlisting}
 standby_mode='on'
 primary_conninfo='host=192.168.1.100 user=replikator password=kgigis application_name=gis'
@@ -91,7 +81,6 @@ bude odpovídat IP adrese serveru \texttt{slave1}.
 Ukázka konfigurace \texttt{recovery.conf} uloženého ve složce s daty na
 \texttt{slave2}, který replikuje asynchronně a připojuje se k
 \texttt{slave1}:
-
 \begin{lstlisting}
 standby_mode='on'
 primary_conninfo='host=192.168.1.101 user=replikator password=kgigis'
@@ -107,7 +96,6 @@ Výsledek dotazu spuštěného na master serveru:
 \begin{lstlisting}
 SELECT usename, application_name, client_addr, state, sync_state FROM pg_stat_replication;
 \end{lstlisting}
-
 \begin{table}[H]
   \label{pgHba}
   \begin{center}
@@ -121,9 +109,7 @@ SELECT usename, application_name, client_addr, state, sync_state FROM pg_stat_re
     \end{tabular}
   \end{center}
 \end{table}
-
 Výsledek téhož dotazu spuštěného na \texttt{slave1}:
-
 \begin{table}[H]
   \label{pgHba}
   \begin{center}
@@ -137,9 +123,9 @@ Výsledek téhož dotazu spuštěného na \texttt{slave1}:
     \end{tabular}
   \end{center}
 \end{table}
+
 Stejně tak lze na slave serveru zjistit, zda skutečně replikuje z master serveru
 voláním funkce \texttt{pg\_is\_in\_recovery()}:
-
 \begin{lstlisting}
 postgres=# select pg_is_in_recovery();
 \end{lstlisting}
@@ -156,7 +142,6 @@ postgres=# select pg_is_in_recovery();
 \end{table}
 
 Zároveň na slave server nesmí být možné zapsat žádná data:
-
 \begin{lstlisting}
 INSERT INTO student (jmeno) VALUES('Jan Vlasovec');
 \end{lstlisting}
@@ -168,7 +153,6 @@ V případě, že master server spadne, je možné během pár minut vyměnit ro
 jako master jeden ze slave serverů. Lze to udělat několik způsoby, jedním z~nich
 je sledování existence souboru definovaného v souboru \texttt{recovery.conf} na
 kterémkoli slave serveru:
-
 \begin{lstlisting}
 trigger_file = '/tmp/trigger.txt'
 \end{lstlisting}

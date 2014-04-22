@@ -98,7 +98,7 @@
   commentstyle=\color{purple!40!black},
   identifierstyle=\color{green!40!black},
   stringstyle=\color{dooranzova},
-  morekeywords={PASSWORD, ENCRYPTED, REPLICATION, DATABASE, linestring, scp, rsync, pg\_basebackup, pg\_dump, pg\_restore, slon, slonik},
+  morekeywords={rm, PASSWORD, ENCRYPTED, REPLICATION, DATABASE, linestring, scp, rsync, pg\_basebackup, pg\_dump, pg\_restore, slon, slonik},
   deletekeywords={nebo},
   belowcaptionskip=1\baselineskip,
   showstringspaces=false,
