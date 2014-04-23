@@ -1,8 +1,8 @@
 Databáze je strukturovaná kolekce dat, která slouží pro efektivní ukládání dat a jejich zpětně čtení \citep{Oppel2009}. V relační databázi jsou data ukládána ve formě tabulek, tedy entit a atributů, které jsou vzájemně propojeny vazbami mezi entitami \citep{Connolly2005}. Toto logické uložení vazeb mezi tabulkami umožňuje efektivní manipulaci s daty, rychlé vyhledávání i komplexní analýzu \citep{Momjian2001}. 
 
-Základy {\it relační databáze} položil v roce 1970 matematik E. F. Codd, který relačnímu modelu přidal i srozumitelné příkazy vycházejících z běžné angličtiny, které jsou dnes známy jako jazyk {\it SQL} (Structured Query Language)\citep{Zak2001}. V dnešní době je možné setkat se také s pojmy objektová a objektově-relační databáze, které přebírají řadu vlastností z oblasti objektového programování.
+Základy {\it relační databáze} položil v roce 1970 matematik E. F. Codd, který relačnímu modelu přidal i srozumitelné příkazy vycházející z běžné angličtiny, které jsou dnes známy jako jazyk {\it SQL} \footnote{Structured Query Language}\citep{Zak2001}. V dnešní době je možné setkat se také s pojmy objektová a objektově-relační databáze, které přebírají řadu vlastností z oblasti objektového programování.
 
-Obvykle se rozlišují pojmy databáze, který odkazuje na obecný koncept, a pojem databázový systém nebo přesněji {\it systém řízení báze dat} \footnote{angl. Database Management System (DBMS)}, což je konkrétním počítačovým program, který zajišťuje fyzické uložení dat. Moderní SŘBD jsou navrženy na principu klient/server, kdy databáze běží jako služba na pozadí a čeká na dotazy od klientů. Server uživatelům umožňuje skrze jazyk SQL přístupovat k databázi, vytvářet a aktualizovat data, stejně jak jako vyhledávat či analyzovat \citep{Connolly2005}.
+Obvykle se rozlišují pojem databáze, který odkazuje na obecný koncept, a pojem databázový systém nebo přesněji {\it systém řízení báze dat} \footnote{angl. Database Management System (DBMS)}, což je konkrétním počítačovým program, který zajišťuje fyzické uložení dat. Moderní SŘBD jsou navrženy na principu klient/server, kdy databáze běží jako služba na pozadí a čeká na dotazy od klientů. Server uživatelům umožňuje skrze jazyk SQL přístupovat k databázi, vytvářet a aktualizovat data, stejně jak jako vyhledávat či analyzovat \citep{Connolly2005}.
 
 Pro uložení dat malého projektu je samozřejmě možno použít i jiného formátu určeného pro ukládání dat, například soubory formátu XLS, XML, CSV či moderního JSON. Pro komplexní správu dat velkého projektu je však databáze pro své relace více než vhodná. 
 
@@ -12,13 +12,7 @@ Pro uložení dat malého projektu je samozřejmě možno použít i jiného for
 
 Dalšími formáty, používanými právě pro ukládání dat do databáze, jsou Well-Known Binary (WKB) a Well-Known Text (WKT) pro reprezentaci vektorových dat. Jejich tvar je dán standardem OGC\footnote{OGC standardy jsou kontrolované konsorciem Open Geospatial Consortium,\newline zdroj \url{http://www.opengeospatial.org/ogc}} {\it Simply Features for SQL 1.2.1}, který specifikuje model pro uložení prostorových dat v digitální podobě. 
 
-Dle standardu OGC jsou funkce pro získání geometrie z databáze:
-\begin{itemize}
-\item \texttt{ST\_AsBinary(geometry)} pro bitový zápis WKB a
-\item \texttt{ST\_AsText(geometry)} pro textovou podobu WKT.
-     \end{itemize}
-
-Simply Features je založen na 2D geometrii s~možností lineární interpolace mezi lomovými body. Základní prvky\footnote{zdroj \url {http://postgis.net/docs/manual-2.1/using\_postgis\_dbmanagement.html\#RefObject}}, které je možno vkládat ve formátu druh prvku a v závorce souřadnice lomových bodů, jsou:
+Simply Features je založen na 2D geometrii s~možností lineární interpolace mezi lomovými body. Základní prvky\footnote{zdroj \url {http://postgis.net/docs/manual-2.1/using\_postgis\_dbmanagement.html\#RefObject}}, které je možno vkládat ve formátu druh prvku a~souřadnice lomových bodů v~závorce, jsou:
 \begin{itemize}
 \item bod - \texttt{POINT(0 0)},
 \item linie - \texttt{LINESTRING(0 0, 1 1, 1 2)},
@@ -28,4 +22,10 @@ Simply Features je založen na 2D geometrii s~možností lineární interpolace 
 \item série polygonů - \texttt{MULTIPOLYGON(((0 0,4 0,4 4,0 4,0 0),(1 1,2 1,2 2,1 2,1 1)), ((-1 -1,-1 -2,-2 -2,-2 -1,-1 -1)))} a
 \item geometrická kolekce, která může obsahovat geoprvky různých typů (body, linie, polygony) - \texttt{GEOMETRYCOLLECTION(POINT(2 3),LINESTRING(2 3,3 4))}.
 \end{itemize}
+
+Standard OGC definuje i sadu prostorových funkcí, založených na jazyku SQL, určených pro získávání prostorových vlastností prvků a vztahů mezi nimi, pro ma\-ni\-pu\-la\-ci s geometrií a pro analýzu prostorových vztahů. Základními typy funkcí jsou vytváření prostorových dat a jejich správa, konverze mezi formáty, porovnání na základě geometrie a vyhledávání na základě prostorového dotazu. Dle standardu jsou funkce pro získání geometrie z databáze:
+\begin{itemize}
+\item \texttt{ST\_AsBinary(geometry)} pro bitový zápis WKB a
+\item \texttt{ST\_AsText(geometry)} pro textovou podobu WKT.
+     \end{itemize}
 

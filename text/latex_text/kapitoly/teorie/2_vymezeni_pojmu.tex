@@ -1,13 +1,15 @@
-        \subsection{Vymezení pojmů}
-        Pro lepší porozumění textu této práce je potřeba definovat pojmy replikace, synchronizace a verzování včetně popisu toho, jak jsou dané pojmy chápány v produktech ArcGIS. Výše zmíněné procesy jsou v literatuře často popisovány velmi odlišně. Některé zdroje pojmy replikace a synchronizace rozlišují, jiné je naopak považují za synonyma. Všechny zmíněné pojmy souvisí se zálohováním dat, tedy kopírovaním dat mezi dvěmi a více uložišti, a se liší konkrétním důvodem pro použití daného procesu. 
+\subsection{Vymezení pojmů}
+\label{kVymezeniPojmu}
 
-O synchronizaci souborů či datových složek je možno mluvit v případě, že existují dva datové zdroje, které je potřeba v daný okamžik sjednotit. Jde tedy o proces, který probíhá jednorázově a to většinou z důvodů potřeby porování dvou a více datových uložišť, které je potřeba dostat do totožného stavu. To může například přispět snazší spolupráci více uživatelů nad stejnými daty nebo pomoct uživateli, který pracuje na více počítačích. Proces může proběhnout pouze jednou nebo opakovaně, ať už pravidelně či nepravidelně. U souborů se shodným názvem se porovnává čas posledního zápisu, velikost nebo obsah souboru, naopak soubory, u kterých není nalezena shoda, jsou jednoduše zkopírovány. 
+Pro lepší porozumění textu této práce je potřeba definovat pojmy replikace, synchronizace a verzování včetně popisu toho, jak jsou dané pojmy chápány v produktech ArcGIS. Výše zmíněné procesy jsou v literatuře často popisovány velmi odlišně. Některé zdroje pojmy replikace a synchronizace rozlišují, jiné je naopak považují za synonyma. Všechny zmíněné pojmy souvisí se zálohováním dat, tedy kopírovaním dat mezi dvěmi a více uložišti, a se liší konkrétním důvodem pro použití daného procesu. 
+
+O synchronizaci souborů či datových složek je možno mluvit v případě, že existují dva datové zdroje, které je potřeba v daný okamžik sjednotit. Jde tedy o proces, který probíhá jednorázově a to většinou z důvodů potřeby porovnání dvou a více datových uložišť, které je potřeba dostat do totožného stavu. To může například přispět snazší spolupráci více uživatelů nad stejnými daty nebo pomoct uživateli, který pracuje na více počítačích. Proces může proběhnout jednou nebo opakovaně, ať už pravidelně či nepravidelně. U souborů se shodným názvem se porovnává čas posledního zápisu, velikost nebo obsah souboru, naopak soubory, u kterých není nalezena shoda, jsou jednoduše zkopírovány. 
 
         %parametr H říká že to bude přímo na tom místě kde je v textu...více http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
           \begin{figure}[H]
             \centering
             \includegraphics[scale=1]{../../../grafy/obr/schema_synchronizace_maxiTence.png}
-            \caption {Příklad obousměrné synchronizace dat mezi dvěmi datovými uložišti}
+            \caption[Příklad obousměrné synchronizace dat]{Příklad obousměrné synchronizace dat mezi dvěmi datovými uložišti}
           \end{figure}
 
 Replikace je proces průběžný, který soustavně hlídá, zda ve zdrojových datech nedošlo ke změně, a pokud ano, dané změny zkopíruje na jiné datové uložiště. Často je tento proces používán právě ve spojitosti s databázemi, kdy jsou data kopírována z~důvodu snížení zátěže serveru, či zvýšení ochrany dat. Replikace je tedy často vyžadována z jiných důvodů než synchronizace, začíná s daty existujícími pouze na jednom uložišti a pro zajištění konzistence dat používá jiných technologií. Více se replikací zabývá kapitola \odkazKapitola{kReplikace}.

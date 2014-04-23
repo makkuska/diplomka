@@ -1,4 +1,6 @@
+\clearpage
 \subsection{Testování výkonu}
+\label{kpgbench}
 Před spuštěním databázového clusteru v reálném provozu je vhodné provést
 optimalizaci nastavení nejen replikace, ale celého databázového řešení. Je třeba
 zohlednit atributy jako výkonnost serverů, prostupnost sítě, způsob užití
@@ -7,12 +9,12 @@ databáze, počet uživatelů, atd.
 V rámci pozorování chování databázového řešení bylo zjištěno, že data i většího
 rozsahu jsou přenesena v řádech jednotek vteřin. Je však nutno zohlednit, že
 všechny tři uzly komunikují po vnitřní síti, což rychlost přenosu zvyšuje.
-Zároveň nebyl zaznamenán případ, kdy by se přenesla pouze část dat nebo byla
+Zároveň nebyl za\-zna\-me\-nán případ, kdy by se přenesla pouze část dat nebo byla
 některá přenesená data chybná.
 
-Při použití pgpool je možno testovat rozdíl počtu transakcí za sekundu v případě
-připojení pouze na master, resp. slave server a na pgpool. V ideálním případě by
-měl pgpool znásobit počet transakcí třikrát. To, že se zvýší počet transakcí za
+Při použití pgpool je možno porovnat rozdíl počtu transakcí za sekundu v případě
+připojení pouze na pgpool a na master, resp. slave server. V ideálním případě by
+měl pgpool znásobit oproti běžnému připojení počet transakcí třikrát. To, že se zvýší počet transakcí za
 sekundu, dokazuje, že pgpool efektivně rozkládá dotazy mezi jednotlivé uzly. Je
 třeba zohlednit, že pgpool nějakou dobu vyhodnocuje příkaz, než jej přepošle
 dál. To může proces mírně zpomalit, pak záleží na tom, jak velké dotazy jsou do
@@ -24,5 +26,5 @@ se čeká, až je dotaz zapsán na slave, viz kapitola \ref{kpgpool}.
 
 Testovat je vždy potřeba až hotové řešení s ohledem na konkrétní nastavení.
 Zohlednit je potřeba i typy operací, které jsou v databázi vykonávány, např.
-jaké příkazy provádí ArcGIS server.  Pro testování výkonu existuje několik
-nástrojů, například pgbench.
+jaké příkazy provádí ArcGIS Server.  Pro testování výkonu existuje několik
+nástrojů, například pgbench\footnote{http://www.postgresql.org/docs/devel/static/pgbench.html}.

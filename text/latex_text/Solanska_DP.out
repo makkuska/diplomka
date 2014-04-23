@@ -5,10 +5,11 @@
 \BOOKMARK [2][-]{subsection.3.1}{Vymezen\355 pojmu}{section.3}
 \BOOKMARK [2][-]{subsection.3.2}{Replikace}{section.3}
 \BOOKMARK [2][-]{subsection.3.3}{ArcGIS produkty}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.3.1}{ArcSDE geodatabase}{subsection.3.3}
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Verze a varianty produktu}{subsection.3.3}
+\BOOKMARK [3][-]{subsubsection.3.3.2}{ArcSDE Technology}{subsection.3.3}
 \BOOKMARK [2][-]{subsection.3.4}{Vybran\351 datab\341zov\351 syst\351my}{section.3}
 \BOOKMARK [3][-]{subsubsection.3.4.1}{PostgreSQL \(+ PostGIS\)}{subsection.3.4}
-\BOOKMARK [3][-]{subsubsection.3.4.2}{Microsoft SQL Server}{subsection.3.4}
+\BOOKMARK [3][-]{subsubsection.3.4.2}{MS SQL Server}{subsection.3.4}
 \BOOKMARK [2][-]{subsection.3.5}{N\341stroje pro replikaci v PostgreSQL}{section.3}
 \BOOKMARK [3][-]{subsubsection.3.5.1}{Slony-I}{subsection.3.5}
 \BOOKMARK [3][-]{subsubsection.3.5.2}{Streaming replikace}{subsection.3.5}
@@ -22,9 +23,10 @@
 \BOOKMARK [3][-]{subsubsection.4.5.1}{Streaming replikace}{subsection.4.5}
 \BOOKMARK [3][-]{subsubsection.4.5.2}{Slony-I}{subsection.4.5}
 \BOOKMARK [2][-]{subsection.4.6}{Rozlo\236en\355 z\341te\236e mezi replikacn\355 servery}{section.4}
-\BOOKMARK [2][-]{subsection.4.7}{Testov\341n\355 v\375konu}{section.4}
+\BOOKMARK [2][-]{subsection.4.7}{Pripojen\355 datab\341ze skrze ArcSDE}{section.4}
+\BOOKMARK [2][-]{subsection.4.8}{Testov\341n\355 v\375konu}{section.4}
 \BOOKMARK [1][-]{section.5}{DISKUZE}{}
 \BOOKMARK [1][-]{section.6}{Z\301VER}{}
 \BOOKMARK [1][-]{section.6}{LITERATURA}{}
-\BOOKMARK [1][-]{section*.27}{SUMMARY}{}
-\BOOKMARK [1][-]{section*.27}{PR\315LOHY}{}
+\BOOKMARK [1][-]{section*.29}{SUMMARY}{}
+\BOOKMARK [1][-]{section*.29}{PR\315LOHY}{}

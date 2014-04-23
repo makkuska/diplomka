@@ -1,0 +1,48 @@
+\label{kDiskuze}
+Jedním z požadavků pro výběr databázového systému bylo rozšířené používání v~oblasti
+geoinformatiky a~zároveň podpora ArcGIS produkty. Z tohoto důvodu nemohl být použit
+databázový server MySQL, který je sice v oblasti GIS používaný, není však
+podporovaný produkty Arc\-GIS. Opačný problém je řešen u MS SQL Serveru, který je
+doposud na katedře používán a který je podporován ArcGIS produkty, není však
+tak široce používaný v oblasti geoinformatiky. Jeho rozšíření o prostorová data
+totiž například nepoužívá nástroje pro transformaci dat, které jsou v~PostgreSQL řešeny knihovnou OGR. 
+
+U výběru replikačního nástroje se vycházelo z nativního řešení pro PostgreSQL, který
+podporuje pouze master-slave replikaci. Při velkém počtu editací by přicházelo v~úvahu použití multimaster replikace, pro kterou je však třeba použít
+některého z~externích nástrojů a jejíž konfigurace je složitější. 
+
+Replikační řešení je navrženo tak, že je zcela nezávislé na technologii ArcSDE.
+ArcSDE je v tom řešení pouze prostředníkem pro připojení databáze k ArcGIS
+produktům. Replikaci je tedy možno nastavit bez ohledu na ArcSDE, přičemž po přidání schématu
+\texttt{sde} do databáze, lze replikovat také tabulky toho schématu. 
+
+Jak už bylo několikrát zmíněno, pro fungování celého řešení, tedy včetně
+připojení databáze k ArcGIS produktům, je potřeba zajistit kompatibilitu jednotlivých verzí.
+Tento fakt byl zjištěn příliš pozdě, proto se jej při vytváření testovacího prostředí nepodařilo dodržet.
+Přesto byly všechny programy nastudovány, otestovány a podrobně v této práci zdokumentovány,
+při příštím vytváření databázového clusteru by tedy nemělo dojít k výše zmíněným problémům.
+
+K databázi přes ArcSDE lze připojit jak verze ArcGIS for
+Desktop, tak ArcGIS for Server. Verzi ArcGIS Online nelze připojit k databázi
+přímo, ale pouze přes vrstvu publikovanou ArcSDE. 
+
+Pro efektivní fungování databáze by ještě předtím než bude
+datázové řešení spuštěno do plného provozu, měla být provedena optimalizace nastavení
+databázového systému a testování zátěže. Optimalizace by měla zohlednit počty uživatelů
+přistupujících k databázi stejně tak jako náročnost jejich dotazů. V rámci
+optimalizace je možno testovat zátěž pomocí pgbench, důvody pro jeho použití
+byly nastíněny v kapitole \odkazKapitola{kpgbench}, nebo jiného dostupného
+nástoje. Jedná se však o složitý problém, který vyžaduje bohaté zkušenosti s
+provozem databázového systému a široké znalosti nejen v oblasti databází, ale
+také počítačové techniky.  
+
+Nástroj pgpool, který v návrhu zajišťuje rozkládání dotazů mezi servery v
+clusteru, nesleduje, jaké je aktuální vytížení serveru jinými procesy. Pro řízení
+load ba\-la\-ncing používá náhodného rozdělování dotazů mezi jednotlivé uzly. 
+Pokud už na serveru běží jiné služby (např. geoportál), které nesmí být ve svém
+provozu omezeny, je možno zátěž, kterou pgpool směřuje na jednotlivé slave
+servery, ovlivnit parametrem \texttt{backend\_weight}. Jeho hodnotou lze proporčně
+nastavit zátěž jednotlivých uzlů, jak již bylo ukázáno v kapitole
+\ref{kRozlozeni}. Takto lze například snížit počet dotazů, které jsou
+směřovány na server, zatížený jinými službami.
+

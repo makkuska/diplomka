@@ -16,8 +16,8 @@ studenti=# CREATE TABLE student (id int, jmeno varchar, id_rodne_mesto int, prim
 studenti=# CREATE TABLE rodne_mesto (id int, jmeno varchar, umisteni geometry, primary key(id));
 \end{lstlisting}
 
-Slony-I má vlastní konfigurační jazyk, pomocí kterého se píší skripty pro inicializaci 
-replikačního clusteru nebo jakoukoli změnu struktury databáze. Tyto skripty
+Slony-I má vlastní konfigurační jazyk, pomocí kterého se píší skripty pro i\-ni\-ci\-a\-li\-za\-ci 
+replikačního clusteru nebo pro jakoukoli změnu struktury databáze. Tyto skripty
 jsou poté provedeny pomocí utility \texttt{slonik}, která se spouští
 jednorázově.
 
@@ -45,7 +45,7 @@ Slony-I rozlišuje tři druhy serverů:
     replikaci také kterýkoliv ze slave serverů.
 \end{itemize}
 
-Ukázka konfiguračního skriptu pro inicializaci replikačního clusteru nazvaného
+Ukázka konfiguračního skriptu pro i\-ni\-ci\-a\-li\-za\-ci replikačního clusteru nazvaného
 \texttt{init\_master.txt} uloženého na master serveru:
 
 \begin{lstlisting}[language=ruby]
@@ -90,7 +90,7 @@ $slave1 = 'dbname=studenti host=192.168.1.101 user=replikator password=kgigis'
 $slave2 = 'dbname=studenti host=192.168.1.102 user=replikator password=kgigis'
 \end{lstlisting}
 
-Konfigurační skript pro inicializaci clusteru se spustí ze složky, ve které je
+Konfigurační skript pro i\-ni\-ci\-a\-li\-za\-ci clusteru se spustí ze složky, ve které je
 uložen, příkazem \texttt{slonik} s názvem souboru:
 
 \begin{lstlisting}
@@ -263,10 +263,5 @@ Spuštění skriptu \texttt{slonik}, který příkazy vykoná:
 \begin{lstlisting}
 > slonik add_to_set.txt
 \end{lstlisting}
-
-
-- omit copy - vyvaruje se toho, že smaže všechno na slavu a začne kopírovat znovu
-- umožňuje switchover, musí se všechno přerušit a pak příkazy log set a move set servery -prohodit
-- umožňuje failover - přesunutí mastera na slave (příkaz failover - povýšení slave databáze na master)
 
 Podobně je lze také smazat tabulku příkazem \texttt{drop set}. 

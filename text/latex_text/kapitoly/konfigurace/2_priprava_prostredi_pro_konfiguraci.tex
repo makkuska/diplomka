@@ -1,10 +1,10 @@
       \subsection{Příprava serverů před konfigurací replikace}
       \label{kPriprava}
-      Na začátku je potřeba připravit servery a nainstalovat na ně PostgreSQL s extenzemi PostGIS, Slony-I a pgpool. Informace o~instalacích jednotlivých komponent jsou dostupné na jejich webových stránkách. Ve Windows si stačí stáhnout pouze instalační balík pro PostgreSQL, který umožňuje instalaci databázového systému včetně všech výše zmíněných extenzí. Pro grafickou administraci databáze je doporučený, ale nepovinný, program \mbox{PgAdmin3}\footnote{více na \url{http://www.pgadmin.org/}}, který je taktéž multiplatformní. Většina příkazů je zde popisována skrze příkazový řádek, grafické rozhraní však poskytuje odpovídající volby.
+      Na začátku je potřeba připravit servery a nainstalovat na ně PostgreSQL s extenzemi PostGIS, Slony-I a pgpool. Informace o~instalacích jednotlivých komponent jsou dostupné na jejich webových stránkách. Ve Windows si stačí stáhnout pouze instalační balík pro PostgreSQL, který umožňuje instalaci databázového systému včetně všech výše zmíněných extenzí. Pro grafickou administraci databáze je doporučený, ale nepovinný, program \mbox{PgAdmin3}\footnote{více na \url{http://www.pgadmin.org/}}, který je taktéž multiplatformní. 
+      
+      Většina příkazů je zde popisována skrze příkazový řádek, grafické rozhraní však poskytuje odpovídající volby. Všechny technologie byly testovány na operačním systému Debian Linux. Některé příklady použité v této kapitole, především pak ukázky absolutních cest k souborům, tedy odpovídají struktuře tohoto systému.
 
-Všechny technologie byly testovány na operačním systému Debian Linux. Některé příklady použité v této kapitole, především pak ukázky absolutních cest k souborům, tedy odpovídají struktuře tohoto systému. Slony-I bylo navíc vyzkoušeno také na systému Windows XP. Bylo použito databázového systému PostgreSQL ve verzích PostgreSQL 9.1 a 9.3, Postgis verze 1.5 a 2.1, Slony-I verze 2.1 a pgpool verze 3.1 a~3.3.
-
-Pro databázové servery byla zvolena tři datová uložiště, pro jejichž přehled \vizTabulka{tServery}. IP adresy byly pro větší názornost upraveny na rozsah běžné lokální sítě. Vzhledem k tomu, že se do databáze bude přistupovat skrze pgpoool, není třeba, aby kterýkoli z níže vypsaných serverů, měl veřejnou IP adresu. Všechny servery běží na defaultním portu 5432, který je standardem pro PostgreSQL.
+Pro databázové servery byla zvolena tři datová uložiště, pro jejichž přehled \vizTabulka{tServery}. IP adresy byly pro větší názornost upraveny na rozsah běžné lokální sítě. Vzhledem k tomu, že se do databáze bude přistupovat skrze pgpoool, není třeba, aby kterýkoli z níže vypsaných serverů, měl veřejnou IP adresu. Všechny servery běží na výchozím portu 5432, který je standardem pro PostgreSQL.
 
         \begin{table}[H]
           \caption{Přehled databázových serverů v navrhovaném clusteru}
@@ -22,7 +22,7 @@ Pro databázové servery byla zvolena tři datová uložiště, pro jejichž př
             \end{center}
         \end{table}
 
-Aby bylo možné pracovat s databází, je nejdříve nutné chápat význam jednotlivých konfiguračních souborů a mít přehled o souborové struktuře PostgreSQL. Vzhledem k tomu, že si ji každý systém uzpůsobuje podle sebe, nezbývá než po instalaci PostgreSQL nastudovat, kde se jaký soubor nachází. Existuje tabulka \texttt{pg\_settings}, která uchovává veškeré informace o nastavení databáze. SQL příkazem, který čte z této tabulky, je možno vypsat absolutní cestu k datům (\texttt{data\_directory}) a cestu ke třem hlavním konfiguračním souborům:
+Aby bylo možné pracovat s databází, je nejdříve nutné chápat význam jednotlivých konfiguračních souborů a mít přehled o souborové struktuře PostgreSQL. Vzhledem k tomu, že si ji každý systém uzpůsobuje podle sebe, nezbývá než po instalaci PostgreSQL nastudovat, kde se jaký soubor nachází. Existuje tabulka \texttt{pg\_settings}, která uchovává veškeré informace o nastavení databáze. SQL příkazem, který čte z této ta\-bul\-ky, je možno vypsat absolutní cestu k datům (\texttt{data\_directory}) a cestu ke třem hlavním konfiguračním souborům:
 
 \begin{itemize}
   \item \texttt{postgres.conf}, který definuje obecné nastavení databáze,
@@ -30,7 +30,7 @@ Aby bylo možné pracovat s databází, je nejdříve nutné chápat význam jed
     \item \texttt{pg\_ident.conf}, který slouží k mapování uživatelů operačního systému na uživatele PostgreSQL \citep{ObeHsu2012}.
 \end{itemize}
 
-Příklad SQL příkazu, spuštěného na master serveru, který vypíše umístění jednotlivých souborů a složek:
+Příklad SQL příkazu spuštěného na master serveru, který vypíše umístění jednotlivých souborů a složek:
 
 \begin{lstlisting}
 SELECT name, setting FROM pg_settings WHERE category =  'File Locations';
@@ -50,7 +50,7 @@ SELECT name, setting FROM pg_settings WHERE category =  'File Locations';
           \end{center}
       \end{table}
 
-      U všech typů replikace je potřeba mít vytvořeného databázového uživatele s právem pro replikaci, pod kterým bude daný proces probíhat. Je možné vytvořit nového uživatele a nastavit mu tato práva nebo použít již existující účet \texttt{postgres}, který jako \texttt{SUPERUSER} obsahuje také práva pro replikaci. Je však potřeba mu hned na začátku změnit heslo.
+      U všech typů replikace je potřeba mít vytvořeného databázového uživatele s~právem pro replikaci, pod kterým bude daný proces probíhat. Je možné vytvořit nového uživatele a nastavit mu tato práva nebo použít již existující účet \texttt{postgres}, který jako \texttt{SUPERUSER} obsahuje také práva pro replikaci. Je však potřeba mu hned na začátku změnit heslo.
 
 Příklad změny hesla uživatele \texttt{postgres} na master serveru:
 \begin{lstlisting}
@@ -77,12 +77,11 @@ Streaming replikace vyžaduje kopii celé složky \texttt{data\_directory}. Je m
 
 Při kopírování za běhu databázového systému se zkopíruje také soubor \texttt{postmaster.pid}, který se vytváří po spuštění databázového systému a nese informaci o jeho proces ID. Pomocí tohoto ID je možno s procesem komunikovat nebo jej násilně ukončit. Na slave serveru však tento soubor nenese význam, protože proces tohoto ID neexistuje, a navíc při jeho existenci se služba nespustí, protože se domnívá, že již služba běží. Proto je třeba tento soubor smazat, například ulititou \texttt{rm}.
 
-Příklad zkopírování dat z master serveru na slave1 příkazem spuštěným ze slave1:
+Příklad zkopírování dat z master serveru na \texttt{slave1} příkazem spuštěným ze \texttt{slave1}:
 \begin{lstlisting} 
 psql -U postgres -h 192.168.1.100 -c "SELECT pg_start_backup('x',true);"
 \end{lstlisting}
 \begin{lstlisting}[keywordstyle=\bfseries\color{purpurova7},identifierstyle=\color{black},stringstyle=\color{black}]
-> scp -rv root@192.168.0.100:/etc/postgresql/9.1/main /etc/postgresql/9.1/main
 > scp -rv root@192.168.0.100:/var/lib/postgresql/9.1/main /var/lib/postgresql/9.1/main
 > rm /var/lib/postgresql/9.1/main/postmaster.pid
 \end{lstlisting}
@@ -90,7 +89,7 @@ psql -U postgres -h 192.168.1.100 -c "SELECT pg_start_backup('x',true);"
 psql -U postgres -h 192.168.1.100 -c "SELECT pg_stop_backup();"
 \end{lstlisting}
 
-Alternativou výše zmíněního postupu je použití utility přímo určené pro zálohování dat v PostgreSQL nazvané \texttt{pg\_basebackup}. Tento příkaz mimo jiné umožňuje kopírování dat za běhu replikace bez nutnosti použití \texttt{pg\_start/stop\_backup}.
+Alternativou výše zmíněného postupu je použití utility přímo určené pro zálohování dat v PostgreSQL nazvané \texttt{pg\_basebackup}. Tento příkaz mimo jiné umožňuje kopírování dat za běhu replikace bez nutnosti použití \texttt{pg\_start/stop\_backup}.
 
 Použití \texttt{pg\_basebackup} pro vytvoření repliky:
 \begin{lstlisting}[keywordstyle=\bfseries\color{purpurova7},identifierstyle=\color{black},stringstyle=\color{black}]
@@ -101,15 +100,14 @@ Kopírování dat je velice důležitý krok pro správný chod replikace. V př
 
 Pří kopírování celé datové struktury je vhodné nastavit jednotlivým souborům a~složkám správa. Vzhledem k tomu, že databázový systém zapisuje do složky s daty (\texttt{data\_directory}), musí mít PostgreSQL, i po zkopírování celé datové struktury na jiný server, práva pro zápis.
 
-V neposlední řadě je potřeba zajistit vzájemnou konektivitu všech serverů v replikačním clusteru. S tím souvisí i nutnost povolení přístupů z IP adres slave serverů. K tomu slouží konfigurační soubor \texttt{pg\_hba.conf}. Následující příklad ukazuje možné nastavení souboru \texttt{pg\_hba.conf} na master serveru. Povoluje uživetelům market a replication, přihlášených z dané IP adresy, přistupovat na master server a číst, resp. replikovat data.
-{\color{purpurova7}JINÝ PŘÍKLAD}
+V neposlední řadě je potřeba zajistit vzájemnou konektivitu všech serverů v replikačním clusteru. S tím souvisí i nutnost povolení přístupů z IP adres slave serverů. K~tomu slouží konfigurační soubor \texttt{pg\_hba.conf}. Následující příklad ukazuje možné nastavení souboru \texttt{pg\_hba.conf} na master serveru. Povoluje uživetelům student a~rep\-li\-cation, přihlášených z daných IP adres, přistupovat na master serveru a číst, zapisovat, resp. replikovat data.
       \begin{table}[H]
         \label{pgHba}
           \begin{center}
             \begin{tabular}{lllll}
               \texttt{\#host} & \texttt{DATABASE} & \texttt{USER} & \texttt{ADDRESS} & \texttt{METHOD} \\
-                \texttt{host} & \texttt{all} & \texttt{market} & \texttt{80.188.74.1/32} & \texttt{md5} \\
-       \texttt{host} & \texttt{replication} & \texttt{replication} & \texttt{80.188.74.1/32} &	\texttt{md5} \\
+                \texttt{host} & \texttt{all} & \texttt{student} & \texttt{158.194.94.116} & \texttt{md5} \\
+       \texttt{host} & \texttt{replication} & \texttt{replication} & \texttt{192.168.1.101} &	\texttt{md5} \\
             \end{tabular}
           \end{center}
       \end{table}

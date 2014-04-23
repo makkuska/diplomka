@@ -21,7 +21,7 @@
     \begin{declaration}
       \textbf{Čestné prohlášení}
 
-      Prohlašuji, že jsem závěrečnou práci magisterského studia oboru Geoinformatika vypracovala samostatně pod vedením RNDr. Viléma Pechance, Ph.D.
+      Prohlašuji, že jsem závěrečnou práci magisterského studia oboru Geoinformatika vypracovala samostatně pod vedením doc. RNDr. Viléma Pechance, Ph.D.
 
       Všechny použité materiály a zdroje jsou citovány s ohledem na vědeckou etiku, autorská práva a zákony na ochranu duševního vlastnictví.
 
@@ -33,11 +33,11 @@
     %poděkování, pokud nějaké chcete uvést, jinak lze tuto sekci smazat
     \begin{dedication}
 
-      Ráda bych poděkovala doc. RNDr. Vilému Pechancovi, Ph.D. za ochotné vedení této práce, pečlivé korekce a věcné připomínky.
+      Ráda bych poděkovala doc. RNDr. Vilému Pechancovi, Ph.D. za ochotné vedení této práce, za věcné připomínky a vstřícnost při konzultacích.
 
       Děkuji také konzultantu Tomáši Vondrovi, za jeho cenné rady a odborný vhled, který vnesl do této práce, stejně tak jako i jeho kolegovi Pavlovi Stěhule.
 
-      Dále děkuji konzultantům Boudewijn van Leeuwen a Zalan Tobak působích na Universitě v Szegedu v Maďarsku za inspirativní podněty při vypracování této práce.
+      Dále děkuji konzultantům Boudewijn van Leeuwen a Zalan Tobak působích na Univezitě v Szegedu v Maďarsku za inspirativní podněty při vypracování této práce.
       \vspace{4em}
     \end{dedication}
 
@@ -50,22 +50,13 @@
 
     %------------------------------------------------------------------------- NASTAVENÍ POČÍTADLA, OBSAH
 
-    \setcounter{page}{5}          %nastavení počítadla stránek na správnou hodnotu
+    \setcounter{page}{4}          %nastavení počítadla stránek na správnou hodnotu
     \makeTableOfContent{3}        %vložení obsahu, standardně se používají 3 úrovně
-
-    %------------------------------------------------------------------------- ILUSTRACE
-    \newpage
     \listoffigures
     \listoftables
 
-    %------------------------------------------------------------------------- GLOSSARY
-    %\makeGlossary
-    %vložení seznamu zkratek, smazat, pokud není třeba
-    %formát v nemž se vkládají zkratky, vlouží se pouze ty, které budou použity v textu.
-    % v textu vkládáme zkratku pomocí příkazu \gls{DTM}
-    \newglossaryentry{Esri}{name=Esri, description={Environmental Systems Research Institute}}
-    \newglossaryentry{SDE}{name=SDE, description={Spatial Database Engine}}
-    \newglossaryentry{SQL}{name=SQL, description={Structured Query Language}}
+    %------------------------------------------------------------------------- ILUSTRACE
+    %\newpage
 
     %------------------------------------------------------------------------- ÚVOD
     %protože je Úvod nečíslovaný je potřeba ho manuálně vložit do obsahu
@@ -83,7 +74,7 @@
     %------------------------------------------------------------------------- POUŽITÉ METODY A POSTUPY PRÁCE
     \newpage
     \section{POUŽITÉ METODY A POSTUPY PRÁCE}
-      %\input{kapitoly/pouzite_metody.tex}
+      \input{kapitoly/pouzite_metody.tex}
 
     %------------------------------------------------------------------------- TEORETICKÁ VÝCHODISKA
     \newpage
@@ -103,33 +94,25 @@
       \input{kapitoly/konfigurace/2_priprava_prostredi_pro_konfiguraci.tex}
       \input{kapitoly/konfigurace/3_konfigurace_replikace.tex}
       \input{kapitoly/konfigurace/4_rozlozeni_zateze.tex}
+      \input{kapitoly/konfigurace/5_pripojeni_k_databaze_pres_arcgis_produkty.tex}
       \input{kapitoly/konfigurace/6_testovani_vykonu.tex}
 
     %------------------------------------------------------------------------- DISKUZE
     \newpage
     \section{DISKUZE}
+      \input{kapitoly/diskuze.tex}
 
     %------------------------------------------------------------------------- ZÁVĚR
     \newpage
     \section{ZÁVĚR}
-Tato práce zhodnotila možnosti replikačních řešení a základě toho navrhla databázové řešení s ohledem na možnosti a požadavky katedry. V rešerší části byly vymezeny pojmy synchronizace, replikace a související pojem verzování a popsána replikace včetně variant synchronní, asynchronní, jednosměrná, dvousměrná, kaskádová, logická a fyzická. Bylo rozebráno, jaké požadavky pro databázové ukládání dat mají produkty ArcGIS a podrobně bylo popsáno řešení ArcSDE, které se v ArcGIS produktech používá pro připojení k databázi.
+      \input{kapitoly/zaver.tex}
 
-Na základě rešerše byl vybrán databázový server PostgreSQL, který je možno použít v kombinaci s produkty ArcGIS produkty, což byl jeden z hlavních požadavků pro výběr databázového systému. Byl sestaven návrh databázového řešení který zohledňuje všechny požadavky katedry a možnosti daných technologií. Bylo vytvořeno testovací prostředí na serveru poskytnutém katedrou, na němž byly dané procesy otestovány. Na základě toho pak byl sepsán podrobný popis toho, jak nastavit replikaci ve variantě streaming a Slony-I. Návrh zahrnul také možnost použití nástroje pro rozložení zátěže mezi servery v databázovém řešení.
-
-Návrh databázového řešení slibuje zvyšení interoperability,  usnadnění sdílení dat a řešení licenčních podmínek, dále zajištění vysoké dostupnosti a aktuálnosti dat. Studenti navíc budou mít možnost vyzkoušet si práci s databází, která je může lépe připravit na budoucí zaměstání.
     %------------------------------------------------------------------------- LITERATURA
     \makeBibliography{literatura}
-    %\bibliography{literatura}
-
 
     %------------------------------------------------------------------------- SUMMARY
     \begin{summary}
-      There is summary of all aims, methods and results in this chapter.
-      Summary is not only translation of chapter Závěr. There is more
-      information from chapters Cíle, Výsledky and Diskuze. Number of
-      pages of Summary chapter is two at least. The style is Normalni
-      Summary. Language is set to Angličina(Velká Británie) for automatic
-      spell check. Do not use language Angličtina(USA).
+      \input{kapitoly/summary.tex}
     \end{summary}
 
     %------------------------------------------------------------------------- PŘÍLOHY
@@ -150,8 +133,6 @@ Návrh databázového řešení slibuje zvyšení interoperability,  usnadnění
       \textbf{Popis sktruktury CD}
 
         Adresáře a soubory:
-
-        - \texttt{skripty\slash} - složka se skripty
 
         - \texttt{web\slash} - webové stránky jako doplněk k diplomové práci
 

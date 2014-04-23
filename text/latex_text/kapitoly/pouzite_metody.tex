@@ -1,67 +1,22 @@
- \subsection{Obrázkygt}
+Konfigurace replikace zahrnovala studium návodů jednotlivých nástrojů pro
+replikaci a jejich následné praktické nastavení. To bylo testováno průběžně na
+několika počítačích. 
 
-    %ukázka zápisu kódu pro obrázek
-    %parametr H říká že to bude přímo na tom místě kde je v textu...více http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.2\textwidth]{./obrazky/obrazek_1.png}
-      \label{fig:44}
-    \end{figure}
+Nástroj pro replikaci \texttt{Slony-I} byl testován na operačním systému Ubuntu
+GNU/Linux 12.4 a zároveň na operačním systému Windows XP. 
 
-    %ukázka odkazu na zkratky a obrázek
-    \gls{Esri} \gls{SQL} bla bla bla \odkazObrazek{fig:44}. Pokud chceme uvést překlad z angličtiny můžeme to udělat takto \transl{english words}.
+Nativní PostgreSQL streaming replikace byla testována pouze na operačním
+systému Linux. Server geohydro.upol.cz byl poskytnut jako testovaní server pro
+tuto práci. Na server byl nainstalován 32bitový operační systém Debian
+GNU/Linux 7.3, který byl vybrán kvůli jeho stabilitě a jevil se tedy pro server
+jako vhodný. Tato verze ovšem umožnila instalaci pouze programů verzí
+PostgreSQL 9.1, PostGIS 1.5 a pgpool 3.1. Vzhledem k tomu, že se nejedná o
+nejnovější verze zmíněných produktů, byla replikace testována také na osobním
+počítači ve verzích PostgreSQL 9.3, PostGIS 2.1 a pgpool 3.3. To umožnilo
+nastudování dalších možností, které nové verze přináší a které byly zohledněny
+v návrhu replikačního řešení. 
 
-    %dají se dělat i složené obrázky
-    \begin{figure}
-        \centering
-        \begin{subfigure}[b]{0.45\textwidth}
-          \centering
-          \includegraphics[width=\textwidth]{./obrazky/obrazek_1.png}
-          \label{fig2.1}
-        \end{subfigure}%
-        \quad %add desired spacing between images, e. g. ~, \quad, \qquad etc.
-          %(or a blank line to force the subfigure onto a new line)
-        \begin{subfigure}[b]{0.45\textwidth}
-          \centering
-          \includegraphics[width=\textwidth]{./obrazky/obrazek_1.png}
-          \caption{Obsah zinku v půdě }
-          \label{fig2.2}
-        \end{subfigure}
-        \caption{Povrch socioekonomického (a) a fyzickogeografického (b) ukazatele}
-        \label{fig2}
-    \end{figure}
-
-    \begin{table}[h]
-    \caption {Ukázková tabulka}
-    \label{tab1}
-    \centering
-      \begin{tabular}{ |l|l|l| }
-        \hline
-        \multicolumn{3}{ |c| }{Team sheet} \\
-        \hline
-        Goalkeeper & GK & Paul Robinson \\ \hline
-        \multirow{4}{*}{Defenders} & LB & Lucus Radebe \\
-        & DC & Michael Duberry \\
-        & DC & Dominic Matteo \\
-        & RB & Didier Domi \\ \hline
-        \multirow{3}{*}{Midfielders} & MC & David Batty \\
-        & MC & Eirik Bakke \\
-        & MC & Jody Morris \\ \hline
-        Forward & FW & Jamie McMaster \\ \hline
-        \multirow{2}{*}{Strikers} & ST & Alan Smith \\
-        & ST & Mark Viduka \\
-        \hline
-      \end{tabular}
-    \end{table}
-
-    Odkaz na tabulku pak vytvoříme takto: \odkazTabulka{tab1}.
-
-    \begin{equation}
-    \label{eq1}
-    c = \sqrt{a^2 + b^2}
-    \end{equation}
-
-    Vzorce pak odkazujeme \odkazVzorec{eq1}. 
-
+Pro testování byla používána ukázková prostorová data vytvořená pro účel této
+práce a dále byla na server uložena datová sada ArcČR ve verzi 3.0.
 
 

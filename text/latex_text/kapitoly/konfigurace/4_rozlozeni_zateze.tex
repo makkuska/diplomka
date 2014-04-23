@@ -1,6 +1,7 @@
 \subsection{Rozložení zátěže mezi replikační servery}
+\label{kRozlozeni}
 
-Doposud je samotné replikační rešení nastaveno tak, že se uživatelé musí
+Doposud je samotné replikační řešení nastaveno tak, že se uživatelé musí
 přihlašovat vždy ke konkrétnímu serveru v clusteru. To není úplně vhodné řešení,
 protože v~případě, že se na jeden uzel, například v rámci cvičení, připojí velký
 počet klientů, může se stát, že se tento uzel přetíží, zatímco ostatní uzly
@@ -33,7 +34,7 @@ nastavení a sledovat statistiky. Uživatelské jméno a heslo lze je třeba nas
 v souboru \texttt{pcp.conf}, přičemž heslo musí být zahashováno algoritmem md5.
 Tento hash lze získat pomocí utility \texttt{pg\_md5}.
 
-Příklad zahashování hesla \uv{\texttt{kgigis}} pomocí \texttt{pg\_md5}:
+Příklad zahashování hesla \texttt{kgigis} pomocí \texttt{pg\_md5}:
 %\begin{lstlisting}[identifierstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black}]
 \begin{lstlisting}[language=ruby,morekeywords={pg_md5}]
 > pg_md5 kgigis
@@ -202,3 +203,8 @@ např. \texttt{pcp\_pool\_info}, pomocí něhož lze získat informace o nastave
 pgpool, nebo \texttt{pcp\_promote\_node} pro změnu uzlů z master na slave a
 opačně\footnote{kompletní seznam nástrojů pgpool na
 \url{http://www.pgpool.net/docs/latest/pgpool-en.html\#pcp\_command}}.
+
+Uživatelé se do databáze připojí stejně jako do jakékoli jiné databáze, pouze použijí port 9999 a IP adresu serveru, na kterém pgpool běží. Z příkazové řádky je možné se připojit následujícím příkazem s parametry v pořadí název databáze, port, hostname/IP adresa, uživatelské jméno:
+\begin{lstlisting}[language=ruby,morekeywords={psql}]
+psql studenti -p 9999 -h 158.194.94.93 -U student 
+\end{lstlisting}

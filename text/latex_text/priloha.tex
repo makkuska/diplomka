@@ -1,0 +1,69 @@
+\documentclass{thesisKGI}
+\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+\newcommand{\tab}[1]{\hspace{.2\textwidth}\rlap{#1}}
+  %------------------- TITULNÍ STRANA -------------------
+
+  \begin{document}
+  \sloppy       %lepší hlídání přetékajících řádků
+  \section*{Příloha k diplomové práce}
+
+  \pagestyle{empty}
+  \begin{itemize}
+    \item server {\bf geohydro.upol.cz} - IP 158.194.94.93
+\item operační systém: Debian GNU/Linux 7.3 (32-bit)
+\item verze programů: PostgreSQL 9.1, PostGIS 1.5, pgpool 3.1
+\item všechny uzly běží na jednom počítači ve třech instancích PostgreSQL:
+        \begin{table}[H]
+            \label{tServery}
+            \begin{center}
+              \rowcolors{1}{white}{lightgray}
+            \begin{tabular}{|c|ccccc|}
+              \hline
+              \color{purpurova7}{název} & \color{purpurova7}{IP adresa v textu} & \color{purpurova7}{skutečná IP adresa} & \color{purpurova7}{port v textu}& \color{purpurova7}{skutečný port} & \color{purpurova7}{replikace}\\
+                                   master& 192.168.0.100& 158.194.94.93 & 5432& 5432 & \\
+                                   slave1& 192.168.0.101& 158.194.94.93 & 5432& 5433 & sync \\
+                                   slave2& 192.168.0.102& 158.194.94.93 & 5432& 5434 & async\\
+              \hline
+              \multicolumn{6}{l}{- jednotlivé uzly lze (v rootu) vypsat pomocí: \texttt{pg\_lscluster}}\\
+              \multicolumn{6}{l}{- spustit (např. slave1) pomocí: \texttt{pg\_ctlCluster 9.1 slave1 start (stop/restart)}}\\
+              \end{tabular}
+            \end{center}
+        \end{table}
+\item oba slave servery jsou připojeny na master server, protože kaskádová replikace je podporována až od verze 9.2
+\item složky s daty a konfiguračními soubory:
+        \begin{table}[H]
+            \label{tServery}
+            \begin{center}
+              \rowcolors{1}{white}{lightgray}
+            \begin{tabular}{|c|c|c|}
+              \hline
+              \color{purpurova7}{server} & \color{purpurova7}{config\_directory} & \color{purpurova7}{data\_directory} \\
+                                 master& /etc/postgresql/9.1/main   & /var/lib/postgresql/9.1/main  \\
+                                 slave1& /etc/postgresql/9.1/slave1 & /var/lib/postgresql/9.1/slave1  \\
+                                 slave2& /etc/postgresql/9.1/slave2 & /var/lib/postgresql/9.1/slave2  \\
+                                 pgpool& /etc/pgpool & \\
+              \hline
+              \end{tabular}
+            \end{center}
+        \end{table}
+\item přehled vytvořených uživatelů:
+        \begin{table}[H]
+            \label{tServery}
+            \begin{center}
+              \rowcolors{1}{white}{lightgray}
+            \begin{tabular}{|c|c|c|}
+              \hline
+              \color{purpurova7}{user} & \color{purpurova7}{heslo} & \color{purpurova7}{práva} \\
+                                 postgres & kgigis & SUPERUSER  \\
+                                 replication & kgigis & REPLICATION \\
+                                 student & kgigis & pouze čtení u db: ArcCR  \\
+              \hline
+              \end{tabular}
+            \end{center}
+        \end{table}
+      \item administrátor pgpool: user \texttt{kgi} – heslo \texttt{kgigis}
+\item datové sady: ArcČR 3.0 (název databáze: arccr)
+\item ArcSDE nebylo do databáze přidáno, protože se při instalaci nezohlednily kompatibilní verze. 
+  \end{itemize}
+
+  \end{document}

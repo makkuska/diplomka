@@ -1,19 +1,20 @@
 \select@language {czech}
-\contentsline {section}{\IeC {\'U}VOD}{9}{section*.4}
-\contentsline {section}{\numberline {1}C\IeC {\'I}LE PR\IeC {\'A}CE}{11}{section.1}
-\contentsline {section}{\numberline {2}POU\IeC {\v Z}IT\IeC {\'E} METODY A POSTUPY PR\IeC {\'A}CE}{12}{section.2}
-\contentsline {section}{\numberline {3}TEORETICK\IeC {\'A} V\IeC {\'Y}CHODISKA}{13}{section.3}
-\contentsline {subsection}{\numberline {3.1}Vymezen\IeC {\'\i } pojm\IeC {\r u}}{14}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Replikace}{17}{subsection.3.2}
+\contentsline {section}{\IeC {\'U}VOD}{8}{section*.4}
+\contentsline {section}{\numberline {1}C\IeC {\'I}LE PR\IeC {\'A}CE}{10}{section.1}
+\contentsline {section}{\numberline {2}POU\IeC {\v Z}IT\IeC {\'E} METODY A POSTUPY PR\IeC {\'A}CE}{11}{section.2}
+\contentsline {section}{\numberline {3}TEORETICK\IeC {\'A} V\IeC {\'Y}CHODISKA}{12}{section.3}
+\contentsline {subsection}{\numberline {3.1}Vymezen\IeC {\'\i } pojm\IeC {\r u}}{13}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Replikace}{16}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}ArcGIS produkty}{20}{subsection.3.3}
-\contentsline {subsubsection}{\numberline {3.3.1}ArcSDE geodatabase}{22}{subsubsection.3.3.1}
-\contentsline {subsection}{\numberline {3.4}Vybran\IeC {\'e} datab\IeC {\'a}zov\IeC {\'e} syst\IeC {\'e}my}{25}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}PostgreSQL (+ PostGIS)}{25}{subsubsection.3.4.1}
-\contentsline {subsubsection}{\numberline {3.4.2}Microsoft SQL Server}{27}{subsubsection.3.4.2}
-\contentsline {subsection}{\numberline {3.5}N\IeC {\'a}stroje pro replikaci v PostgreSQL}{28}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.3.1}Verze a varianty produktu}{20}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}ArcSDE Technology}{22}{subsubsection.3.3.2}
+\contentsline {subsection}{\numberline {3.4}Vybran\IeC {\'e} datab\IeC {\'a}zov\IeC {\'e} syst\IeC {\'e}my}{24}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}PostgreSQL (+ PostGIS)}{24}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}MS SQL Server}{26}{subsubsection.3.4.2}
+\contentsline {subsection}{\numberline {3.5}N\IeC {\'a}stroje pro replikaci v PostgreSQL}{27}{subsection.3.5}
 \contentsline {subsubsection}{\numberline {3.5.1}Slony-I}{28}{subsubsection.3.5.1}
 \contentsline {subsubsection}{\numberline {3.5.2}Streaming replikace}{29}{subsubsection.3.5.2}
-\contentsline {subsubsection}{\numberline {3.5.3}pgpool}{30}{subsubsection.3.5.3}
+\contentsline {subsubsection}{\numberline {3.5.3}pgpool}{29}{subsubsection.3.5.3}
 \contentsline {section}{\numberline {4}N\IeC {\'A}VRH A KONFIGURACE REPLIKACE}{31}{section.4}
 \contentsline {subsection}{\numberline {4.1}Aktu\IeC {\'a}ln\IeC {\'\i } stav spr\IeC {\'a}vy dat}{31}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}Po\IeC {\v z}adavky na datab\IeC {\'a}zov\IeC {\'e} \IeC {\v r}e\IeC {\v s}en\IeC {\'\i }}{32}{subsection.4.2}
@@ -23,9 +24,10 @@
 \contentsline {subsubsection}{\numberline {4.5.1}Streaming replikace}{38}{subsubsection.4.5.1}
 \contentsline {subsubsection}{\numberline {4.5.2}Slony-I}{41}{subsubsection.4.5.2}
 \contentsline {subsection}{\numberline {4.6}Rozlo\IeC {\v z}en\IeC {\'\i } z\IeC {\'a}t\IeC {\v e}\IeC {\v z}e mezi replika\IeC {\v c}n\IeC {\'\i } servery}{47}{subsection.4.6}
-\contentsline {subsection}{\numberline {4.7}Testov\IeC {\'a}n\IeC {\'\i } v\IeC {\'y}konu}{51}{subsection.4.7}
-\contentsline {section}{\numberline {5}DISKUZE}{53}{section.5}
-\contentsline {section}{\numberline {6}Z\IeC {\'A}V\IeC {\v E}R}{54}{section.6}
-\contentsline {section}{LITERATURA}{55}{section.6}
-\contentsline {section}{SUMMARY}{57}{section*.27}
-\contentsline {section}{P\IeC {\v R}\IeC {\'I}LOHY}{58}{section*.27}
+\contentsline {subsection}{\numberline {4.7}P\IeC {\v r}ipojen\IeC {\'\i } datab\IeC {\'a}ze skrze ArcSDE}{51}{subsection.4.7}
+\contentsline {subsection}{\numberline {4.8}Testov\IeC {\'a}n\IeC {\'\i } v\IeC {\'y}konu}{53}{subsection.4.8}
+\contentsline {section}{\numberline {5}DISKUZE}{54}{section.5}
+\contentsline {section}{\numberline {6}Z\IeC {\'A}V\IeC {\v E}R}{56}{section.6}
+\contentsline {section}{LITERATURA}{57}{section.6}
+\contentsline {section}{SUMMARY}{59}{section*.29}
+\contentsline {section}{P\IeC {\v R}\IeC {\'I}LOHY}{60}{section*.29}

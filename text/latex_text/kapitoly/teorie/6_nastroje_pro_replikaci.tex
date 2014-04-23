@@ -30,11 +30,11 @@
 
       Jak píší \cite{Boszormenyi2013} je Slony-I jeden z nejrozšířenějších externích nástrojů pro replikaci PostgreSQL databází. Zároveň se také řadí mezi nejstarší, plně používán je v PostgreSQL již od verze 7.3. a je velmi dobře podporován i dalšími externími řešeními pro PostgreSQL, například programem PgAdmin3, který nabízí správu dat pomocí grafického rozhraní \citep{Boszormenyi2013}.
 
-      Jedná se o trigger-based replikaci, což znamená, že je ke každé tabulce vybrané pro replikaci přidán trigger, který zajistí replikaci každé změny, která v tabulce nastane. Z toho také vyplývá, že se jedná o logickou replikaci, kdy je možné replikovat pouze změny v datech, tedy tzv. DML\footnote{Data Manipulation Language} příkazy (INSERT, UPDATE, DELETE), nikoli změny struktury databáze, tedy tzv. DDL\footnote{Data Definition Language} příkazy (CREATE, ALTER, DROP). Každá změna struktury se tedy musí provést ručně, což se může jevit jako nevýhodné. Nese to ale i své klady, například možnost výběru pouze některých tabulek. Uživatel vytváří tzv. {\it replikační set}, do kterého se zapíší pouze ty tabulky, které je potřeba replikovat. 
+      Jedná se o {\it trigger-based} replikaci, což znamená, že je ke každé tabulce vybrané pro replikaci přidán trigger, který zajistí replikaci každé změny, která v tabulce nastane. Z toho také vyplývá, že se jedná o logickou replikaci, kdy je možné replikovat pouze změny v datech, tedy tzv. DML\footnote{Data Manipulation Language} příkazy (INSERT, UPDATE, DELETE), nikoli změny struktury databáze, tedy tzv. DDL\footnote{Data Definition Language} příkazy (CREATE, ALTER, DROP). Každá změna struktury se tedy musí provést ručně, což se může jevit jako nevýhodné. Nese to ale i své klady, například možnost výběru pouze některých tabulek. Uživatel vytváří tzv. {\it replikační set}, do kterého se zapíší pouze ty tabulky, které je potřeba replikovat. 
 
 Další výhodou, a to zvlášť v porování se streaming replikací, je možnost replikace dat mezi různými verzemi PostgreSQL bez ohledu na platformu a architekturu. Naopak spíše za nevýhodu je považováno, že si vytváři ke každé tabulce vlastní schéma, do kterého se ukládají replikovaná data, což způsobuje redundanci dat. 
 
-  Slony-I umožňuje master-master i master-slave replikaci, která je z principu asynchronní. 
+  Slony-I umožňuje multimaster i master-slave replikaci, která je z principu asynchronní. 
   Slony-I replikaci je možno nastavit jako kaskádovou i jako Hot Standby, což
   znamená, že v případě pádu master serveru je slave automaticky povýšen na
   master. Slony-I má vlastní konfigurační nástroj a samotná replikace funguje
@@ -49,7 +49,7 @@ Další výhodou, a to zvlášť v porování se streaming replikací, je možno
   PostgreSQL, stejné platformy i architektury na všech uzlech replikačního
   clusteru. 
   
-  Jde se o log-shipping replikaci, což znamená, že jsou na slave servery
+  Jde se o {\it log-shipping} replikaci, což znamená, že jsou na slave servery
   posílány záznamy transakčního logu, v PostgreSQL nazývané WAL (Write Ahead
   Log). Do něj jsou změny nejdříve zaznamenávány přímým zápisem na disk a až
   poté potvzeny jako úspěšné. Tento způsob zajišťuje datům naprosté bezpečí,
@@ -61,18 +61,41 @@ Další výhodou, a to zvlášť v porování se streaming replikací, je možno
   Výhodou tohoto nativního řešení je větší efektivita a stabilita replikace,
   než nabízí jiná diskutovaná řešení. Použití toho způsobu replikace však má i
   tu nevýhodu, že aktualizaci databázového systému, operačního systému i
-  architektury je třeba provést na všech serverech najednou.
+  architektury je třeba provést vždy na všech serverech zároveň.
 
   Streaming replikace umožňuje pouze master-slave replikaci ve variantách
-  synchronní, asynchronní a kaskádová\footnote{podporovaná od verze PostgreSQL 9.2} a Hot Standby mód.
+  synchronní, asynchronní a kaskádová\footnote{podporovaná od verze PostgreSQL
+  9.2} a Hot Standby mód.
 
       \subsubsection{pgpool}
       \label{kpgpool}
 
-      Nástroj pgpool, který je stejně jako Slony-I extenzí pro PostgreSQL, je dalším z nástrojů, který je možno použít pro replikaci dat, umožňuje však i další pokročilé funkce jakými jsou sdílení spojení klienta s databází mezi servery (angl. connection pooling), paralelní uložení dat (angl. parallel query) a rozložení zátěže mezi více servery (angl. load balancing). 
-Nástroj pgpool umožňuje sdílení spojení klienta s databází, což v praxi znamená, že se vytvoří několik spojení se serverem, která i po skončení dotazu zůstanou otevřená a připravená pro další použití. Nemusí se tedy navazovat spojení při každém požadavku ze strany klienta, což velice zrychlí provoz a zajistí plynulost užívání databáze. Je vhodným nástrojem pro správu velkých tabulek díky distribuovanému způsobu ukládání dat \citep{pgpool2014}. 
+Nástroj pgpool, který je stejně jako Slony-I extenzí pro PostgreSQL, je dalším
+z nástrojů, který je možno použít pro replikaci dat. Umožňuje však i další
+pokročilé funkce jakými jsou sdílení spojení klienta s databází mezi servery
+(angl. connection pooling), paralelní uložení dat (angl. parallel query) a
+rozložení zátěže mezi více servery (angl. load balancing). 
 
-Zároveň pgpool umožňuje rozložení zátěže mezi více serverů v replikačním clusteru, aby nedocházelo k přetížení jednotlivých uzlů a celkově se zvýšila rychlost a~efektivita práce s databází. V tomto se pgpool stává prostředníkem pro komunikaci mezi klientem a serverem. Aby nebylo potřeba dát každému uživateli přístup k jinému slave serveru, nebo přístupy do databáze manuálně rozkládat skrze složité programové řešení, nabízí se možnost použití pgpool, který se navenek jeví jako jakákoliv jiný databázový server, do kterému se uživatelé připojí. pgpool pak sám rozdělí dotazy mezi uzly v replikačním clusteru dle aktuální zátěže \citep{Boszormenyi2013}. Zároveň, pokud má uživatel práva ke čtení i k zápisu, umí na základě aktuálního SQL příkazu rozhodnout, zda jej přepošle master nebo slave serveru \odkazObrazek{opgpool}. 
+Nástroj pgpool umožňuje sdílení spojení klienta s databází, což v praxi
+znamená, že se vytvoří několik spojení se serverem, která i po skončení dotazu
+zůstanou otevřená a připravená pro další použití. Nemusí se tedy navazovat
+spojení při každém požadavku ze strany klienta, což velice zrychlí provoz a
+zajistí plynulost užívání databáze. Je vhodným nástrojem pro správu velkých
+tabulek díky distribuovanému způsobu ukládání dat \citep{pgpool2014}. 
+
+Zároveň pgpool umožňuje rozložení zátěže mezi více serverů v replikačním
+clusteru, aby nedocházelo k přetížení jednotlivých uzlů a celkově se zvýšila
+rychlost a~efektivita práce s databází. V tomto se pgpool stává prostředníkem
+pro komunikaci mezi klientem a serverem. 
+
+Aby nebylo potřeba dát každému
+uživateli přístup k jinému slave serveru, nebo přístupy do databáze manuálně
+rozkládat skrze složité programové řešení, nabízí se možnost použití pgpool. 
+Ten se navenek jeví jako jakákoliv jiný databázový server, do kterého se
+uživatelé připojí a  pgpool pak sám rozdělí dotazy mezi uzly v replikačním
+clusteru dle aktuální zátěže \citep{Boszormenyi2013}. Zároveň, pokud má
+uživatel práva ke čtení i k zápisu, umí na základě aktuálního SQL příkazu
+rozhodnout, zda jej přepošle master nebo slave serveru \odkazObrazek{opgpool}. 
 
 Na základě vybraných funkcí je možno použít jeden ze čtyř základních módů, které pgpool poskytuje\footnote{kompletní přehled na \url{http://www.pgpool.net/docs/latest/pgpool-en.html\#config}}: základní, replikační, master/slave a paralelní. V návrh databázového řešení byl použit mód master/slave, který je dále popisován v kapitole \odkazKapitola{kpgpool}.
 

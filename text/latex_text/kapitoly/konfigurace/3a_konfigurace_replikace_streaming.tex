@@ -15,7 +15,7 @@ serveru. Pro asynchonní replikaci stačí nastavit parametry:
 Hodnota \texttt{wal\_level} nastavená na \texttt{hot\_stadby} zajistí, že do
 transakčního logu bude zapisován takový typ informací, který poté na slave
 serveru umožní dotazování. Vzhledem k tomu, že se bude na master
-server připojovat pouze \texttt{slave1} a všechny další slave servery se poté
+server připojovat pouze \texttt{slave1} a~všechny další slave servery se poté
 budou připojovat k němu, hodnota \texttt{1} parametru \texttt{max\_wal\_senders}
 zcela dostačuje. Je však možné hodnotu rovnou navýšit, aby se soubor v budoucnu
 nemusel znovu editovat z důvodu připojení dalšího serveru.
@@ -35,7 +35,7 @@ synchronous_standby_names = 'gis'
 
 Stejně tak je potřeba konfigurovat \texttt{postgresql.conf} na slave serverech.
 Hodnoty parametrů \texttt{wal\_level} a \texttt{max\_level\_sender} mohou a
-nemusí zůstat stejné jako na masteru. Pokud však má být slave připraven
+nemusí zůstat stejné jako na master serveru. Pokud však má být slave připraven
 zastoupit master server v případě jeho výpadku, je nutné, aby hodnoty byly
 nastaveny shodně.  Na slave serveru je dále potřeba nastavit:
 \begin{itemize}
@@ -62,7 +62,7 @@ složce s daty, který definuje parametry:
     kterého budou data replikována - IP adresu serveru, port, název replikačního
     uživatele a jeho heslo a v případě synchronní replikace ještě hodnotu,
     která musí být shodná s hodnotou, která byla nastavená na master serveru v
-    souboru \texttt{postgresql.conf} v parametru
+    souboru \texttt{postgresql.conf} v~parametru
     \texttt{synchronous\_standby\_name}.
 \end{itemize}
 
