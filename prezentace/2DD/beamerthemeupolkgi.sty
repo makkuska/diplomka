@@ -1,0 +1,183 @@
+%
+% Copyright (c) 2013
+% Jan Caha - <jan DOT caha AT klikni DOT cz>
+%
+% based on theme by: 
+% Copyright (c) 2011 
+% Manuel Vonthron - <manuel DOT vonthron AT acadis DOT org>
+%
+% This file may be distributed and/or modified under the terms of 
+% GPL, Version 2
+% 
+
+\ProvidesPackage{beamerthemeupolkgi}[2013/03/04]
+\RequirePackage{tikz}
+\RequirePackage{calc}
+\RequirePackage{xcolor}
+
+\RequirePackage[scriptsize,it]{caption}
+\captionsetup{labelformat=empty,labelsep=none}
+
+%package pro utf-8 kódování a správné znaky ve výstupním pdf
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{cmap}
+\RequirePackage{lmodern}
+
+%package s českým slovníkem pro dělení slov apod.
+\RequirePackage[czech]{babel}
+
+%package pro sazbu matematických vzorců a dalších nezbytností týkajících se matematické sazby
+\RequirePackage{amsthm}
+\RequirePackage{amsbsy}
+\RequirePackage{amssymb}
+\RequirePackage{amsfonts}
+\RequirePackage{amsmath}
+\RequirePackage{bbm}
+
+%package pro tvorbu více obrazků vedle sebe atd.
+\RequirePackage{subcaption}
+
+%package na lepší tabulky s multirow
+\RequirePackage{multirow}
+
+%package na formátování zdrojáků a kódů obecně
+\RequirePackage{listingsutf8}
+
+%package pro citace ve tvaru autor-rok
+\RequirePackage[authoryear]{natbib}
+
+\mode<presentation>
+
+\def\event#1{\gdef\@event{#1}}
+\event{}
+
+\def\KGI{Katedra Geoinformatiky}
+\def\UPOL{Univerzita Palackého v Olomouci}
+\def\WEB{www.geoinformatics.upol.cz}
+
+\def\KGIen{Department of Geoinformatics}
+\def\UPOLen{Palacký University Olomouc}
+
+%%% variables and options
+\newif\ifbeamer@nameTitle
+\newif\ifbeamer@numbering
+\newif\ifbeamer@english
+\newif\ifbeamer@tableOfContent
+
+\def\@empty{}
+
+\beamer@nameTitlefalse
+\beamer@numberingfalse
+\beamer@englishfalse
+\beamer@tableOfContentfalse
+
+
+\DeclareOptionBeamer{english}{\beamer@englishtrue}
+\DeclareOptionBeamer{tableOfContent}{\beamer@tableOfContenttrue}
+\DeclareOptionBeamer{numbering}{\beamer@numberingtrue}
+\DeclareOptionBeamer{nameTitle}{\beamer@nameTitletrue}
+
+\ProcessOptionsBeamer
+
+\useinnertheme{circles}
+\useoutertheme{miniframes}
+
+\usecolortheme{upolkgi}
+
+\setbeamertemplate{navigation symbols}{}
+
+% TITLE PAGE
+\defbeamertemplate*{title page}{titlepage}
+{
+
+\begin{picture}(0,0)(0,0)
+    \put(10,10){
+        \begin{minipage}{0.9\linewidth}
+		\vspace{3em}
+        \centering{\large\color{GisLightBlue} \bfseries \inserttitle \par}
+  \begin{beamercolorbox}[sep=0.4ex,ht=0ex, wd=\paperwidth]{}
+    \color{GisLightGrey}\rule{333pt}{0.4pt} 
+  \end{beamercolorbox}%
+		\vspace{2em}
+
+		\centering{\normalsize\color{GisLightBlue} \insertauthor\par}
+		
+		\ifx\@event\@empty
+		\else
+			\vspace{3em}
+			\centering{\color{GisWhite} \@event \par}
+		\fi
+		
+        \end{minipage}
+    }
+  \end{picture}
+ 
+
+}
+
+% HEADER
+\defbeamertemplate*{headline}{kgi}
+{
+	\begin{beamercolorbox}[wd=\paperwidth,leftskip=0.6em,sep=0.9em]{headerline title}
+  
+	\end{beamercolorbox}
+	
+}
+
+% FOOTER
+\defbeamertemplate*{footline}{kgi}
+{
+		\begin{beamercolorbox}[wd=\paperwidth,leftskip=0.5em,rigthskip=0.5em,sep=0.1em]{footerline}
+    \begin{minipage}{\paperwidth}
+      {\color{GisLightBlue}\rule{333pt}{0.8pt}}
+      \vspace{1pt}
+      \centering
+      \includegraphics[scale=1.1]{images/www2_b.png}
+      \hspace{3.7cm}\includegraphics[scale=1.0]{images/department_university_barva_a.png}
+		\end{minipage}
+  \end{beamercolorbox}   
+}
+
+
+% SECTION LIST
+\usesectionheadtemplate
+{ %active
+  \color{GisYellow80} \insertsectionhead
+}
+{ %other
+  \color{GisBlueGrey60} \insertsectionhead
+}
+
+% BACKGROUND IMAGE
+
+%frame title style
+\defbeamertemplate*{frametitle}{}
+{
+  \begin{beamercolorbox}[sep=0.5ex,ht=4ex, wd=\paperwidth]{}
+    \hspace{0.5em}{\bfseries{\insertframetitle{}}} %
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[sep=1.7ex,ht=0ex, wd=\paperwidth]{}
+    \color{GisLightGrey}\rule{333pt}{0.4pt} 
+  \end{beamercolorbox}%
+
+}
+
+%
+\newcommand{\sectionframe}[1]
+{
+    \begin{beamercolorbox}[wd=\textwidth]{footerline}
+        \begin{minipage}{\textwidth}
+          \vspace{0em}
+          \centering\Large{\color{white}{#1}}
+          \vspace{0em}
+        \end{minipage}%
+    \end{beamercolorbox}%
+    \nointerlineskip
+    \begin{beamercolorbox}[sep=0ex,ht=0pt, wd=\textwidth]{headerline border}
+    \end{beamercolorbox}%
+}
+%\mode<handout>
+
+\mode
+<all>

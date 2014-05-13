@@ -1,0 +1,82 @@
+\documentclass{llncs}
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\input{unity}
+
+\title{Synchronizace a replikace geodat v prostředí Esri platformy}
+\author{Markéta Solanská}
+\institute{Katedra geoinformatiky, Přírodovědecká fakulta, Univerzita Palackého v Olomouci, 17. listopadu 50, 779 00 Olomouc, Česká republika, \\
+\email{marketa.solanska@gmail.com}} 
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+  Tato práce hodnotí možnosti dostupných replikačních řešení a na základě toho
+  navrhuje databázové řešení s ohledem na možnosti a požadavky katedry. V
+  rešerší části byly vymezeny pojmy synchronizace, replikace a související
+  pojem verzování a popsána replikace včetně variant synchronní, asynchronní,
+  jednosměrné, obousměrné, kaskádové, logické i fyzické. Byly rozebrány
+  požadavky na databázové ukládání dat jednotlivých produktů ArcGIS a byla
+  podrobně popsána technologie ArcSDE, která se v ArcGIS produktech používá pro
+  připojení k databázi. Na základě rešerše byl vybrán databázový systém
+  PostgreSQL, který je možno použít v kombinaci s produkty ArcGIS, což bylo
+  jedním z hlavních požadavků pro výběr databázového systému. Byl sestaven
+  návrh databázového řešení, který zohledňuje všechny požadavky katedry a
+  možnosti daných technologií. Bylo vytvořeno testovací prostředí na serveru
+  poskytnutém katedrou, na němž byly dané procesy otestovány. Na základě toho
+  byl pak sepsán podrobný popis toho, jak nastavit replikaci ve variantě
+  streaming a Slony-I. Návrh zahrnuje také možnost použití nástroje pgpool pro
+  rozložení zátěže mezi servery v databázovém clusteru.
+\end{abstract}
+
+
+\begin{keywords}
+  replikace, synchronizace, verzování, databázový systém, Po\-stgreSQL, ArcSDE, ArcGIS
+\end{keywords}
+
+\begin{abstractEnglish}
+  The main goal of this thesis is to evaluate options of replication solutions
+  which are available and based on this research design a~database solution
+  which considers possibilities and requirements of the Department of
+  Geoinformatics. In the theoretical part terms replication, synchronization
+  and versioning are defined including description of synchronous,
+  asynchronous, master-slave, multimaster, cascade, logical and physical
+  replication. The requirements of ArcGIS products for storage of data in
+  database were considered and ArcSDE Technology which is used by ArcGIS
+  products for database storage of spatial data was described. Based on the
+  research database management system PostgreSQL was chosen because it is
+  supported by ArcGIS products. The design of the database solution was created
+  based on all requirements and the main processes were tested. Based on that a
+  manual of the proposed replication solution setup was written. Two
+  replication options were tested - PostgreSQL native streaming replication and
+  replication using PostgreSQL extension Slony-I. The design includes a
+  description of usage of pgpool utility used for load-balancing. 
+\end{abstractEnglish}
+
+\begin{keywordsEnglish}
+  replication, synchronization, versioning, database management system, PostgreSQL, ArcSDE, ArcGIS
+\end{keywordsEnglish}
+
+\input{uvod.tex}
+\input{pouzite_metody.tex}
+\input{2_vymezeni_pojmu.tex}
+\input{3_replikace.tex}
+\input{0_konfigurace_uvod.tex}
+\input{1_navrh_replikacniho_reseni.tex}
+
+\begin{thebibliography}{99}
+    \bibitem{Oppel2009} OPPEL, A. J. \emph{Databases: A Beginner’s Guide}. New York: McGraw-Hill, 2009, 164 s. ISBN 00-716-0846-X.
+\bibitem{Connolly2005} CONNOLLY, T. \emph{Database Systems: A Practical Approach to Design, Implementation, and Management}. Vyd. 4. Harlow: Addison-Wesley, 2005, 1374 s. ISBN 03-212-1025-5.
+\bibitem{Momjian2001} MOMJIAN, B. \emph{PostgreSQL: Introduction and Concepts}. Boston, MA: Addison-Wesley, 2001, xxviii, 461 s. ISBN 02-017-0331-9.
+    \bibitem{Microsoft2013} MICROSOFT. SQL Server - Replication. \emph{Microsoft} [online], 2013 [cit. 2013-08-27]. Dostupné z: http://technet.microsoft.com/en-us/library/ms151198(v=sql.100).aspx.
+    \bibitem{ObeHsu2012} OBE, R., HSU, L. \emph{Postgresql: Up and Running}. Sebastopol, CA: O’Reilly, 2012, 164 s. ISBN 978-144-9326-333.
+    \bibitem{BellKindahlThalmann2010} BELL, C., KINDAHL, M., THALMANN, L. \emph{MySQL High Availability}. Vyd. 1. Sebastopol, CA: O’Reilly Media, Inc, 2010. ISBN 978-059-6807-306.
+    \bibitem{RiggsKrossing2010} RIGGS, S., KROSING, H. \emph{PostgreSQL 9 Administration Cookbook: Solve real-world     PostgreSQL problems with over 100 simple, yet incredibly effective recipes}. Birmingham: Packt Publishing, 2010, 345 s. ISBN 978-1-849510-28-8.
+    \bibitem{Boszormenyi2013} BÖSZÖRMENYI, Z., SCHÖNIG, H.-J. \emph{PostgreSQL Replication: Understand basic replication concepts and efficiently replicate PostgreSQL using high-end techniques to protect your data and run your server without interruptions}. Vyd. 1. Birmingham: Packt Publishing, 2013, vii, 230 s. ISBN 978-1-84951-672-3.
+
+\end{thebibliography}
+
+\end{document}

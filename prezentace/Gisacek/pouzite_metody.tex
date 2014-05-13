@@ -1,0 +1,30 @@
+\section{Použité metody a programové komponenty}
+Konfigurace replikace zahrnovala studium návodů jednotlivých nástrojů pro
+replikaci, výběr vhodných programových komponent a jejich následné praktické
+nastavení. To bylo testováno průběžně na několika počítačích. 
+
+Jako databázový server byl zvolen {\it PostgreSQL} s plnou podporou pro správu
+prostorových dat, která je zajištěna nádstavbou {\it PostGIS}. Pro replikaci byla
+zvolena nativní {\it PostgreSQL streaming replikace} a externí nástroj {\it Slony-I}. Pro
+efektivní využívání databáze byl dále vybrán externí nástroj pgpool, který
+zajišťuje snížení zátěže jednotlivých serverů rovnoměrným rozkládáním dotazů od
+klientů mezi jednotlivé databáze. 
+
+Nástroj pro replikaci Slony-I byl testován na operačním systému Ubuntu
+GNU/Li\-nux 12.4 a zároveň na operačním systému Windows XP. 
+
+Nativní PostgreSQL streaming replikace byla testována pouze na operačním
+systému Linux. Server geohydro.upol.cz byl poskytnut jako testovaní server pro
+tuto práci. Na server byl nainstalován 32bitový operační systém Debian
+GNU/Li\-nux 7.3, který byl vybrán kvůli jeho stabilitě a jevil se tedy pro server
+jako vhodný. Tato verze ovšem umožnila instalaci pouze programů verzí
+PostgreSQL 9.1, PostGIS 1.5 a pgpool 3.1. Vzhledem k tomu, že se nejedná o
+nejnovější verze zmíněných produktů, byla replikace testována také na osobním
+počítači ve verzích PostgreSQL 9.3, PostGIS 2.1 a pgpool 3.3. To umožnilo
+nastudování dalších možností, které nové verze přináší a které byly zohledněny
+v návrhu replikačního řešení. 
+
+Pro testování byla používána ukázková prostorová data vytvořená pro účel této
+práce a dále byla na server uložena datová sada ArcČR ve verzi 3.0.
+
+

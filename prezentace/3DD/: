@@ -1,0 +1,195 @@
+\documentclass[xcolor=dvipsnames, 14pt]{beamer}
+\graphicspath{{./obr/}}
+\usetheme[
+		%english,
+		%nameTitle,
+		%tableOfContent,
+        %numbering,
+        ]{upolkgi}
+%%\usetheme{Darmstadt}
+%%\usecolortheme[named=LimeGreen]{structure}
+
+% balíčky
+
+%%\usepackage[utf8]{inputenc}
+%%\usepackage[czech]{babel}
+\usepackage{graphicx}
+
+% informace o dokumentu
+ \setbeamersize{text margin left=.5cm,text margin right=.5cm, text margin top=2cm}
+ \pdfcompresslevel=0
+\begin{document}
+
+\title[Synchronizace a replikace geodat]{Synchronizace a replikace geodat \\v prostředí Esri platformy}
+\author[M. Solanská]{Markéta Solanská \\vedoucí práce doc. RNDr. Vilém Pechanec, Ph.D.}
+\date[6.3.2013]{3. diplomový den, 26.3.2014}
+
+% titulní stránka
+% (název prezentace, autor, datum...)
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Synchronizace a replikace geodat v prostředí Esri platformy}
+
+  \begin{frame}
+    \frametitle{Cíle práce}
+    \begin{itemize}
+        \item propojit produkty ArcGIS k databázi PostgreSQL (PostGIS) pomocí ArcSDE
+        \item nastudovat a prakticky otestovat replikaci v databázovém systému PostgreSQL
+    \end{itemize}
+  \end{frame}
+  
+  \begin{frame}
+    \frametitle{Teoretická část}
+    \begin{itemize}
+      \item definuje pojmy replikace, synchronizace a verzování
+      \item popisuje možnosti replikace, její typy a nastavení
+      \item popisuje technologii ArcSDE
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Praktická část}
+    \begin{itemize}
+      \item nastavení 2 typů replikace pro daná data
+      \item propojení produktů ArcGIS s databází PostgreSQL skrze ArcSDE 
+      \item testování 
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Princip replikace}
+    \centering
+    \includegraphics[scale=0.45]{obr/schema1.png} 
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Princip replikace}
+    \centering
+    \includegraphics[scale=0.45]{obr/schema2.png} 
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Princip replikace}
+    \centering
+    \includegraphics[scale=0.45]{obr/schema3.png} 
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Princip replikace}
+    \centering
+    \includegraphics[scale=0.45]{obr/schema4.png} 
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Princip replikace}
+    \centering
+    \includegraphics[scale=0.45]{obr/schema5.png} 
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Princip replikace}
+    \centering
+    \includegraphics[scale=0.45]{obr/schema6.png} 
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Princip replikace}
+    \centering
+    \includegraphics[scale=0.45]{obr/schema7.png} 
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Princip replikace}
+    \centering
+    \includegraphics[scale=0.45]{obr/schema8.png} 
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Princip replikace}
+    \centering
+    \includegraphics[scale=0.45]{obr/schema9.png} 
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Princip replikace}
+    \centering
+    \includegraphics[scale=0.45]{obr/schema10.png} 
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Princip replikace}
+    \centering
+    \includegraphics[scale=0.45]{obr/schema11.png} 
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Princip replikace}
+    \centering
+    \includegraphics[scale=0.45]{obr/schema12.png} 
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Princip replikace}
+    \centering
+    \includegraphics[scale=0.45]{obr/schema13.png} 
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Princip replikace}
+    \centering
+    \includegraphics[scale=0.45]{obr/schema14.png} 
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{ArcSDE Technology}
+    \framesubtitle{ESRI product}
+    \begin{itemize}
+        \item middleware for communication between ArcGIS and SQL server (e.g. PostgreSQL)
+        \item provides:
+        \begin{itemize}
+          {\normalsize 
+            \item alternative method of ArcGIS spatial data storage (to RDBMS instead of filesystem)
+            \item its own spatial data types
+            \item its own replication solution 
+          }
+        \end{itemize} 
+        \item enables multi-user editation
+    \end{itemize} 
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Již hotovo}
+    \begin{itemize}
+      \item studium procesů replikace a fungování ArcSDE
+      \item práce na teoretické a rešerší části
+      \item praktické použití 2 typů replikace PostgreSQL databáze 
+        \begin{itemize}
+          \item Slony-I replikace (na WIN XP/Linux Ubuntu)
+          \item built-in replikace (na Linux Ubuntu)
+        \end{itemize}
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Co bude brzy hotovo}
+    \begin{itemize}
+      \item připojení produktů ArcGIS k databázi PostgreSQL (PostGIS)
+      \item vyzkoušení verzování a replikace pomocí ArcSDE
+      \item testování replikace na velkém objemu dat
+      \item dokončení textové část práce
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+    \begin{center}
+      \centering
+      \includegraphics[scale=0.4]{obr/schema_zaver.png} 
+     \newline 
+     \newline 
+      {\LARGE\color{GisLightBlue}Děkuji za pozornost.}
+    \end{center}
+  \end{frame}
+\end{document}

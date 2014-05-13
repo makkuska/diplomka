@@ -1,0 +1,17 @@
+\section{Vymezení pojmů}
+\label{kVymezeniPojmu}
+
+Databáze je strukturovaná kolekce dat, která slouží pro efektivní ukládání dat a~jejich zpětně čtení \cite{Oppel2009}. V relační databázi jsou data ukládána ve formě tabulek, tedy entit a atributů, které jsou vzájemně propojeny vazbami mezi entitami \cite{Connolly2005}. Toto logické uložení vazeb mezi tabulkami umožňuje efektivní manipulaci s daty, rychlé vyhledávání i komplexní analýzu \cite{Momjian2001}. 
+
+Obvykle se rozlišují pojem databáze, který odkazuje na obecný koncept, a pojem databázový systém nebo přesněji {\it systém řízení báze dat} \footnote{angl. Database Management System (DBMS)}, což je konkrétním počítačovým program, který zajišťuje fyzické uložení dat. Moderní SŘBD jsou navrženy na principu klient/server, kdy databáze běží jako služba na pozadí a čeká na dotazy od klientů. Server uživatelům umožňuje skrze jazyk SQL přístupovat k databázi, vytvářet a aktualizovat data, stejně jak jako vyhledávat či analyzovat \cite{Connolly2005}.
+
+{\it Prostorová databáze}, někdy také zvaná {\it geodatabáze}, není nic jiného než databáze obohacená o datový typ určený pro ukládání prostorové informace o~prvku, prostorové indexy a sadu funkcí vhodných pro správu prostorových dat. Dnes umožňují ukládat prostorová data například databázové systémy PostgreSQL 9.x, Microsoft SQL Server, Oracle Database, MySQL nebo SQLite. 
+
+Pojmy replikace a synchronizace některé zdroje rozlišují, jiné je naopak po\-va\-žu\-jí za synonyma. Všechny zmíněné pojmy souvisí se zálohováním dat, tedy kopírovaním dat mezi dvěmi a více uložišti, a se liší konkrétním důvodem pro použití daného procesu. 
+
+O synchronizaci souborů či datových složek je možno mluvit v případě, že existují dva datové zdroje, které je potřeba v daný okamžik sjednotit. Jde tedy o proces, který probíhá jednorázově a to většinou z důvodů potřeby porovnání dvou a více datových uložišť, které je potřeba dostat do totožného stavu. To může například přispět snazší spolupráci více uživatelů nad stejnými daty nebo pomoct uživateli, který pracuje na více počítačích. Proces může proběhnout jednou nebo opakovaně, ať už pravidelně či nepravidelně. U souborů se shodným názvem se porovnává čas posledního zápisu, velikost nebo obsah souboru, naopak soubory, u kterých není nalezena shoda, jsou jednoduše zkopírovány. 
+
+Replikace je proces průběžný, který soustavně hlídá, zda ve zdrojových datech nedošlo ke změně, a pokud ano, dané změny zkopíruje na jiné datové uložiště. Často je tento proces používán právě ve spojitosti s databázemi, kdy jsou data kopírována z~důvodu snížení zátěže serveru, či zvýšení ochrany dat. Replikace je tedy často vyžadována z jiných důvodů než synchronizace, začíná s daty existujícími pouze na jednom uložišti a pro zajištění konzistence dat používá jiných technologií. Více se replikací zabývá kapitola \ref{kReplikace}.
+
+Oba procesy je možno použít jednostranně, tedy kopírovat data pouze z~jednoho uložiště na druhé a nikoliv opačně, nebo oboustraně, kdy se data kopírují navzájem mezi sebou.
+
