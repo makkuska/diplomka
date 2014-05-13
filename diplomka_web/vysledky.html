@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="cs-cz" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Markéta Solanská" />
+    <meta name="description" content="Doprovodný web k diplomové práci Replikace a synchronizace dat v prostředí Esri platformy" />
+    <link rel="shortcut icon" href="../../bootstrap/assets/ico/favicon.png" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="dist/css/blog.css" />
+    <link rel="stylesheet" href="dist/css/diplomka.css" />
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="dist/js/jquery.js"></script>
+    <script type="text/javascript" src="dist/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="dist/js/html5shiv.js"></script>
+    <script src="dist/js/respond.min.js"></script>
+    <![endif]-->
+
+    <title>Solanská - Synchronizace a replikace geodat v prostředí Esri platformy | Výsledky</title>
+  </head>
+
+  <body>
+    <!-- uvodNavigace -->
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+        <a id="uvod"    class="blog-nav-item" href="index.html">Úvod</a>
+        <a id="cile"    class="blog-nav-item" href="cile.html">Cíle práce</a>
+        <a id="pojmy"  class="blog-nav-item" href="pojmy.html">Vymezení pojmů</a>
+        <a id="replikace"  class="blog-nav-item" href="replikace.html">Replikace</a>
+        <a id="vysledky" class="blog-nav-item" href="vysledky.html">Výsledky</a>
+        <a id="zaver"   class="blog-nav-item" href="zaver.html">Závěr</a>
+        <a id="summary" class="blog-nav-item" href="summary.html">Summary</a>
+        </nav>
+      </div>
+    </div>
+    <!-- Nadpis -->
+    <div class="sidebar-module sidebar-module-inset">
+      <div class="container">
+        <h1>Synchronizace a replikace geodat v prostředí Esri platformy</h1>
+        <p class="blog-description">Diplomová práce Markéty Solanské, vedoucí
+        práce doc. RNDr. Vilém Pechanec PhD.</p>
+      </div> 
+    </div> 
+
+    <div id="first" class="vysledky">
+      <div class="container">
+        <!-- tělo stránky -->
+        <div class="hlavni"> 
+          <h2 class="page-header">Výsledky</h2>
+          <p>
+          Po provedení rešerše a zohlednění všech požadavků a možností katedry
+          geoinformatiky, byl <strong>sestaven návrh kompletního databázového řešení
+            založeného na procesu replikace</strong>. Byl vybrán databázový server
+          <strong>PostgreSQL</strong> hned z několika důvodů. Jedná se o plnohodnotný databázový
+          systém dostupný zdarma se všemi nástroji, je široce používaný v
+          oblasti geoinformačních technologií, je multiplatfomní a od verze
+          ArcGIS 9.3 plně podporováný produkty ArcGIS. Návrh počítá s použitím
+          ArcSDE pro propojení databáze s ArcGIS produkty. Při výběru
+          jednotlivých verzí je nutné zajistit kompatibilitu verzí jednotlivých
+          software a poté ArcSDE nainstalovat na servery v clusteru.
+          </p>
+          <p>
+          Byl navržen replikační cluster s nejméně třemi servery z důvodů. Celý
+          cluster poběží na stejné platformě a proto bude možno použít
+          streaming replikaci se všemi výhodami a nevýhodami zmíněnými v sekci
+          o replikaci. Byla zvolena jednosměrná master-slave replikace, cluster
+          tedy bude obsahovat jeden master a dva (popř. více) slave serverů.
+          Aby nedošlo ke ztrátě dat v případě, že by master server spadl dřív,
+          než se data zkopírují na slave server, pro první slave (slave1) byla
+          zvolena varianta synchronní replikace. Je vhodné, aby servery běžely
+          v lokální síti z důvodu rychlosti a spolehlivosti spojení mezi master
+          a slave serverem.
+          </p>
+          <img src="dist/img/schema_navrhKatedra.png" alt="Návrh replikačního řešení" />
+          <div class="gray text-center">
+            Obrázek 7: Návrh replikačního řešení
+          </div>
+          <p>
+          Druhý server (slave2) bude replikovat asynchronně a zároveň, aby nedocházelo
+          k přetížení master serveru, bude replikace probíhat ze slave1 na slave2, tedy kaskádově. Tím bude řešení zároveň přípraveno na výpadek master serveru, protože v
+          případě master vypadne, slave1 bude povýšen na master a slave2 bude ihned moci
+          replikovat. Ze slave2 lze dále tvořit pravidelnou, například denní nebo týdenní, zálohu pomocí ulitily pg_dump. Záloha pomocí
+          pg_dump tak nebude zatěžovat master server a sama o sobě bude probíhat rychleji,
+          než by tomu bylo na master serveru, který je již tak velmi vytížen dalšími procesy.
+          </p>
+          <p>
+          Uživatelé se budou připojovat skrze pgpool, který se bude tvářit jako
+          jediný databázový server a ke kterému se klienti přihlásí bez ohledu
+          na typ jejich dotazu. On sám pak rozhodne, ke kterému ze serverů
+          klienta přihlásí. Tím bude mít zároveň možnost rozložit zátěž na
+          dostupné uzly v clusteru. Pro ještě větší efektivitu provozu databáze
+          bude pgpool uchovávat databázová spojení a při novém dotazu využije
+          stávajícího spojení, místo aby vytvářel spojení nové.
+          </p>
+          <p>
+          Vzhledem k tomu, že klienti budou k databázovému serveru přistupovat skrze
+          pgpool, není potřeba aby jednotlivé uzly v clusteru měly veřejnou IP adresu. Plně
+          dostačuje, že servery poběží na lokální síti a pouze pgpool bude na serveru s veřejnou
+          IP, čímž se zajistí, že data budou přístupná z internetu.
+          </p>
+          <p>
+          Návrh počítá také s externími pracovišti, která budou často číst z databáze a budou
+          mít zájem o zrychlení přístupu k datům tím, že se slave server přesune na jejich
+          pracoviště. Typ replikace se zvolí podle jejich operačního systému a jeho architektury.
+          Pokud se bude jednat o shodný systém, jaký bude použit ve výše popsaném clusteru,
+          pak bude možno použít asynchronní streaming replikaci, naopak pokud se bude bude
+          jednat o systém jiný, bude použita Slony-I replikace.
+          </p>
+        </div>
+        <div class="blog-footer footer">
+          <p>© 2014 <a href="mailto:marketa.solanska@gmail.com">Markéta SOLANSKÁ</a> | 
+          vedoucí práce: <a href="http://geoinformatics.upol.cz/pracovnici-det.php?menu=vipe" target="_blank">doc. RNDr. Vilém PECHANEC, Ph.D.</a> | 
+          <a href="geoinformatics.upol.cz">Katedra geoinformatiky</a>
+          </p>
+        </div>
+      </div> <!-- /container -->
+    </div> <!-- konec těla stránky -->
+
+    <script type="text/javascript" src="dist/js/menu.js">
+    </script>
+
+  </body>
+</html>

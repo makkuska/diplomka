@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="cs-cz" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Markéta Solanská" />
+    <meta name="description" content="Doprovodný web k diplomové práci Replikace a synchronizace dat v prostředí Esri platformy" />
+    <link rel="shortcut icon" href="../../bootstrap/assets/ico/favicon.png" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="dist/css/blog.css" />
+    <link rel="stylesheet" href="dist/css/diplomka.css" />
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="dist/js/jquery.js"></script>
+    <script type="text/javascript" src="dist/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="dist/js/html5shiv.js"></script>
+    <script src="dist/js/respond.min.js"></script>
+    <![endif]-->
+    <title>Solanská - Synchronizace a replikace geodat v prostředí Esri platformy | Úvod</title>
+  </head>
+
+  <body>
+    <!-- Navigace -->
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+        <a id="uvod"    class="blog-nav-item" href="index.html">Úvod</a>
+        <a id="cile"    class="blog-nav-item" href="cile.html">Cíle práce</a>
+        <a id="pojmy"  class="blog-nav-item" href="pojmy.html">Vymezení pojmů</a>
+        <a id="replikace"  class="blog-nav-item" href="replikace.html">Replikace</a>
+        <a id="vysledky" class="blog-nav-item" href="vysledky.html">Výsledky</a>
+        <a id="zaver"   class="blog-nav-item" href="zaver.html">Závěr</a>
+        <a id="summary" class="blog-nav-item" href="summary.html">Summary</a>
+        </nav>
+      </div>
+    </div>
+    <!-- Nadpis -->
+    <div class="sidebar-module sidebar-module-inset">
+      <div class="container">
+        <h1>Synchronizace a replikace geodat v prostředí Esri platformy</h1>
+        <p class="blog-description">Diplomová práce Markéty Solanské, vedoucí
+        práce doc. RNDr. Vilém Pechanec PhD.</p>
+      </div> 
+    </div> 
+
+    <div id="first" class="uvod">
+      <div class="container">
+        <!-- tělo stránky -->
+        <div class="hlavni"> 
+          <h2 class="page-header">Úvod</h2>
+          <p>
+          Dnešní trend je ukládat a ponechávat stále více dat pouze v digitální podobě. Mnoho
+          dokumentů už se vůbec netiskne do papírové podoby, což podporuje i trend elektronických schránek a podpisů. S přibývajícím množstvím dat je však třeba řešit komplikace, které informace uložené pouze v elektronické podobě přinášejí. Počítačoví
+          experti řeší například otázky, kam ukládat tak velké množství dat, jak data efektivně
+          aktualizovat, jak zabránit poškození dat ať už způsobených lidským faktorem či chybou hardware. V případě, že se poškodí disk, můžeme často během okamžiku přijít
+          o všechna data, někdy však pro ztrátu dat stačí pouze stisknout tlačítko na klávesnici.
+          </p>
+          <p>
+          Dnes už je běžné, že má každý hned několik internetových účtů pro příhlášení
+          do banky, pojišťovny, různých internetových obchodů, či sociální sítě. Často však,
+          například z důvodu přetížení, nastávají problémy s pomalým připojením nebo úplnou
+          nedostupností zvolené služby. I to jsou problémy, které velké množství dat a vysoký
+          počet uživatelů přináší. Jak tedy pracovat s těmito objemy, jak zabránit komplikacím,
+          které mohou poškodit či zcela zničit celou dosavadní práci, a jak zrychlit celý proces
+          práce s daty?
+          </p>
+          <p>
+          Řešením velkého počtu výše uvedených problémů může být ukládaní dat do databáze a jejich následná replikace. Replikací je myšlena pokročilá funkcionalita, která
+          zajišťuje kopii dat na více serverů. Nabízí ji většina dnešních databázových serverů,
+          zajišťuje větší robustnost databáze a vysokou dostupnost dat. Replikaci lze využít
+          ve všech odvětvích, která pracují s daty. Výjimkou není ani geoinformatika, která
+          často pracuje s velkými objemy dat, které navíc nesou informaci o geografické poloze.
+          Právě reprezentace geografické polohy, skrze textový zápis souřadnic daných bodů,
+          může způsobit razantní zvýšení objemu dat. U webových map se musí řešit velký počet dotazů do databáze, protože například každé posunutí výřezu či přiblížení, resp.
+          oddálení výřezu mapy, je samostatným dotazem, který musí kapacita serveru zvládat. Například pokud bude uživatel procházet plánovanou 100km trasu posouváním
+          výřezu mapy po 10 km, může to pro server způsobit velkou zátěž.
+          </p>
+          <p>
+          Data středně velkého až velkého projektu je vhodnější ukládat do databáze než
+          jiných formátů typu shapefile, Microsoft Access nebo obyčejného tabulkového procesoru. Nabízí nám to sofistikované uložení dat, propojení jednotlivých vrstev a připojení atributů ke geometrii, snadnou přenostitelnost dat i efektivní vyhledávání.
+          Replikace samotná se poté využívá pro zajištění kopie dat a následnou aktualizaci
+          změn, která v databázi nastanou.
+          </p>
+          <p>
+          Replikaci ocení uživatelé pracující na společném projektu, distribuovaná pracoviště
+          i společnosti s velkým množstvím důležitých dat, jejichž dostupnost je rozhodující pro
+          jejich fungování. Dobrým příkladem využitelnosti replikace je také nový trend využívání offline aplikací v mobilních telefonech. Databáze se vždy replikuje do mobilního
+          telefonu, kde může fungovat offline a vždy, když se klient připojí na internetovou síť,
+          aplikace zkontroluje zda není na serveru novější verze databáze a pokud ano, zkopíruje pouze změny, které proběhly od poslední aktualizace. Databázové systémy nabízí
+          širokou škálu nastavení, která umožňuje replikaci přizpůsobit danému řešení.
+          </p>
+        </div>
+        <div class="blog-footer footer">
+          <p>© 2014 <a href="mailto:marketa.solanska@gmail.com">Markéta SOLANSKÁ</a> | 
+          vedoucí práce: <a href="http://geoinformatics.upol.cz/pracovnici-det.php?menu=vipe" target="_blank">doc. RNDr. Vilém PECHANEC, Ph.D.</a> | 
+          <a href="geoinformatics.upol.cz">Katedra geoinformatiky</a>
+          </p>
+        </div>
+      </div> <!-- hlavni -->
+    </div> <!-- first -->
+
+    <script type="text/javascript" src="dist/js/menu.js">
+    </script>
+
+  </body>
+</html>
